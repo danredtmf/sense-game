@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://levels/assets/lamp.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends MeshInstance
+
+export var is_on = true
+
+func _ready():
+	$SpotLight.visible = is_on
+"
+
+[node name="lamp" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+
+[node name="SpotLight" type="SpotLight" parent="." index="0"]
+transform = Transform( 6.47052, 0, 0, 0, -2.82836e-07, 6.47052, 0, -6.47052, -2.82836e-07, -4.82961, 0, 0 )
+spot_range = 20.0
+spot_angle = 30.0

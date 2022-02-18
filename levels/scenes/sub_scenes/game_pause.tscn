@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://sources/themes/button/hover.tres" type="StyleBox" id=3]
+[ext_resource path="res://sources/themes/button/pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://sources/themes/button/disabled.tres" type="StyleBox" id=5]
+[ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=6]
+[ext_resource path="res://sources/shaders/blur.gdshader" type="Shader" id=7]
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends Control
+
+const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
+
+func _ready():
+	update_ui()
+
+func _process(_delta):
+	update_ui()
+
+func update_ui():
+	$name.text = tr('pause')
+	$buttons/VBoxContainer/continue.text = tr('continue')
+	$buttons/VBoxContainer/settings.text = tr('settings')
+	$buttons/VBoxContainer/exit.text = tr('exit')
+
+func _on_continue_pressed():
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()
+
+func _on_exit_pressed():
+	Core.to('main_menu')
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().paused = false
+
+func _on_settings_pressed():
+	var settings = settings_menu_res.instance()
+	get_parent().add_child(settings)
+"
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = ExtResource( 7 )
+shader_param/blur_amount = 2.0
+shader_param/mix_amount = 0.2
+shader_param/color_over = null
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[node name="game_pause" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="."]
+material = SubResource( 12 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.156863, 0.156863, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 6 )
+text = "Pause"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buttons" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -400.0
+margin_right = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="buttons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="Button" parent="buttons/VBoxContainer"]
+margin_top = 135.0
+margin_right = 300.0
+margin_bottom = 175.0
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 2 )
+text = "Continue"
+
+[node name="settings" type="Button" parent="buttons/VBoxContainer"]
+margin_top = 180.0
+margin_right = 300.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 2 )
+text = "Settings"
+
+[node name="exit" type="Button" parent="buttons/VBoxContainer"]
+margin_top = 225.0
+margin_right = 300.0
+margin_bottom = 265.0
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 2 )
+text = "Exit to the Main Menu"
+
+[connection signal="pressed" from="buttons/VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="buttons/VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="buttons/VBoxContainer/exit" to="." method="_on_exit_pressed"]

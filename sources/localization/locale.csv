@@ -1,0 +1,42 @@
+id,en,ru
+new_game,New Game,Новая Игра
+continue,Continue,Продолжить
+settings,Settings,Настройки
+about,About,Об игре
+exit,Exit,Выход
+pause,Pause,Пауза
+close,Close,Закрыть
+exit_menu,Exit to the Main Menu,Выйти
+about_control,Control,Управление
+about_movement,WASD - Movement,WASD - Передвижение
+about_interact,E - Interact,E - Взаимодействие
+about_flashlight,F - Flashlight,F - Фонарик
+about_run,Shift - Run,Shift - Бег
+about_pause,Esc - Pause Menu,Esc - Меню Паузы
+fullscreen,Fullscreen,Полноэкранный режим
+russian,Russian,Русский
+english,English,Английский
+set_language,Language,Язык
+mouse_sensitivity,Mouse Sensitivity,Чувствительность мыши
+reset_game,Clear Progress,Стереть прогресс
+reset_settings,Reset Settings,Сбросить настройки
+p_shader,Pixelation,Пиксилизация
+note,Note,Записка
+insight,Insight,Озарение
+book,Book,Книга
+note_1,Note 1/4,Записка 1/4
+note_1_text,What does he want to tell me?,Что он хочет мне сказать?
+note_2,Note 2/5,Записка 2/4
+note_2_text,"One has red eyes, the other... I couldn't see. He also runs away.","У одного красные глаза, у другого… не разглядел. Он ещё и убегает."
+note_3,Note 3/6,Записка 3/4
+note_3_text,"The floor looks okay, but the walls and the ceiling... I think the ceiling is about to collapse. Is the corridor endless?","Пол вроде нормально выглядит, но вот стены и потолок… Мне кажется, что потолок скоро обвалится. Коридор бесконечен?"
+note_4,Note 4/4,Записка 4/4
+note_4_text,Trio. Two extra. Now one.,Трое. Двое лишних. Теперь один.
+note_5,Note 0,Записка 0
+note_5_text,"If you found this note, you know I'm gone. Everything that happens here is my dream. The very first time I walked down this corridor, it was nothing. Every night that I fall asleep, this dream starts over, but more is revealed to me in the process. In the beginning, the dream was too fast to understand anything, but it's been six days. I want to understand why this is the only dream, but apparently I won't be able to find out until the end. How did you end up here? What kind of creatures? Why exactly will you be the next victim? Only some questions can be answered now. If you're lucky, you'll be saved from the one who smiles.","Если вы нашли эту записку, то знайте - меня уже нет. Всё, что здесь происходит - это мой сон. В самый первый раз я прошёл по этому коридору всего-ничего. Каждую ночь, в которую я засыпаю, этот сон начинается сначала, но при этом мне открывается всё больше. В начале, сон был слишком быстрым, чтобы что-либо понимать, но прошло уже 6 дней. Мне хочется понять, почему снится только это, но, видимо, мне не удастся узнать до конца. Как вы здесь оказались? Что за существа? Почему именно вы окажетесь следующей жертвой? Только на некоторые вопросы можно найти ответы сейчас. Если повезёт, вы спасётесь от того, кто улыбается."
+note_6,Note -1,Записка -1
+note_6_text,"It's kind of weird, you wouldn't expect to find anything else here, right? I think I'm stuck here, in my own dream... or am I? Maybe this isn't a dream. Maybe this is the place you go to after this creature catches up with you? Then why was I here before? Am I alive?","Как-то странно, ты не ожидал здесь найти что-то ещё, верно? Кажется, я застрял здесь, в своём же сне… или нет? Может это не сон? Может, это место, в которое ты попадаешь после того, когда это существо настигнет тебя? Тогда почему я здесь был до этого? Жив ли я?"
+note_7,Note -2,Записка -2
+note_7_text,"Um, you know, this place doesn't go on anymore. It's like time stopped with me, right? Why did the note count go into the negative? Don't mind me, I just don't know how much time has passed, that's all.","Хм, знаешь, это место больше не продолжается. Как будто время остановилось вместе со мной, да? Почему счёт записок пошёл в минус? Не обращай внимания, я просто не знаю, сколько времени уже прошло, вот и всё."
+note_8,Note -3,Записка -3
+note_8_text,"I didn't expect to see something in reality, but it happened. As he dragged me, I wished... for protection. I wanted protection... I want protection. I don't want strange disappearances in our town... One day, a grandfather came to us, it turns out, he was a relative of my dead mother. He had a present for me, an amulet. He said it would come in handy for me. It was not useful... The next place of attack will remain the same. I hope you can sense the danger. Good luck.","Я не ожидал увидеть нечто в реальности, но это произошло. Пока он меня тащил, я пожелал.. защиты. Хотел защиты… Хочу защитить. Не хочу странных исчезновений в нашем городке... Однажды, к нам пришёл один дедушка, оказывается, он родственник моей покойной матери. У него был для меня подарок - амулет. Сказал, что он мне пригодится. Не пригодился… Следующее место нападения останется прежним. Надеюсь, ты почувствуешь опасность. Удачи."

@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://levels/models/materials/wall1.material" type="Material" id=1]
+[ext_resource path="res://levels/models/materials/roof.material" type="Material" id=2]
+[ext_resource path="res://levels/models/materials/floor1.material" type="Material" id=3]
+
+[sub_resource type="ArrayMesh" id=8]
+resource_name = "models_floor1007"
+surfaces/0 = {
+"aabb": AABB( -0.5, 0, -0.5, 1, 1e-05, 1.00001 ),
+"array_data": PoolByteArray( 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 63, 0, 127, 129, 63, 255, 59, 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 0, 127, 129, 63, 0, 0, 0, 0, 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 191, 0, 127, 129, 63, 0, 60, 255, 59, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 191, 0, 127, 129, 63, 0, 0, 0, 60 ),
+"array_index_data": PoolByteArray( 0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 6,
+"material": ExtResource( 3 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+surfaces/1 = {
+"aabb": AABB( -0.5, 0, 0.5, 1, 0.998458, 1.00434e-05 ),
+"array_data": PoolByteArray( 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 63, 130, 129, 0, 1, 0, 60, 0, 0, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 63, 130, 129, 0, 1, 0, 60, 0, 60, 255, 255, 255, 62, 248, 154, 127, 63, 255, 255, 255, 62, 130, 129, 0, 1, 0, 0, 0, 60, 1, 0, 0, 191, 248, 154, 127, 63, 0, 0, 0, 63, 130, 129, 0, 1, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 2, 0, 0, 0, 1, 0, 2, 0, 3, 0, 0, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 6,
+"material": ExtResource( 1 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+surfaces/2 = {
+"aabb": AABB( -0.5, 0.998458, -0.5, 1.00001, 1.00136e-05, 1.00001 ),
+"array_data": PoolByteArray( 255, 255, 255, 62, 248, 154, 127, 63, 255, 255, 255, 62, 0, 129, 129, 63, 0, 0, 0, 60, 1, 0, 0, 191, 248, 154, 127, 63, 0, 0, 0, 63, 0, 129, 129, 63, 0, 60, 0, 60, 1, 0, 0, 191, 248, 154, 127, 63, 0, 0, 0, 191, 0, 129, 129, 63, 0, 60, 0, 0, 255, 255, 255, 62, 248, 154, 127, 63, 0, 0, 0, 191, 0, 129, 129, 63, 0, 0, 0, 0 ),
+"array_index_data": PoolByteArray( 0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 2, 0 ),
+"blend_shape_data": [  ],
+"format": 2194711,
+"index_count": 6,
+"material": ExtResource( 2 ),
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 4
+}
+
+[sub_resource type="ConcavePolygonShape" id=9]
+data = PoolVector3Array( -0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0.9985, 0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0.9985, 0.5, -0.5, 0.9985, 0.5, -0.5, 0, 0.5, 0.5, 0.9985, 0.5, -0.5, 0.9985, -0.5, -0.5, 0.9985, 0.5, 0.5, 0.9985, 0.5, 0.5, 0.9985, -0.5, -0.5, 0.9985, -0.5 )
+
+[node name="p_one_wall" type="MeshInstance"]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 9 )

@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sources/shaders/pixelize.gdshader" type="Shader" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Control
+
+const viewing_note_res = preload(\"res://levels/scenes/sub_scenes/viewing_note.tscn\")
+const pause_menu_res = preload(\"res://levels/scenes/sub_scenes/game_pause.tscn\")
+
+func set_action_name(name):
+	$action_name.text = name
+	if name == '':
+		$back_text.hide()
+	else:
+		$back_text.show()
+
+func _physics_process(_delta):
+	if !Core.action_object:
+		set_action_name('')
+	elif is_instance_valid(Core.action_object) && 'action_name' in Core.action_object:
+		set_action_name(Core.action_object.action_name)
+		if Core.action_object.action_viewing && Core.action_object.id != 0:
+			if Core.action_object_viewing:
+				var view_note = viewing_note_res.instance()
+				view_note.note_id = Core.action_object.id
+				add_child(view_note)
+				Core.action_object_viewing = false
+	if Core.game_pause:
+		var pause = pause_menu_res.instance()
+		add_child(pause)
+		Core.game_pause = false
+	if Data.saved_pixelize:
+		$pixelize.visible = true
+	else:
+		$pixelize.visible = false
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/size_x = 0.003
+shader_param/size_y = 0.003
+
+[node name="gui" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="pixelize" type="ColorRect" parent="."]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cursor" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.5
+margin_top = -2.5
+margin_right = 2.5
+margin_bottom = 2.5
+color = Color( 0.298039, 0.298039, 0.298039, 0.498039 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back_text" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = 11.5
+margin_right = 80.0
+margin_bottom = 51.5
+color = Color( 0.156863, 0.156863, 0.156863, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="action_name" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = 11.5
+margin_right = 80.0
+margin_bottom = 51.5
+custom_fonts/font = ExtResource( 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

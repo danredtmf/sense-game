@@ -1,0 +1,195 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=1]
+[ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=2]
+[ext_resource path="res://sources/themes/button/hover.tres" type="StyleBox" id=3]
+[ext_resource path="res://sources/themes/button/pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://sources/themes/button/disabled.tres" type="StyleBox" id=5]
+[ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=6]
+
+[sub_resource type="GDScript" id=16]
+script/source = "extends Control
+
+func _ready():
+	if Data.saved_language == 0:
+		TranslationServer.set_locale('en')
+	elif Data.saved_language == 1:
+		TranslationServer.set_locale('ru')
+	
+	if Data.is_ending:
+		$Control/VBoxContainer/continue.visible = true
+	else:
+		$Control/VBoxContainer/continue.visible = false
+	
+	OS.window_fullscreen = Data.saved_fullscreen_mode
+	
+	update_ui()
+
+func _process(_delta):
+	update_ui()
+
+func update_ui():
+	$Control/VBoxContainer/new_game.text = tr('new_game')
+	$Control/VBoxContainer/continue.text = tr('continue')
+	$Control/VBoxContainer/settings.text = tr('settings')
+	$Control/VBoxContainer/about.text = tr('about')
+	$Control/VBoxContainer/exit.text = tr('exit')
+"
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+func _pressed():
+	Core.to('game')
+	Data.reset_game()
+"
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="GDScript" id=15]
+script/source = "extends Button
+
+const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
+
+func _pressed():
+	var settings = settings_menu_res.instance()
+	get_tree().root.add_child(settings)
+"
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="GDScript" id=14]
+script/source = "extends Button
+
+const about_menu_res = preload(\"res://levels/scenes/sub_scenes/about_interface.tscn\")
+
+func _pressed():
+	var about = about_menu_res.instance()
+	get_tree().root.add_child(about)
+"
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+func _pressed():
+	Core.exit()
+"
+
+[node name="main_menu" type="Node"]
+
+[node name="interface" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="interface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="interface"]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 6 )
+text = "Sense"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="interface"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -150.0
+margin_top = -400.0
+margin_right = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="interface/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new_game" type="Button" parent="interface/Control/VBoxContainer"]
+margin_top = 112.0
+margin_right = 300.0
+margin_bottom = 152.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "New Game"
+script = SubResource( 3 )
+
+[node name="continue" type="Button" parent="interface/Control/VBoxContainer"]
+visible = false
+margin_top = 135.0
+margin_right = 300.0
+margin_bottom = 175.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "Continue"
+
+[node name="settings" type="Button" parent="interface/Control/VBoxContainer"]
+margin_top = 157.0
+margin_right = 300.0
+margin_bottom = 197.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "Settings"
+script = SubResource( 15 )
+
+[node name="about" type="Button" parent="interface/Control/VBoxContainer"]
+margin_top = 202.0
+margin_right = 300.0
+margin_bottom = 242.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "About"
+script = SubResource( 14 )
+
+[node name="exit" type="Button" parent="interface/Control/VBoxContainer"]
+margin_top = 247.0
+margin_right = 300.0
+margin_bottom = 287.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "Exit"
+script = SubResource( 5 )

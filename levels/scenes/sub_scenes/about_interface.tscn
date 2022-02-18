@@ -1,0 +1,238 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://sources/fonts/Oswald-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=2]
+[ext_resource path="res://sources/images/logos/danredtmf_circle.png" type="Texture" id=3]
+[ext_resource path="res://sources/themes/button/hover.tres" type="StyleBox" id=4]
+[ext_resource path="res://sources/themes/button/pressed.tres" type="StyleBox" id=5]
+[ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=6]
+[ext_resource path="res://sources/themes/button/disabled.tres" type="StyleBox" id=7]
+[ext_resource path="res://sources/images/icons/hyperlink.png" type="Texture" id=8]
+[ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=9]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Control
+
+func _ready():
+	update_ui()
+
+func update_ui():
+	$version.text = ProjectSettings.get_setting('application/config/version') + \" \"
+	$name.text = tr('about')
+	$information/HBox/info_control/control_name.text = tr('about_control') + ':'
+	$information/HBox/info_control/info_movement.text = tr('about_movement')
+	$information/HBox/info_control/info_interacting.text = tr('about_interact')
+	$information/HBox/info_control/info_flashlight.text = tr('about_flashlight')
+	$information/HBox/info_control/info_ranning.text = tr('about_run')
+	$information/HBox/info_control/info_pause_menu.text = tr('about_pause')
+	$close.text = tr('close')
+"
+
+[sub_resource type="DynamicFont" id=1]
+size = 62
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends TextureButton
+
+func _pressed():
+	OS.shell_open(\"https://danredtmf.github.io\")
+"
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+func _pressed():
+	get_parent().queue_free()
+"
+
+[node name="about_interface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="name" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 1 )
+text = "About"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="information" type="Control" parent="."]
+anchor_top = 0.127778
+anchor_right = 1.0
+anchor_bottom = 0.777778
+margin_top = -7.62939e-06
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="HBox" type="HBoxContainer" parent="information"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 200
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="info_dev" type="VBoxContainer" parent="information/HBox"]
+margin_left = 397.0
+margin_right = 507.0
+margin_bottom = 468.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="logo_dev" type="TextureButton" parent="information/HBox/info_dev"]
+margin_top = 148.0
+margin_right = 110.0
+margin_bottom = 276.0
+rect_min_size = Vector2( 0, 128 )
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+script = SubResource( 3 )
+
+[node name="icon" type="TextureRect" parent="information/HBox/info_dev/logo_dev"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -16.0
+margin_top = -41.0
+margin_right = 16.0
+margin_bottom = -9.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="logo_dev_name" type="Label" parent="information/HBox/info_dev"]
+margin_top = 280.0
+margin_right = 110.0
+margin_bottom = 320.0
+custom_fonts/font = ExtResource( 2 )
+text = "DanRedTMF"
+align = 1
+valign = 1
+
+[node name="info_control" type="VBoxContainer" parent="information/HBox"]
+margin_left = 707.0
+margin_right = 882.0
+margin_bottom = 468.0
+custom_constants/separation = 5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="control_name" type="Label" parent="information/HBox/info_control"]
+margin_top = 101.0
+margin_right = 175.0
+margin_bottom = 141.0
+custom_fonts/font = ExtResource( 2 )
+text = "Сontrol:"
+align = 1
+valign = 1
+
+[node name="info_movement" type="Label" parent="information/HBox/info_control"]
+margin_top = 146.0
+margin_right = 175.0
+margin_bottom = 186.0
+custom_fonts/font = ExtResource( 2 )
+text = "WASD - Movement"
+align = 1
+valign = 1
+
+[node name="info_interacting" type="Label" parent="information/HBox/info_control"]
+margin_top = 191.0
+margin_right = 175.0
+margin_bottom = 231.0
+custom_fonts/font = ExtResource( 2 )
+text = "E - Interact"
+align = 1
+valign = 1
+
+[node name="info_flashlight" type="Label" parent="information/HBox/info_control"]
+margin_top = 236.0
+margin_right = 175.0
+margin_bottom = 276.0
+custom_fonts/font = ExtResource( 2 )
+text = "F - Flashlight"
+align = 1
+valign = 1
+
+[node name="info_ranning" type="Label" parent="information/HBox/info_control"]
+margin_top = 281.0
+margin_right = 175.0
+margin_bottom = 321.0
+custom_fonts/font = ExtResource( 2 )
+text = "Shift - Run"
+align = 1
+valign = 1
+
+[node name="info_pause_menu" type="Label" parent="information/HBox/info_control"]
+margin_top = 326.0
+margin_right = 175.0
+margin_bottom = 366.0
+custom_fonts/font = ExtResource( 2 )
+text = "Esc - Pause Menu"
+align = 1
+valign = 1
+
+[node name="close" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -76.0
+margin_right = 100.0
+margin_bottom = -16.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+text = "Close"
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="version" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -25.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/font = ExtResource( 9 )
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://levels/assets/book.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/objects/action.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+
+var is_anim = false
+var is_reverse = false
+
+onready var pos_note = $pos_note
+
+func move():
+	if !is_anim:
+		if !is_reverse:
+			$anim.play('move')
+			is_reverse = true
+		else:
+			$anim.play_backwards(\"move\")
+			is_reverse = false
+		is_anim = true
+
+func _on_anim_animation_finished(_anim_name):
+	is_anim = false
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends MeshInstance
+
+func move():
+	get_parent().call('move')
+"
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("book:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "move"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("book:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 1 ) ]
+}
+
+[node name="book" type="Spatial"]
+script = SubResource( 1 )
+
+[node name="book" parent="." instance=ExtResource( 1 )]
+script = SubResource( 4 )
+
+[node name="action" parent="book" instance=ExtResource( 2 )]
+transform = Transform( 2.58601, 0, 0, 0, 2.72749, 0, 0, 0, 2.87949, 0, 0, 0 )
+action_id = "book"
+parent_function = "move"
+
+[node name="pos_note" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12196, 0 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/move = SubResource( 3 )
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
