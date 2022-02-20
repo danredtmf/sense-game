@@ -21,6 +21,7 @@ func _physics_process(_delta):
 	elif 'action_name' in n && n != object:
 		object = n
 		Core.action_object = n
+	Core.root_gui.emit_signal(\"showing_action_object\")
 "
 
 [node name="player" type="KinematicBody"]

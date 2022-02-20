@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/assets/chair.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/assets/table.tscn" type="PackedScene" id=2]
@@ -7,9 +7,14 @@
 [sub_resource type="GDScript" id=3]
 script/source = "extends Spatial
 
+signal create_note
+signal create_insight
+
 const book_res = preload(\"res://levels/objects/book.tscn\")
 const note_res = preload(\"res://levels/objects/note.tscn\")
 const insight_res = preload(\"res://levels/objects/insight.tscn\")
+
+export var is_lamp_flashing = false
 
 export var id_note = 0
 export var is_note_exist = false
@@ -19,28 +24,126 @@ export var id_insight = 0
 export var is_insight_exist = false
 
 func _ready():
-	if is_note_exist && id_note != 0:
-		var note = note_res.instance()
-		
-		note.get_node(\"action\").id = id_note
-		if is_note_secret:
-			var book = book_res.instance()
-			$pos_book.add_child(book)
-			if Data.is_good_ending:
-				book.pos_note.add_child(note)
-		else:
-			$pos_note.add_child(note)
+# warning-ignore:return_value_discarded
+	connect(\"create_note\", self, \"_on_create_note\")
+# warning-ignore:return_value_discarded
+	connect(\"create_insight\", self, \"_on_create_insight\")
 	
+	if is_note_exist && id_note != 0:
+		emit_signal(\"create_note\")
 	if is_insight_exist && id_insight != 0:
-		var insight = insight_res.instance()
-		
-		insight.get_node(\"action\").id = id_insight
-		$pos_insight.add_child(insight)
+		emit_signal(\"create_insight\")
+	if is_lamp_flashing:
+		$Timer.start()
+
+func _on_create_note():
+	var note = note_res.instance()
+	note.get_node(\"action\").id = id_note
+	if is_note_secret:
+		var book = book_res.instance()
+		$pos_book.add_child(book)
+		if Data.is_good_ending:
+			book.pos_note.add_child(note)
+	else:
+		$pos_note.add_child(note)
+
+func _on_create_insight():
+	var insight = insight_res.instance()
+	insight.get_node(\"action\").id = id_insight
+	$pos_insight.add_child(insight)
+
+func _on_lamp_light():
+	$lamp.is_on = !$lamp.is_on
+	$lamp.call('light')
+
+# warning-ignore:unused_argument
+func _on_anim_animation_finished(anim_name):
+	if is_lamp_flashing:
+		$Timer.start()
+
+func _on_Timer_timeout():
+	if !$anim.is_playing():
+		$anim.play(\"flashing_light\")
 "
 
 [sub_resource type="BoxShape" id=1]
 
 [sub_resource type="BoxShape" id=2]
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("lamp:is_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("lamp")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "light" ],
+"method": "call"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "flashing_light"
+length = 2.0
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath("lamp")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.25, 0.5, 0.8, 1.2, 1.35, 1.4, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+}, {
+"args": [ "light" ],
+"method": "emit_signal"
+} ]
+}
 
 [node name="furniture" type="Spatial"]
 script = SubResource( 3 )
@@ -72,3 +175,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.367, 3.215, 1.53 )
 
 [node name="pos_note" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25596, 3.02722, -0.112237 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/flashing_light = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="light" from="lamp" to="." method="_on_lamp_light"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

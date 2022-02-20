@@ -11,7 +11,6 @@ enum LANG {ENGLISH = 0, RUSSIAN = 1}
 var saved_mouse_sensitivity = 0.2
 var saved_fullscreen_mode = true
 var saved_language = LANG.ENGLISH
-var saved_pixelize = true
 
 var data
 
@@ -42,7 +41,6 @@ func reset_settings():
 	saved_mouse_sensitivity = 0.2
 	saved_fullscreen_mode = true
 	saved_language = LANG.ENGLISH
-	saved_pixelize = true
 	saving_settings()
 
 func saving_settings():
@@ -50,7 +48,6 @@ func saving_settings():
 		'fullscreen': saved_fullscreen_mode,
 		'sensitivity': saved_mouse_sensitivity,
 		'lang': saved_language,
-		'pixelize': saved_pixelize
 	}
 	
 	var file = File.new()
@@ -73,7 +70,6 @@ func loading_settings():
 		saved_fullscreen_mode = data.fullscreen
 		saved_mouse_sensitivity = data.sensitivity
 		saved_language = data.lang
-		saved_pixelize = data.pixelize
 
 func saving():
 	data = {

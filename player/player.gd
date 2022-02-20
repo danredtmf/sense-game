@@ -53,6 +53,7 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_tree().paused = true
 			Core.game_pause = true
+			Core.root_gui.emit_signal("showing_pause")
 	
 	vel = dir.normalized() * speed
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=1]
 [ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=2]
@@ -6,9 +6,14 @@
 [ext_resource path="res://sources/themes/button/pressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://sources/themes/button/disabled.tres" type="StyleBox" id=5]
 [ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=6]
+[ext_resource path="res://levels/scenes/sub_scenes/main_menu_map.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=8]
 
 [sub_resource type="GDScript" id=16]
 script/source = "extends Control
+
+const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
+const about_menu_res = preload(\"res://levels/scenes/sub_scenes/about_interface.tscn\")
 
 func _ready():
 	if Data.saved_language == 0:
@@ -16,12 +21,9 @@ func _ready():
 	elif Data.saved_language == 1:
 		TranslationServer.set_locale('ru')
 	
-	if Data.is_ending:
-		$Control/VBoxContainer/continue.visible = true
-	else:
-		$Control/VBoxContainer/continue.visible = false
-	
 	OS.window_fullscreen = Data.saved_fullscreen_mode
+	
+	$anim.play(\"start\")
 	
 	update_ui()
 
@@ -29,57 +31,157 @@ func _process(_delta):
 	update_ui()
 
 func update_ui():
-	$Control/VBoxContainer/new_game.text = tr('new_game')
-	$Control/VBoxContainer/continue.text = tr('continue')
-	$Control/VBoxContainer/settings.text = tr('settings')
-	$Control/VBoxContainer/about.text = tr('about')
-	$Control/VBoxContainer/exit.text = tr('exit')
+	if Data.is_ending:
+		$Control/vbox/continue.visible = true
+		$Control/vbox/notes.visible = true
+	else:
+		$Control/vbox/continue.visible = false
+		$Control/vbox/notes.visible = false
+	
+	$Control/vbox/new_game.text = tr('new_game')
+	$Control/vbox/continue.text = tr('continue')
+	$Control/vbox/settings.text = tr('settings')
+	$Control/vbox/about.text = tr('about')
+	$Control/vbox/exit.text = tr('exit')
+	$version.text = ProjectSettings.get_setting('application/config/version') + ' '
+	$warning_newgame/margin/vbox/warning.text = tr('warning') + \"!\"
+	$warning_newgame/margin/vbox/info_warning_newgame.text = tr('info_warning')
+	$warning_newgame/margin/vbox/buttons/agree.text = tr('agree')
+	$warning_newgame/margin/vbox/buttons/disagree.text = tr('disagree')
+
+func _on_anim_animation_finished(anim_name):
+	if anim_name == 'end':
+		Core.to('game')
+		Data.reset_game()
+
+func _on_new_game_pressed():
+	if !Data.is_ending:
+		$anim.play(\"end\")
+	else:
+		$warning_newgame.popup()
+
+func _on_settings_pressed():
+	var settings = settings_menu_res.instance()
+	get_tree().root.add_child(settings)
+
+func _on_about_pressed():
+	var about = about_menu_res.instance()
+	get_tree().root.add_child(about)
+
+func _on_exit_pressed():
+	Core.exit()
+
+func _on_agree_pressed():
+	if Data.is_ending:
+		$anim.play(\"end\")
+		$warning_newgame.hide()
+
+func _on_disagree_pressed():
+	$warning_newgame.hide()
 "
+
+[sub_resource type="ViewportTexture" id=17]
+viewport_path = NodePath("Viewport")
 
 [sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends Button
-
-func _pressed():
-	Core.to('game')
-	Data.reset_game()
-"
-
 [sub_resource type="StyleBoxEmpty" id=11]
-
-[sub_resource type="GDScript" id=15]
-script/source = "extends Button
-
-const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
-
-func _pressed():
-	var settings = settings_menu_res.instance()
-	get_tree().root.add_child(settings)
-"
 
 [sub_resource type="StyleBoxEmpty" id=12]
 
-[sub_resource type="GDScript" id=14]
-script/source = "extends Button
-
-const about_menu_res = preload(\"res://levels/scenes/sub_scenes/about_interface.tscn\")
-
-func _pressed():
-	var about = about_menu_res.instance()
-	get_tree().root.add_child(about)
-"
-
 [sub_resource type="StyleBoxEmpty" id=13]
 
-[sub_resource type="GDScript" id=5]
-script/source = "extends Button
+[sub_resource type="StyleBoxEmpty" id=22]
 
-func _pressed():
-	Core.exit()
-"
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("interface/transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("interface/transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "end"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("interface/transition:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("interface/transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("interface/transition:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("interface/transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="main_menu" type="Node"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1600, 900 )
+
+[node name="main_menu_map" parent="Viewport" instance=ExtResource( 7 )]
 
 [node name="interface" type="Control" parent="."]
 anchor_right = 1.0
@@ -89,17 +191,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="back" type="ColorRect" parent="interface"]
+[node name="TextureRect" type="TextureRect" parent="interface"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+texture = SubResource( 17 )
+expand = true
+flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="name" type="Label" parent="interface"]
+[node name="Control" type="Control" parent="interface"]
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-margin_bottom = 14.0
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_top = -450.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="interface/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -200.0
+margin_right = 150.0
+margin_bottom = 200.0
+custom_constants/separation = 5
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="Label" parent="interface/Control/vbox"]
+margin_top = 19.0
+margin_right = 300.0
+margin_bottom = 111.0
 custom_fonts/font = ExtResource( 6 )
 text = "Sense"
 align = 1
@@ -108,31 +239,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="interface"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -150.0
-margin_top = -400.0
-margin_right = 150.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="interface/Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/separation = 5
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="new_game" type="Button" parent="interface/Control/VBoxContainer"]
-margin_top = 112.0
+[node name="new_game" type="Button" parent="interface/Control/vbox"]
+margin_top = 116.0
 margin_right = 300.0
-margin_bottom = 152.0
+margin_bottom = 156.0
 custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
@@ -140,13 +250,12 @@ custom_styles/focus = SubResource( 10 )
 custom_styles/disabled = ExtResource( 5 )
 custom_styles/normal = ExtResource( 1 )
 text = "New Game"
-script = SubResource( 3 )
+flat = true
 
-[node name="continue" type="Button" parent="interface/Control/VBoxContainer"]
-visible = false
-margin_top = 135.0
+[node name="continue" type="Button" parent="interface/Control/vbox"]
+margin_top = 161.0
 margin_right = 300.0
-margin_bottom = 175.0
+margin_bottom = 201.0
 custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
@@ -154,11 +263,25 @@ custom_styles/focus = SubResource( 11 )
 custom_styles/disabled = ExtResource( 5 )
 custom_styles/normal = ExtResource( 1 )
 text = "Continue"
+flat = true
 
-[node name="settings" type="Button" parent="interface/Control/VBoxContainer"]
-margin_top = 157.0
+[node name="notes" type="Button" parent="interface/Control/vbox"]
+margin_top = 206.0
 margin_right = 300.0
-margin_bottom = 197.0
+margin_bottom = 246.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "Notes"
+flat = true
+
+[node name="settings" type="Button" parent="interface/Control/vbox"]
+margin_top = 251.0
+margin_right = 300.0
+margin_bottom = 291.0
 custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
@@ -166,12 +289,12 @@ custom_styles/focus = SubResource( 11 )
 custom_styles/disabled = ExtResource( 5 )
 custom_styles/normal = ExtResource( 1 )
 text = "Settings"
-script = SubResource( 15 )
+flat = true
 
-[node name="about" type="Button" parent="interface/Control/VBoxContainer"]
-margin_top = 202.0
+[node name="about" type="Button" parent="interface/Control/vbox"]
+margin_top = 296.0
 margin_right = 300.0
-margin_bottom = 242.0
+margin_bottom = 336.0
 custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
@@ -179,12 +302,12 @@ custom_styles/focus = SubResource( 12 )
 custom_styles/disabled = ExtResource( 5 )
 custom_styles/normal = ExtResource( 1 )
 text = "About"
-script = SubResource( 14 )
+flat = true
 
-[node name="exit" type="Button" parent="interface/Control/VBoxContainer"]
-margin_top = 247.0
+[node name="exit" type="Button" parent="interface/Control/vbox"]
+margin_top = 341.0
 margin_right = 300.0
-margin_bottom = 287.0
+margin_bottom = 381.0
 custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
@@ -192,4 +315,127 @@ custom_styles/focus = SubResource( 13 )
 custom_styles/disabled = ExtResource( 5 )
 custom_styles/normal = ExtResource( 1 )
 text = "Exit"
-script = SubResource( 5 )
+flat = true
+
+[node name="warning_newgame" type="PopupDialog" parent="interface"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 56.0
+margin_top = -306.0
+margin_right = 456.0
+margin_bottom = -56.0
+custom_styles/panel = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margin" type="MarginContainer" parent="interface/warning_newgame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="interface/warning_newgame/margin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 395.0
+margin_bottom = 244.0
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="warning" type="Label" parent="interface/warning_newgame/margin/vbox"]
+margin_right = 390.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Warning!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="info_warning_newgame" type="Label" parent="interface/warning_newgame/margin/vbox"]
+margin_top = 50.0
+margin_right = 390.0
+margin_bottom = 176.0
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Подтверждая, вы соглашаетесь сбросить сохранённый прогресс. Будьте внимательны!"
+align = 1
+autowrap = true
+
+[node name="buttons" type="HBoxContainer" parent="interface/warning_newgame/margin/vbox"]
+margin_top = 199.0
+margin_right = 390.0
+margin_bottom = 239.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="agree" type="Button" parent="interface/warning_newgame/margin/vbox/buttons"]
+margin_right = 190.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 22 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "Agree"
+
+[node name="disagree" type="Button" parent="interface/warning_newgame/margin/vbox/buttons"]
+margin_left = 200.0
+margin_right = 390.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 22 )
+custom_styles/disabled = ExtResource( 5 )
+custom_styles/normal = ExtResource( 1 )
+text = "Disagree"
+
+[node name="version" type="Label" parent="interface"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -25.0
+rect_min_size = Vector2( 300, 0 )
+custom_fonts/font = ExtResource( 8 )
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="transition" type="ColorRect" parent="interface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="interface"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 21 )
+anims/end = SubResource( 20 )
+anims/start = SubResource( 19 )
+
+[connection signal="pressed" from="interface/Control/vbox/new_game" to="interface" method="_on_new_game_pressed"]
+[connection signal="pressed" from="interface/Control/vbox/settings" to="interface" method="_on_settings_pressed"]
+[connection signal="pressed" from="interface/Control/vbox/about" to="interface" method="_on_about_pressed"]
+[connection signal="pressed" from="interface/Control/vbox/exit" to="interface" method="_on_exit_pressed"]
+[connection signal="pressed" from="interface/warning_newgame/margin/vbox/buttons/agree" to="interface" method="_on_agree_pressed"]
+[connection signal="pressed" from="interface/warning_newgame/margin/vbox/buttons/disagree" to="interface" method="_on_disagree_pressed"]
+[connection signal="animation_finished" from="interface/anim" to="interface" method="_on_anim_animation_finished"]

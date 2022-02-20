@@ -8,3 +8,4 @@ fog_color = Color( 0, 0, 0, 1 )
 tonemap_mode = 3
 dof_blur_far_distance = 40.0
 dof_blur_far_transition = 20.0
+dof_blur_near_distance = 4.0

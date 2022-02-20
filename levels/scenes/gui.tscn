@@ -1,13 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=1]
-[ext_resource path="res://sources/shaders/pixelize.gdshader" type="Shader" id=2]
+[ext_resource path="res://levels/scenes/sub_scenes/screen_trigger.tscn" type="PackedScene" id=2]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Control
 
+# warning-ignore:unused_signal
+signal showing_action_object
+# warning-ignore:unused_signal
+signal showing_pause
+# warning-ignore:unused_signal
+signal heartbeating
+# warning-ignore:unused_signal
+signal transition_scene
+
 const viewing_note_res = preload(\"res://levels/scenes/sub_scenes/viewing_note.tscn\")
 const pause_menu_res = preload(\"res://levels/scenes/sub_scenes/game_pause.tscn\")
+
+func _ready():
+	Core.root_gui = self
+# warning-ignore:return_value_discarded
+	connect(\"showing_action_object\", self, \"_showing_action_object\")
+# warning-ignore:return_value_discarded
+	connect(\"showing_pause\", self, \"_showing_pause\")
+# warning-ignore:return_value_discarded
+	connect(\"heartbeating\", self, \"_heartbeating\")
+# warning-ignore:return_value_discarded
+	connect(\"transition_scene\", self, \"_transition_scene\")
+	
+	$anim.play('start')
 
 func set_action_name(name):
 	$action_name.text = name
@@ -16,7 +38,7 @@ func set_action_name(name):
 	else:
 		$back_text.show()
 
-func _physics_process(_delta):
+func _showing_action_object():
 	if !Core.action_object:
 		set_action_name('')
 	elif is_instance_valid(Core.action_object) && 'action_name' in Core.action_object:
@@ -27,20 +49,108 @@ func _physics_process(_delta):
 				view_note.note_id = Core.action_object.id
 				add_child(view_note)
 				Core.action_object_viewing = false
+
+func _showing_pause():
 	if Core.game_pause:
 		var pause = pause_menu_res.instance()
-		add_child(pause)
+		add_child_below_node($action_name, pause)
 		Core.game_pause = false
-	if Data.saved_pixelize:
-		$pixelize.visible = true
-	else:
-		$pixelize.visible = false
+
+func _heartbeating():
+	$screen_trigger.emit_signal(\"heart\")
+
+func _transition_scene():
+	$anim.play(\"end\")
+
+func _on_anim_animation_finished(anim_name):
+	if anim_name == 'end':
+		Core.to('main_menu')
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = false
 "
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 2 )
-shader_param/size_x = 0.003
-shader_param/size_y = 0.003
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("gui/transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("gui/transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "end"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("gui/transition:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("gui/transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("gui/transition:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("gui/transition:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="gui" type="Control"]
 pause_mode = 2
@@ -51,13 +161,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="pixelize" type="ColorRect" parent="."]
-material = SubResource( 4 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="screen_trigger" parent="." instance=ExtResource( 2 )]
 
 [node name="cursor" type="ColorRect" parent="."]
 anchor_left = 0.5
@@ -74,6 +178,7 @@ __meta__ = {
 }
 
 [node name="back_text" type="ColorRect" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -102,3 +207,19 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="transition" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 6 )
+anims/end = SubResource( 4 )
+anims/start = SubResource( 5 )
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

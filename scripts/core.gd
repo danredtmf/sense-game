@@ -3,6 +3,7 @@ extends Node
 var level = 1
 var root_level
 var root_game
+var root_gui
 
 var action_object = null
 var action_object_viewing = false
@@ -13,6 +14,7 @@ func _ready():
 	OS.center_window()
 
 func to(scene):
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://levels/scenes/"+scene+".tscn")
 
 func load_level():
