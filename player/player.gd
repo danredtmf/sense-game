@@ -13,6 +13,9 @@ onready var camera = $Camera
 onready var spotlight = $Camera/SpotLight
 
 func _ready():
+	Core.root_player = self
+	if Data.saved_pos_player != Vector3.ZERO:
+		translation = Data.saved_pos_player
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):

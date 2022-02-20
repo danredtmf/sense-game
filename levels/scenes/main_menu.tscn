@@ -15,6 +15,8 @@ script/source = "extends Control
 const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
 const about_menu_res = preload(\"res://levels/scenes/sub_scenes/about_interface.tscn\")
 
+var state
+
 func _ready():
 	if Data.saved_language == 0:
 		TranslationServer.set_locale('en')
@@ -40,6 +42,7 @@ func update_ui():
 	
 	$Control/vbox/new_game.text = tr('new_game')
 	$Control/vbox/continue.text = tr('continue')
+	$Control/vbox/notes.text = tr('notes')
 	$Control/vbox/settings.text = tr('settings')
 	$Control/vbox/about.text = tr('about')
 	$Control/vbox/exit.text = tr('exit')
@@ -50,15 +53,26 @@ func update_ui():
 	$warning_newgame/margin/vbox/buttons/disagree.text = tr('disagree')
 
 func _on_anim_animation_finished(anim_name):
-	if anim_name == 'end':
+	if anim_name == 'end' && state == null:
 		Core.to('game')
 		Data.reset_game()
+	elif anim_name == 'end' && state == 1:
+		if Data.is_good_ending:
+			Data.is_good_ending = false
+			Data.saved_notes = [1, 2, 3, 4]
+			Data.saved_insights = [1, 2, 3, 4, 5]
+			Data.saving()
+		Core.to('game')
 
 func _on_new_game_pressed():
 	if !Data.is_ending:
 		$anim.play(\"end\")
 	else:
 		$warning_newgame.popup()
+
+func _on_continue_pressed():
+	state = 1
+	$anim.play(\"end\")
 
 func _on_settings_pressed():
 	var settings = settings_menu_res.instance()
@@ -78,6 +92,7 @@ func _on_agree_pressed():
 
 func _on_disagree_pressed():
 	$warning_newgame.hide()
+
 "
 
 [sub_resource type="ViewportTexture" id=17]
@@ -344,7 +359,7 @@ __meta__ = {
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 395.0
-margin_bottom = 244.0
+margin_bottom = 245.0
 custom_constants/separation = 10
 alignment = 1
 __meta__ = {
@@ -433,6 +448,7 @@ anims/end = SubResource( 20 )
 anims/start = SubResource( 19 )
 
 [connection signal="pressed" from="interface/Control/vbox/new_game" to="interface" method="_on_new_game_pressed"]
+[connection signal="pressed" from="interface/Control/vbox/continue" to="interface" method="_on_continue_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/settings" to="interface" method="_on_settings_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/about" to="interface" method="_on_about_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/exit" to="interface" method="_on_exit_pressed"]

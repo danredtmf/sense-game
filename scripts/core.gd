@@ -3,6 +3,7 @@ extends Node
 var level = 1
 var root_level
 var root_game
+var root_player
 var root_gui
 
 var action_object = null
