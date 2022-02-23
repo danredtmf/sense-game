@@ -2,6 +2,7 @@ extends Node
 
 var is_ending = false
 var is_good_ending = false
+var is_game_passed = false
 var saved_pos_player = Vector3.ZERO
 var saved_notes = []
 var saved_insights = []
@@ -32,6 +33,7 @@ func open_note(id):
 func reset_game():
 	is_ending = false
 	is_good_ending = false
+	is_game_passed = false
 	saved_pos_player = Vector3.ZERO
 	saved_notes = []
 	saved_insights = []
@@ -75,6 +77,7 @@ func saving():
 	data = {
 	'is_ending': is_ending,
 	'is_good_ending': is_good_ending,
+	'is_game_passed': is_game_passed,
 	'saved_pos_player': [saved_pos_player.x, saved_pos_player.y, saved_pos_player.z],
 	'saved_notes': saved_notes,
 	'saved_insights': saved_insights,
@@ -99,6 +102,7 @@ func loading():
 	if data:
 		is_ending = data.is_ending
 		is_good_ending = data.is_good_ending
+		is_game_passed = data.is_game_passed
 		saved_pos_player = Vector3(data.saved_pos_player[0], data.saved_pos_player[1], data.saved_pos_player[2])
 		saved_notes = data.saved_notes
 		saved_insights = data.saved_insights

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Area
@@ -34,14 +34,37 @@ func _ending_trigger():
 	print('end')
 	_active_check()
 
+func _game_passed():
+	print('game passed')
+	Data.is_game_passed = true
+	Data.saving()
+	Core.to('main_menu')
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _good_ending():
+	print('good')
+	Data.is_good_ending = true
+	Data.saving()
+	Core.to('main_menu')
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _bad_ending():
+	print('bad')
+	Core.to('main_menu')
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 func _good_ending_trigger():
+	var notes = len(Data.saved_notes)
 	var insights = len(Data.saved_insights)
-	if insights == 6:
-		Data.is_good_ending = true
-		Data.saving()
-		print('6 good')
-	else:
-		print('bad')
+	print(notes)
+	print(insights)
+	
+	if insights == 6 && notes == 8:
+		_game_passed()
+	elif insights == 6:
+		_good_ending()
+	elif insights != 6:
+		_bad_ending()
 
 func _on_save_trigger_body_entered(body):
 	if body.name == \"player\":
@@ -55,6 +78,9 @@ func _on_save_trigger_body_entered(body):
 
 [sub_resource type="CubeMesh" id=2]
 
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+
 [node name="save_trigger" type="Area"]
 script = SubResource( 3 )
 
@@ -63,6 +89,6 @@ shape = SubResource( 1 )
 
 [node name="mesh" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_save_trigger_body_entered"]

@@ -90,3 +90,7 @@ is_ending_trigger = true
 transform = Transform( 5.5, 0, 0, 0, 4.99183, 0, 0, 0, 1.06593, 2.17397, 5.05985, 120.125 )
 is_consider_end = true
 is_good_ending_trigger = true
+
+[node name="OmniLight" type="OmniLight" parent="objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80345, 5.67982, 118.032 )
+omni_range = 11.3791

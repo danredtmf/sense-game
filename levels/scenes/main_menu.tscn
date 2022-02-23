@@ -33,8 +33,11 @@ func _process(_delta):
 	update_ui()
 
 func update_ui():
-	if Data.is_ending:
+	if Data.is_ending && !Data.is_game_passed:
 		$Control/vbox/continue.visible = true
+		$Control/vbox/notes.visible = true
+	elif Data.is_ending && Data.is_game_passed:
+		$Control/vbox/continue.visible = false
 		$Control/vbox/notes.visible = true
 	else:
 		$Control/vbox/continue.visible = false
@@ -57,11 +60,6 @@ func _on_anim_animation_finished(anim_name):
 		Core.to('game')
 		Data.reset_game()
 	elif anim_name == 'end' && state == 1:
-		if Data.is_good_ending:
-			Data.is_good_ending = false
-			Data.saved_notes = [1, 2, 3, 4]
-			Data.saved_insights = [1, 2, 3, 4, 5]
-			Data.saving()
 		Core.to('game')
 
 func _on_new_game_pressed():
@@ -92,7 +90,6 @@ func _on_agree_pressed():
 
 func _on_disagree_pressed():
 	$warning_newgame.hide()
-
 "
 
 [sub_resource type="ViewportTexture" id=17]
