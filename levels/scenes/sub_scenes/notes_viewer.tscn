@@ -28,8 +28,8 @@ func update_ui():
 	$close_btn.text = tr('close')
 
 func get_note():
-	if notes != null:
-		if notes.has(current_note):
+	if notes != null || notes == []:
+		if notes[current_note]:
 			$name.text = tr('note_'+str(current_note + 1))
 			$pic/text.text = tr('note_'+str(current_note + 1)+'_text')
 		else:
