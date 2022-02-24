@@ -1,0 +1,1336 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://levels/objects/furniture.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/assets/p_corner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/assets/p_deadend.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/assets/p_one_way.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/assets/p_one_wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/objects/save_trigger.tscn" type="PackedScene" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends RoomManager
+
+func _ready():
+	rooms_convert()
+"
+
+[node name="map_new" type="Spatial"]
+
+[node name="RoomManager" type="RoomManager" parent="."]
+roomlist = NodePath("../room_list")
+script = SubResource( 1 )
+
+[node name="room_list" type="Spatial" parent="."]
+
+[node name="Room_1" type="Room" parent="room_list"]
+points = PoolVector3Array( -3, 0.0154158, -5, -3, -3.03146e-07, 5, 37, 0.0154161, -5, 37, 4.65662e-10, 5, -3, 9.98458, -5, -3, 9.98458, 5, 37, 9.98458, -5, 37, 9.98458, 5 )
+
+[node name="Portal_2" type="Portal" parent="room_list/Room_1"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32, 5, 5 )
+linked_room = NodePath("../../Room_2")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_deadend" parent="room_list/Room_1" instance=ExtResource( 3 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 2, 0, 0 )
+
+[node name="p_one_way" parent="room_list/Room_1" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 12, 0, 0 )
+
+[node name="p_one_way2" parent="room_list/Room_1" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 22, 0, 0 )
+
+[node name="p_corner" parent="room_list/Room_1" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 32, 0, 0 )
+
+[node name="Room_2" type="Room" parent="room_list"]
+points = PoolVector3Array( 37, 9.98458, 75, 27, 9.98458, 75, 37, 9.99993, 5, 27, 9.99993, 5, 37, 0.0154161, 75, 27, -3.72529e-09, 75, 37, 1.39699e-09, 5, 27, -0.0154162, 5 )
+
+[node name="Portal_3" type="Portal" parent="room_list/Room_2"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 27, 5, 70 )
+linked_room = NodePath("../../Room_3")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_2" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 32, 0, 10 )
+
+[node name="p_one_way2" parent="room_list/Room_2" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 32, 0, 20 )
+
+[node name="p_one_way3" parent="room_list/Room_2" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 32, 0, 30 )
+
+[node name="p_one_way4" parent="room_list/Room_2" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 32, 0, 40 )
+
+[node name="p_one_way5" parent="room_list/Room_2" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 32, 0, 50 )
+
+[node name="p_one_way6" parent="room_list/Room_2" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 32, 0, 60 )
+
+[node name="p_corner" parent="room_list/Room_2" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 32, 0, 70 )
+
+[node name="Room_3" type="Room" parent="room_list"]
+points = PoolVector3Array( 27, 2.77824e-11, 65, -2.99993, 7.10487e-05, 75, -3, 9.98458, 65, 27, 10.0153, 75, -3, 0.0154162, 64.9999, -2.99993, 9.99993, 75, 27, 9.99993, 65.0001, 27, -0.0153451, 75 )
+
+[node name="Portal_4" type="Portal" parent="room_list/Room_3"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 5, 75 )
+linked_room = NodePath("../../Room_4")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_3" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 22, 0, 70 )
+
+[node name="p_one_way2" parent="room_list/Room_3" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 12, 0, 70 )
+
+[node name="p_corner" parent="room_list/Room_3" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 2, 0, 70 )
+
+[node name="Room_4" type="Room" parent="room_list"]
+points = PoolVector3Array( -3, 9.98458, 95.0001, -3, 9.99993, 75, 7, 9.98458, 95, 7, 9.99993, 75, -3, 0.0154161, 95, -3, 0, 75, 7, 7.1047e-05, 94.9999, 7, -0.015345, 75 )
+
+[node name="Portal_5" type="Portal" parent="room_list/Room_4"]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7, 5, 90 )
+linked_room = NodePath("../../Room_5")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_4" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 2, 0, 80 )
+
+[node name="p_corner" parent="room_list/Room_4" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 2, 0, 90 )
+
+[node name="Room_5" type="Room" parent="room_list"]
+points = PoolVector3Array( 6.99997, 0, 95, 56.9999, 7.10487e-05, 85, 57, 9.98458, 95, 7, 10.0153, 85, 57, 0.0154162, 95.0001, 56.9999, 9.99993, 85, 7, 9.99993, 94.9999, 7, -0.0153451, 85 )
+
+[node name="Portal_6" type="Portal" parent="room_list/Room_5"]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 52, 5, 85 )
+linked_room = NodePath("../../Room_6")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_corner" parent="room_list/Room_5" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 52, 0, 90 )
+
+[node name="p_one_way" parent="room_list/Room_5" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 12, 0, 90 )
+
+[node name="p_one_way2" parent="room_list/Room_5" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 22, 0, 90 )
+
+[node name="p_one_way3" parent="room_list/Room_5" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 32, 0, 90 )
+
+[node name="p_one_way4" parent="room_list/Room_5" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 42, 0, 90 )
+
+[node name="Room_6" type="Room" parent="room_list"]
+points = PoolVector3Array( 57, 0, -5, 47, 0, 85, 57, 9.99993, 85, 47, 9.98458, -5, 46.9999, 0, -5, 47.0001, 9.99993, 85, 57, -0.0154162, 85, 57, 9.98458, -5 )
+
+[node name="Portal_7" type="Portal" parent="room_list/Room_6"]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 57, 5, 0 )
+linked_room = NodePath("../../Room_7")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 80 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way2" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 70 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way3" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 60 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way4" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 50 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way5" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 40 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way6" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 30 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way7" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 20 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way8" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 10 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way9" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 40 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way10" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 30 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way11" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 20 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_one_way12" parent="room_list/Room_6" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 52, 0, 10 )
+skeleton = NodePath("../Portal_7")
+
+[node name="p_corner" parent="room_list/Room_6" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 52, 0, 0 )
+
+[node name="Room_7" type="Room" parent="room_list"]
+points = PoolVector3Array( 77, 9.99993, -5, 77, 9.99993, 5, 57, 9.99993, -5, 57, 9.99993, 5, 77, 0.0154161, -5, 77, -2.32831e-09, 5, 57, 0, -5, 57, -0.0154161, 5 )
+
+[node name="Portal_8" type="Portal" parent="room_list/Room_7"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 72, 5, 5 )
+linked_room = NodePath("../../Room_8")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_7" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 62, 0, 0 )
+
+[node name="p_corner" parent="room_list/Room_7" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.74846e-06, 0, 10, 0, -1.74846e-06, 0, 10, 72, 0, 0 )
+skeleton = NodePath("../Portal_8")
+
+[node name="Room_8" type="Room" parent="room_list"]
+points = PoolVector3Array( 67, 0, 4.99999, 77, 7.10487e-05, 24.9999, 77, 9.98458, 5, 77, 9.99993, 24.9999, 66.9999, 0.0154163, 25, 67.0001, 9.99993, 5, 77, 0, 5, 67, 9.98458, 25 )
+
+[node name="Portal_9" type="Portal" parent="room_list/Room_8"]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 77, 5, 20 )
+linked_room = NodePath("../../Room_9")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_8" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 72, 0, 10 )
+skeleton = NodePath("../Portal_9")
+
+[node name="p_corner" parent="room_list/Room_8" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -8.74226e-07, 0, 10, 0, 8.74226e-07, 0, -10, 72, 0, 20 )
+skeleton = NodePath("../Portal_9")
+
+[node name="Room_9" type="Room" parent="room_list"]
+points = PoolVector3Array( 77, 1.85217e-11, 25, 97, 7.1049e-05, 15, 97, 9.98458, 25, 77, 9.99993, 15, 97, 7.1049e-05, 25, 97, 9.98458, 15, 77, -0.015345, 15, 77, 9.99993, 25 )
+
+[node name="Portal_10" type="Portal" parent="room_list/Room_9"]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 92, 5, 15 )
+linked_room = NodePath("../../Room_10")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_9" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 1.74846e-06, 0, 10, 0, -1.74846e-06, 0, 10, 82, 0, 20 )
+skeleton = NodePath("../Portal_10")
+
+[node name="p_corner" parent="room_list/Room_9" instance=ExtResource( 2 )]
+transform = Transform( 1.31135e-06, 0, -10, 0, 10, 0, 10, 0, 1.31135e-06, 92, 0, 20 )
+skeleton = NodePath("../Portal_10")
+
+[node name="Room_10" type="Room" parent="room_list"]
+points = PoolVector3Array( 97, 0, -5, 87, 0, 15, 97, 9.99993, 15, 87, 9.98458, -5, 86.9999, 0, -5, 87.0001, 9.99993, 15, 97, -0.0154162, 15, 97, 9.98458, -5 )
+
+[node name="Portal_11" type="Portal" parent="room_list/Room_10"]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 97, 5, 0 )
+linked_room = NodePath("../../Room_11")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_10" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 92, 0, 10 )
+skeleton = NodePath("../Portal_11")
+
+[node name="p_corner" parent="room_list/Room_10" instance=ExtResource( 2 )]
+transform = Transform( -2.18557e-06, 0, 10, 0, 10, 0, -10, 0, -2.18557e-06, 92, 0, 0 )
+skeleton = NodePath("../Portal_11")
+
+[node name="Room_11" type="Room" parent="room_list"]
+points = PoolVector3Array( 127, 0.0154163, -5.00007, 127, -6.98493e-09, 5, 97, -3.7253e-09, -5, 97, -0.0154162, 5, 127, 9.98458, -5, 127, 9.98458, 5, 97, 9.99993, -4.99993, 97, 9.99993, 5 )
+
+[node name="Portal_12" type="Portal" parent="room_list/Room_11"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 122, 5, 5 )
+linked_room = NodePath("../../Room_12")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_one_way" parent="room_list/Room_11" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 102, 0, 0 )
+skeleton = NodePath("../Portal_12")
+
+[node name="p_one_way2" parent="room_list/Room_11" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 112, 0, 0 )
+skeleton = NodePath("../Portal_12")
+
+[node name="p_corner" parent="room_list/Room_11" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.74846e-06, 0, 10, 0, -1.74846e-06, 0, 10, 122, 0, 0 )
+skeleton = NodePath("../Portal_12")
+
+[node name="Room_12" type="Room" parent="room_list"]
+points = PoolVector3Array( 127, 0, 5.00001, 117, 0, 45, 127, 0.0154161, 45, 117, -0.0154161, 5, 127, 9.99993, 5, 117, 10.0153, 5, 117, 9.99993, 45, 127, 9.98458, 45 )
+
+[node name="Portal_13" type="Portal" parent="room_list/Room_12"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 117, 5, 40 )
+linked_room = NodePath("../../Room_13")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_corner" parent="room_list/Room_12" instance=ExtResource( 2 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 122, 0, 40 )
+skeleton = NodePath("../Portal_13")
+
+[node name="p_one_way" parent="room_list/Room_12" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 122, 0, 30 )
+skeleton = NodePath("../Portal_13")
+
+[node name="p_one_way2" parent="room_list/Room_12" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 122, 0, 20 )
+skeleton = NodePath("../Portal_13")
+
+[node name="p_one_way3" parent="room_list/Room_12" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 122, 0, 10 )
+skeleton = NodePath("../Portal_13")
+
+[node name="Room_13" type="Room" parent="room_list"]
+points = PoolVector3Array( 67, 7.10488e-05, 45, 117, -2.31521e-11, 35, 117, 9.99993, 45, 67, 9.98458, 35, 67, 0.0154161, 35, 117, 9.98458, 35, 117, 0, 45, 67, 9.99993, 45 )
+
+[node name="Portal_14" type="Portal" parent="room_list/Room_13"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 72, 5, 45 )
+linked_room = NodePath("../../Room_14")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_corner" parent="room_list/Room_13" instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 72, 0, 40 )
+skeleton = NodePath("../Portal_14")
+
+[node name="p_one_way" parent="room_list/Room_13" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 82, 0, 40 )
+skeleton = NodePath("../Portal_14")
+
+[node name="p_one_way2" parent="room_list/Room_13" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 92, 0, 40 )
+skeleton = NodePath("../Portal_14")
+
+[node name="p_one_way3" parent="room_list/Room_13" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 102, 0, 40 )
+skeleton = NodePath("../Portal_14")
+
+[node name="p_one_way4" parent="room_list/Room_13" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 112, 0, 40 )
+skeleton = NodePath("../Portal_14")
+
+[node name="Room_14" type="Room" parent="room_list"]
+points = PoolVector3Array( 67, -4.6304e-11, 45, 77, 7.10487e-05, 94.9999, 67, 9.98458, 95, 77, 10.0153, 45, 66.9999, 0.0154163, 95, 77, 9.99993, 94.9999, 67.0001, 9.99993, 45, 77, -0.0153451, 45 )
+
+[node name="Portal_15" type="Portal" parent="room_list/Room_14"]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 77, 5, 90 )
+linked_room = NodePath("../../Room_15")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_corner" parent="room_list/Room_14" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -8.74226e-07, 0, 10, 0, 8.74226e-07, 0, -10, 72, 0, 90 )
+skeleton = NodePath("../Portal_15")
+
+[node name="p_one_way5" parent="room_list/Room_14" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 72, 0, 50 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way6" parent="room_list/Room_14" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 72, 0, 60 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way7" parent="room_list/Room_14" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 72, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way8" parent="room_list/Room_14" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 72, 0, 80 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_15" type="Room" parent="room_list"]
+points = PoolVector3Array( 97, 7.1049e-05, 85, 77, 7.40864e-11, 95, 77, 9.99993, 85, 97, 9.98458, 95, 97, 7.1049e-05, 95.0001, 77, 9.99993, 94.9999, 77, -0.0153451, 85, 97, 9.98458, 85 )
+
+[node name="Portal_16" type="Portal" parent="room_list/Room_15"]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 92, 5, 85 )
+linked_room = NodePath("../../Room_16")
+points = PoolVector2Array( 5, -5, 5, 5, -5, 5, -5, -5 )
+
+[node name="p_corner2" parent="room_list/Room_15" instance=ExtResource( 2 )]
+transform = Transform( 1.31134e-06, 0, -10, 0, 10, 0, 10, 0, 1.31134e-06, 92, 0, 90 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way9" parent="room_list/Room_15" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 1.7053e-13, 0, 10, 0, -1.7053e-13, 0, 10, 82, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_16" type="Room" parent="room_list"]
+points = PoolVector3Array( 97, 0, 55, 87, 0, 85, 97, 9.99993, 85, 87, 9.98458, 55, 86.9999, 0, 55, 87.0001, 9.99993, 85, 97, -0.0154161, 85, 97, 9.98458, 55 )
+
+[node name="Portal_17" type="Portal" parent="room_list/Room_16"]
+transform = Transform( 4.80825e-07, 0, -1, 0, 1, 0, 1, 0, 4.80825e-07, 97, 5, 60 )
+linked_room = NodePath("../../Room_17")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way10" parent="room_list/Room_16" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 92, 0, 80 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way11" parent="room_list/Room_16" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 92, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner3" parent="room_list/Room_16" instance=ExtResource( 2 )]
+transform = Transform( -2.18557e-06, 0, 10, 0, 10, 0, -10, 0, -2.18557e-06, 92, 0, 60 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_17" type="Room" parent="room_list"]
+points = PoolVector3Array( 117, 0.0154161, 55, 97, -7.45059e-09, 55, 117, 0, 65, 97, -0.0154162, 65, 117, 9.99993, 55, 97, 9.99993, 55, 117, 9.99993, 65, 97, 9.99993, 65 )
+
+[node name="Portal_18" type="Portal" parent="room_list/Room_17"]
+transform = Transform( -1, 0, -7.86805e-07, 0, 1, 0, 7.86805e-07, 0, -1, 112, 5, 65 )
+linked_room = NodePath("../../Room_18")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner4" parent="room_list/Room_17" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.74846e-06, 0, 10, 0, -1.74846e-06, 0, 10, 112, 0, 60 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way12" parent="room_list/Room_17" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 102, 0, 60 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_18" type="Room" parent="room_list"]
+points = PoolVector3Array( 107, -5.55647e-11, 65, 117, 7.10487e-05, 94.9999, 107, 9.98458, 95, 117, 10.0153, 65, 107, 0.0154163, 95, 117, 9.99993, 94.9999, 107, 9.99993, 65, 117, -0.015345, 65 )
+
+[node name="Portal_19" type="Portal" parent="room_list/Room_18"]
+transform = Transform( 8.30516e-07, 0, -1, 0, 1, 0, 1, 0, 8.30516e-07, 117, 5, 90 )
+linked_room = NodePath("../../Room_19")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way13" parent="room_list/Room_18" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 112, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way14" parent="room_list/Room_18" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 112, 0, 80 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner5" parent="room_list/Room_18" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 112, 0, 90 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_19" type="Room" parent="room_list"]
+points = PoolVector3Array( 117, 0, 95, 147, 7.10488e-05, 85, 147, 9.98458, 95, 117, 10.0153, 85, 147, 0.0154163, 95.0001, 147, 9.99993, 85, 117, 9.99993, 94.9999, 117, -0.015345, 85 )
+
+[node name="Portal_20" type="Portal" parent="room_list/Room_19"]
+transform = Transform( 1, 0, 8.74228e-07, 0, 1, 0, -8.74228e-07, 0, 1, 142, 5, 85 )
+linked_room = NodePath("../../Room_20")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner6" parent="room_list/Room_19" instance=ExtResource( 2 )]
+transform = Transform( 3.0598e-06, 0, -10, 0, 10, 0, 10, 0, 3.0598e-06, 142, 0, 90 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way15" parent="room_list/Room_19" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 122, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way16" parent="room_list/Room_19" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 132, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_20" type="Room" parent="room_list"]
+points = PoolVector3Array( 147, 9.98458, -5, 137, 9.99993, 84.9991, 147, -0.0154163, 85, 137, 0.0154162, -5, 137, 9.99993, -5, 137, 5.58794e-09, 85, 147, 9.99993, 85, 147, 0, -4.99991 )
+
+[node name="Portal_21" type="Portal" parent="room_list/Room_20"]
+transform = Transform( 1.00536e-06, 0, -1, 0, 1, 0, 1, 0, 1.00536e-06, 147, 5, 0 )
+linked_room = NodePath("../../Room_21")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 80 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way2" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way3" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 60 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way4" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 50 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way5" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 40 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way6" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 30 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way7" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 20 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way8" parent="room_list/Room_20" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 142, 0, 10 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner" parent="room_list/Room_20" instance=ExtResource( 2 )]
+transform = Transform( -3.93403e-06, 0, 10, 0, 10, 0, -10, 0, -3.93403e-06, 142, 0, 0 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_21" type="Room" parent="room_list"]
+points = PoolVector3Array( 197, 0.0154162, -5, 147, 3.72529e-09, -5, 197, 7.91625e-09, 4.99999, 147, -0.0154162, 5.00005, 197, 9.99993, -5, 147, 9.99993, -5, 197, 9.99993, 4.99999, 147, 9.99993, 5.00005 )
+
+[node name="Portal_22" type="Portal" parent="room_list/Room_21"]
+transform = Transform( -1, 0, -1.1365e-06, 0, 1, 0, 1.1365e-06, 0, -1, 192, 5, 5 )
+linked_room = NodePath("../../Room_22")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner2" parent="room_list/Room_21" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 3.49691e-06, 0, 10, 0, -3.49691e-06, 0, 10, 192, 0, 0 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way9" parent="room_list/Room_21" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 152, 0, 0 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way10" parent="room_list/Room_21" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 162, 0, 0 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way11" parent="room_list/Room_21" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 172, 0, 0 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way12" parent="room_list/Room_21" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 182, 0, 0 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_22" type="Room" parent="room_list"]
+points = PoolVector3Array( 187, 0, 35, 197, 0, 5.00001, 187, 9.99993, 5.00001, 197, 9.98458, 35, 197, 0.0154163, 35, 197, 9.99993, 4.99999, 187, 0, 5.00001, 187, 9.98458, 35 )
+
+[node name="Portal_23" type="Portal" parent="room_list/Room_22"]
+transform = Transform( -1.09278e-06, 0, 1, 0, 1, 0, -1, 0, -1.09278e-06, 187, 5, 30 )
+linked_room = NodePath("../../Room_23")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way13" parent="room_list/Room_22" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 192, 0, 10 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way14" parent="room_list/Room_22" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 192, 0, 20 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner3" parent="room_list/Room_22" instance=ExtResource( 2 )]
+transform = Transform( 3.0598e-06, 0, -10, 0, 10, 0, 10, 0, 3.0598e-06, 192, 0, 30 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_23" type="Room" parent="room_list"]
+points = PoolVector3Array( 157, 9.98458, 15, 167, 7.10488e-05, 54.9999, 157, 9.98458, 55.0003, 167, 9.99993, 55.0002, 167, 9.99993, 15, 157, 0, 14.9999, 157, 0.0154161, 55, 167, -0.015345, 14.9999 )
+
+[node name="Portal_24" type="Portal" parent="room_list/Room_23"]
+transform = Transform( 1.18021e-06, 0, -1, 0, 1, 0, 1, 0, 1.18021e-06, 167, 5, 50 )
+linked_room = NodePath("../../Room_24")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way15" parent="room_list/Room_23" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 182, 0, 30 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way16" parent="room_list/Room_23" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 172, 0, 30 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way17" parent="room_list/Room_23" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 162, 0, 40 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_wall" parent="room_list/Room_23" instance=ExtResource( 5 )]
+transform = Transform( 1.18021e-05, 0, -10, 0, 10, 0, 10, 0, 1.18021e-05, 162, 0, 30 )
+skeleton = NodePath("../Portal_24")
+
+[node name="p_deadend" parent="room_list/Room_23" instance=ExtResource( 3 )]
+transform = Transform( 1.18021e-05, 0, -10, 0, 10, 0, 10, 0, 1.18021e-05, 162, 0, 20 )
+skeleton = NodePath("../Portal_24")
+
+[node name="p_corner4" parent="room_list/Room_23" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 162, 0, 50 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_24" type="Room" parent="room_list"]
+points = PoolVector3Array( 167, 0, 55, 217, 7.10488e-05, 45, 217, 9.98458, 55, 167, 10.0153, 45.0001, 217, 0.0154163, 55.0001, 217, 9.99993, 45, 167, 9.99993, 54.9999, 167, -0.015345, 45.0001 )
+
+[node name="Portal_25" type="Portal" parent="room_list/Room_24"]
+transform = Transform( 1, 0, 1.22392e-06, 0, 1, 0, -1.22392e-06, 0, 1, 212, 5, 45 )
+linked_room = NodePath("../../Room_25")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way18" parent="room_list/Room_24" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 182, 0, 50 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way19" parent="room_list/Room_24" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 172, 0, 50 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way20" parent="room_list/Room_24" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 202, 0, 50 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way21" parent="room_list/Room_24" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 192, 0, 50 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner5" parent="room_list/Room_24" instance=ExtResource( 2 )]
+transform = Transform( 3.0598e-06, 0, -10, 0, 10, 0, 10, 0, 3.0598e-06, 212, 0, 50 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_25" type="Room" parent="room_list"]
+points = PoolVector3Array( 217, 0, -5, 207, 0, 45, 217, 9.99993, 45, 207, 9.98458, -5, 207, 0, -5, 207, 9.99993, 45, 217, -0.0154163, 45, 217, 9.98458, -5 )
+
+[node name="Portal_26" type="Portal" parent="room_list/Room_25"]
+transform = Transform( 1.35505e-06, 0, -1, 0, 1, 0, 1, 0, 1.35505e-06, 217, 5, 0 )
+linked_room = NodePath("../../Room_26")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner6" parent="room_list/Room_25" instance=ExtResource( 2 )]
+transform = Transform( -3.93403e-06, 0, 10, 0, 10, 0, -10, 0, -3.93403e-06, 212, 0, 0 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way22" parent="room_list/Room_25" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 212, 0, 20 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way23" parent="room_list/Room_25" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 212, 0, 10 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way24" parent="room_list/Room_25" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 212, 0, 40 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way25" parent="room_list/Room_25" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 212, 0, 30 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_26" type="Room" parent="room_list"]
+points = PoolVector3Array( 217, 0, -5, 237, 0, 5.00001, 237, 9.99993, -5, 217, 9.99993, 5.00002, 237, 0, -5, 237, 9.99993, 4.99999, 217, -0.0154161, 5.00002, 217, 9.99993, -4.99982 )
+
+[node name="Portal_27" type="Portal" parent="room_list/Room_26"]
+transform = Transform( -1, 0, -1.31134e-06, 0, 1, 0, 1.31134e-06, 0, -1, 232, 5, 5 )
+linked_room = NodePath("../../Room_27")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner7" parent="room_list/Room_26" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 3.49691e-06, 0, 10, 0, -3.49691e-06, 0, 10, 232, 0, 0 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way26" parent="room_list/Room_26" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 222, 0, 0 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_27" type="Room" parent="room_list"]
+points = PoolVector3Array( 237, 0, 75, 237, 0, 5.00006, 227, -0.0154163, 5.00001, 227, 0, 75, 237, 10, 75, 227, 9.99993, 5.00001, 227, 10, 75, 237, 9.99993, 4.99999, 227, 10, 74.6196 )
+
+[node name="Portal_28" type="Portal" parent="room_list/Room_27"]
+transform = Transform( -1.26763e-06, 0, 1, 0, 1, 0, -1, 0, -1.26763e-06, 227, 5, 70 )
+linked_room = NodePath("../../Room_28")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way26" parent="room_list/Room_27" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 232, 0, 20 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way27" parent="room_list/Room_27" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 232, 0, 10 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way28" parent="room_list/Room_27" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 232, 0, 40 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way30" parent="room_list/Room_27" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 232, 0, 50 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way31" parent="room_list/Room_27" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 232, 0, 60 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way29" parent="room_list/Room_27" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 232, 0, 30 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner7" parent="room_list/Room_27" instance=ExtResource( 2 )]
+transform = Transform( 4.80825e-06, 0, -10, 0, 10, 0, 10, 0, 4.80825e-06, 232, 0, 70 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_28" type="Room" parent="room_list"]
+points = PoolVector3Array( 157, 7.10488e-05, 75, 227, -3.2413e-11, 65, 227, 9.99993, 74.9999, 157, 9.98458, 65, 157, 0.0154161, 65, 227, 9.98458, 65, 227, -1.45519e-11, 74.9999, 157, 9.99993, 75 )
+
+[node name="Portal_29" type="Portal" parent="room_list/Room_28"]
+transform = Transform( -1, 0, -1.31134e-06, 0, 1, 0, 1.31134e-06, 0, -1, 162, 5, 75 )
+linked_room = NodePath("../../Room_29")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner8" parent="room_list/Room_28" instance=ExtResource( 2 )]
+transform = Transform( -5.68248e-06, 0, 10, 0, 10, 0, -10, 0, -5.68248e-06, 162, 0, 70 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way32" parent="room_list/Room_28" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 182, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way33" parent="room_list/Room_28" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 192, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way34" parent="room_list/Room_28" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 202, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way36" parent="room_list/Room_28" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 212, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way37" parent="room_list/Room_28" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 222, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way35" parent="room_list/Room_28" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 172, 0, 70 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_29" type="Room" parent="room_list"]
+points = PoolVector3Array( 157, 1.48173e-10, 75, 167, 7.10488e-05, 94.9999, 157, 9.98458, 95, 167, 10.0153, 75, 157, 0.0154162, 95, 167, 9.99993, 94.9999, 157, 9.99993, 75, 167, -0.015345, 75 )
+
+[node name="Portal_30" type="Portal" parent="room_list/Room_29"]
+transform = Transform( 1.35505e-06, 0, -1, 0, 1, 0, 1, 0, 1.35505e-06, 167, 5, 90 )
+linked_room = NodePath("../../Room_30")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way38" parent="room_list/Room_29" instance=ExtResource( 4 )]
+transform = Transform( 1.31134e-06, 0, 10, 0, 10, 0, -10, 0, 1.31134e-06, 162, 0, 80 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner9" parent="room_list/Room_29" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -6.1196e-06, 0, 10, 0, 6.1196e-06, 0, -10, 162, 0, 90 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_30" type="Room" parent="room_list"]
+points = PoolVector3Array( 237, 0, 95, 167, 0, 85, 167, 9.99993, 95.0001, 237, 9.98458, 85, 237, 0, 84.9999, 167, 9.99993, 85.0001, 167, -0.0154163, 95.0001, 237, 9.98458, 95 )
+
+[node name="Portal_31" type="Portal" parent="room_list/Room_30"]
+transform = Transform( -1, 0, -1.31134e-06, 0, 1, 0, 1.31134e-06, 0, -1, 232, 5, 95 )
+linked_room = NodePath("../../Room_31")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way39" parent="room_list/Room_30" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 182, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way40" parent="room_list/Room_30" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 172, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way41" parent="room_list/Room_30" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 202, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way42" parent="room_list/Room_30" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 192, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way43" parent="room_list/Room_30" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 222, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way45" parent="room_list/Room_30" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 212, 0, 90 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner10" parent="room_list/Room_30" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 6.99382e-06, 0, 10, 0, -6.99382e-06, 0, 10, 232, 0, 90 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="Room_31" type="Room" parent="room_list"]
+points = PoolVector3Array( 227, 0, 115, 237, 0, 95, 227, 9.99993, 95, 237, 9.98458, 115, 237, 0, 115, 237, 9.99993, 95, 227, -0.0154162, 95, 227, 9.98458, 115 )
+
+[node name="Portal_32" type="Portal" parent="room_list/Room_31"]
+transform = Transform( -1.26763e-06, 0, 1, 0, 1, 0, -1, 0, -1.26763e-06, 227, 5, 110 )
+linked_room = NodePath("../../Room_32")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner11" parent="room_list/Room_31" instance=ExtResource( 2 )]
+transform = Transform( 6.55671e-06, 0, -10, 0, 10, 0, 10, 0, 6.55671e-06, 232, 0, 110 )
+skeleton = NodePath("../../Room_14/Portal_15")
+
+[node name="p_one_way44" parent="room_list/Room_31" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 232, 0, 100 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_32" type="Room" parent="room_list"]
+points = PoolVector3Array( 127, 9.99993, 105, 227, 9.99993, 105, 127, 0, 105, 227, 0, 105, 127, 9.99993, 115, 227, 9.99993, 115, 127, 0, 115, 227, 0, 115 )
+
+[node name="Portal_33" type="Portal" parent="room_list/Room_32"]
+transform = Transform( -1.26763e-06, 0, 1, 0, 1, 0, -1, 0, -1.26763e-06, 127, 5, 110 )
+linked_room = NodePath("../../Room_33")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way45" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 222, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way46" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 212, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way47" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 202, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way48" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 192, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way49" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 182, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way50" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 172, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way51" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 162, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way52" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 152, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way53" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 142, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way54" parent="room_list/Room_32" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 132, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_33" type="Room" parent="room_list"]
+points = PoolVector3Array( 127, 0, 145, 117, 0.000284197, 145, 127, 9.98458, 105, 117, 7.10485e-05, 115, 117, 9.99993, 105, 117, 0, 105, 127, -0.000284199, 105, 127, 9.98468, 145, 117, 10, 145 )
+
+[node name="Portal_34" type="Portal" parent="room_list/Room_33"]
+transform = Transform( -1.26763e-06, 0, 1, 0, 1, 0, -1, 0, -1.26763e-06, 117, 5, 110 )
+linked_room = NodePath("../../Room_34")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_wall" parent="room_list/Room_33" instance=ExtResource( 5 )]
+transform = Transform( -10, 0, -1.31134e-05, 0, 10, 0, 1.31134e-05, 0, -10, 122, 0, 110 )
+skeleton = NodePath("../Portal_34")
+
+[node name="p_one_way55" parent="room_list/Room_33" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 122, 0, 120 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way56" parent="room_list/Room_33" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 122, 0, 130 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_deadend" parent="room_list/Room_33" instance=ExtResource( 3 )]
+transform = Transform( -1.26763e-05, 0, 10, 0, 10, 0, -10, 0, -1.26763e-05, 122, 0, 140 )
+skeleton = NodePath("../Portal_34")
+
+[node name="Room_34" type="Room" parent="room_list"]
+points = PoolVector3Array( -3.00001, 0.0154163, 105, 117, 0, 105, 117, 10.0153, 115, -2.99993, 7.10487e-05, 115, 117, 9.99993, 105, 117, 0, 115, -3.00001, 9.98458, 105, -2.99993, 9.99993, 115 )
+
+[node name="Portal_35" type="Portal" parent="room_list/Room_34"]
+transform = Transform( -1, 0, -1.31134e-06, 0, 1, 0, 1.31134e-06, 0, -1, 2, 5, 115 )
+linked_room = NodePath("../../Room_35")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way57" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 102, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way58" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 112, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way59" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 82, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way60" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 92, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way61" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 62, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way62" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 72, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way63" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 42, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way64" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 52, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way65" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 22, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way66" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 32, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way68" parent="room_list/Room_34" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 12, 0, 110 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner" parent="room_list/Room_34" instance=ExtResource( 2 )]
+transform = Transform( -1.26763e-05, 0, 10, 0, 10, 0, -10, 0, -1.26763e-05, 2, 0, 110 )
+skeleton = NodePath("../Portal_35")
+
+[node name="Room_35" type="Room" parent="room_list"]
+points = PoolVector3Array( -2.99999, 0, 115, 7.00001, 7.10487e-05, 135, -2.99999, 9.98458, 135, 6.99998, 10.0153, 115, -3.00005, 0.0154162, 135, 7.00001, 9.99993, 135, -2.99993, 9.99993, 115, 6.99998, -0.015345, 115 )
+
+[node name="Portal_36" type="Portal" parent="room_list/Room_35"]
+transform = Transform( 1.35505e-06, 0, -1, 0, 1, 0, 1, 0, 1.35505e-06, 7, 5, 130 )
+linked_room = NodePath("../../Room_36")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner2" parent="room_list/Room_35" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -1.31134e-05, 0, 10, 0, 1.31134e-05, 0, -10, 2, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="p_one_way69" parent="room_list/Room_35" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 2.00001, 0, 120 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_36" type="Room" parent="room_list"]
+points = PoolVector3Array( 27, 0, 135, 7.00001, 0, 125, 7.00001, 9.99993, 135, 27, 9.98458, 125, 27, 0, 125, 6.99999, 9.99993, 125, 7.00001, -0.0154162, 135, 27, 9.98458, 135 )
+
+[node name="Portal_37" type="Portal" parent="room_list/Room_36"]
+transform = Transform( -1, 0, -1.48619e-06, 0, 1, 0, 1.48619e-06, 0, -1, 22, 5, 135 )
+linked_room = NodePath("../../Room_37")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way70" parent="room_list/Room_36" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 12, 0, 130 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner3" parent="room_list/Room_36" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.39876e-05, 0, 10, 0, -1.39876e-05, 0, 10, 22, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_37" type="Room" parent="room_list"]
+points = PoolVector3Array( 47, 9.98458, 145, 46.9999, 9.99993, 135, 47, 0.0154161, 145, 46.9999, -4.47035e-08, 135, 17, 9.98458, 145, 17, 9.99993, 135, 17, 0.0154161, 145, 17, 0, 135 )
+
+[node name="Portal_38" type="Portal" parent="room_list/Room_37"]
+transform = Transform( 1, 0, 1.57361e-06, 0, 1, 0, -1.57361e-06, 0, 1, 42, 5, 135 )
+linked_room = NodePath("../../Room_38")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner4" parent="room_list/Room_37" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -1.48619e-05, 0, 10, 0, 1.48619e-05, 0, -10, 22, 0, 140 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="p_corner5" parent="room_list/Room_37" instance=ExtResource( 2 )]
+transform = Transform( 1.5299e-05, 0, -10, 0, 10, 0, 10, 0, 1.5299e-05, 42, 0, 140 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="p_one_way71" parent="room_list/Room_37" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 32, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_38" type="Room" parent="room_list"]
+points = PoolVector3Array( 37, 9.98458, 125, 37.0001, 9.99993, 135, 37, 0.0154161, 125, 37.0001, -1.49012e-08, 135, 67, 9.98458, 125, 67, 9.99993, 135, 67, 0.0154161, 125, 67, 2.98024e-08, 135 )
+
+[node name="Portal_39" type="Portal" parent="room_list/Room_38"]
+transform = Transform( -1, 0, -1.66103e-06, 0, 1, 0, 1.66103e-06, 0, -1, 62, 5, 135 )
+linked_room = NodePath("../../Room_39")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_corner6" parent="room_list/Room_38" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.57361e-05, 0, 10, 0, -1.57361e-05, 0, 10, 62, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="p_corner7" parent="room_list/Room_38" instance=ExtResource( 2 )]
+transform = Transform( -1.61732e-05, 0, 10, 0, 10, 0, -10, 0, -1.61732e-05, 42, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="p_one_way72" parent="room_list/Room_38" instance=ExtResource( 4 )]
+transform = Transform( 10, 0, 1.74846e-06, 0, 10, 0, -1.74846e-06, 0, 10, 52, 0, 130 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="Room_39" type="Room" parent="room_list"]
+points = PoolVector3Array( 56.9999, 7.10491e-05, 155, 57, -2.91038e-11, 135, 67, 7.10488e-05, 155, 67, -8.73115e-11, 135, 57, 9.98458, 155, 57.0001, 9.99993, 135, 67, 9.99993, 155, 67, 10.0153, 135 )
+
+[node name="Portal_40" type="Portal" parent="room_list/Room_39"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 67, 5, 150 )
+linked_room = NodePath("../../Room_40")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way71" parent="room_list/Room_39" instance=ExtResource( 4 )]
+transform = Transform( -2.18557e-06, 0, 10, 0, 10, 0, -10, 0, -2.18557e-06, 62, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner4" parent="room_list/Room_39" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -1.48619e-05, 0, 10, 0, 1.48619e-05, 0, -10, 62, 0, 150 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_40" type="Room" parent="room_list"]
+points = PoolVector3Array( 67, 7.40864e-11, 155, 86.9999, 7.10487e-05, 145, 87, 9.98458, 155, 67, 10.0153, 145, 87, 0.0154162, 155, 86.9999, 9.99993, 145, 67, 9.99993, 155, 67, -0.015345, 145 )
+
+[node name="Portal_41" type="Portal" parent="room_list/Room_40"]
+transform = Transform( 1, -4.37114e-08, 1.74846e-06, 4.37113e-08, 1, 4.37115e-08, -1.74846e-06, -4.37114e-08, 1, 82, 5, 145 )
+linked_room = NodePath("../../Room_41")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way72" parent="room_list/Room_40" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 72, 0, 150 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner5" parent="room_list/Room_40" instance=ExtResource( 2 )]
+transform = Transform( 1.5299e-05, 0, -10, 0, 10, 0, 10, 0, 1.5299e-05, 82, 0, 150 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_41" type="Room" parent="room_list"]
+points = PoolVector3Array( 87, 0, 125, 77, 0, 145, 87, 9.99993, 145, 77, 9.98458, 125, 76.9999, 0, 125, 77.0001, 9.99993, 145, 87, -0.0154162, 145, 87, 9.98458, 125 )
+
+[node name="Portal_42" type="Portal" parent="room_list/Room_41"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 87, 5, 130 )
+linked_room = NodePath("../../Room_42")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way73" parent="room_list/Room_41" instance=ExtResource( 4 )]
+transform = Transform( 3.0598e-06, 0, -10, 0, 10, 0, 10, 0, 3.0598e-06, 82, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner6" parent="room_list/Room_41" instance=ExtResource( 2 )]
+transform = Transform( -1.61732e-05, 0, 10, 0, 10, 0, -10, 0, -1.61732e-05, 82, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_42" type="Room" parent="room_list"]
+points = PoolVector3Array( 107, 0, 135, 87, 0, 125, 87, 9.99993, 135, 107, 9.98458, 125, 107, 0, 125, 87, 9.99993, 125, 87, -0.0154162, 135, 107, 9.98458, 135 )
+
+[node name="Portal_43" type="Portal" parent="room_list/Room_42"]
+transform = Transform( -1, 4.37114e-08, -1.66103e-06, 4.37113e-08, 1, 4.37115e-08, 1.66103e-06, 4.37114e-08, -1, 102, 5, 135 )
+linked_room = NodePath("../../Room_43")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way74" parent="room_list/Room_42" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 92, 0, 130 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner7" parent="room_list/Room_42" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.57361e-05, 0, 10, 0, -1.57361e-05, 0, 10, 102, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_43" type="Room" parent="room_list"]
+points = PoolVector3Array( 96.9999, 7.10489e-05, 165, 97, 2.91038e-11, 135, 107, 7.10488e-05, 165, 107, 0, 135, 97, 9.98458, 165, 97.0001, 9.99993, 135, 107, 9.99993, 165, 107, 10.0153, 135 )
+
+[node name="Portal_44" type="Portal" parent="room_list/Room_43"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 107, 5, 160 )
+linked_room = NodePath("../../Room_44")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way75" parent="room_list/Room_43" instance=ExtResource( 4 )]
+transform = Transform( -2.18557e-06, 0, 10, 0, 10, 0, -10, 0, -2.18557e-06, 102, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way76" parent="room_list/Room_43" instance=ExtResource( 4 )]
+transform = Transform( -2.18557e-06, 0, 10, 0, 10, 0, -10, 0, -2.18557e-06, 102, 0, 150 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner8" parent="room_list/Room_43" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -1.48619e-05, 0, 10, 0, 1.48619e-05, 0, -10, 102, 0, 160 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_44" type="Room" parent="room_list"]
+points = PoolVector3Array( 107, 7.40863e-11, 165, 147, 7.10488e-05, 155, 147, 9.98458, 165, 107, 10.0153, 155, 147, 0.0154162, 165, 147, 9.99993, 155, 107, 9.99993, 165, 107, -0.015345, 155 )
+
+[node name="Portal_45" type="Portal" parent="room_list/Room_44"]
+transform = Transform( 1, -4.37114e-08, 1.74846e-06, 4.37113e-08, 1, 4.37115e-08, -1.74846e-06, -4.37114e-08, 1, 142, 5, 155 )
+linked_room = NodePath("../../Room_45")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way77" parent="room_list/Room_44" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 112, 0, 160 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way78" parent="room_list/Room_44" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 122, 0, 160 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way79" parent="room_list/Room_44" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 132, 0, 160 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner9" parent="room_list/Room_44" instance=ExtResource( 2 )]
+transform = Transform( 1.5299e-05, 0, -10, 0, 10, 0, 10, 0, 1.5299e-05, 142, 0, 160 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_45" type="Room" parent="room_list"]
+points = PoolVector3Array( 147, 0, 125, 137, 0, 155, 147, 9.99993, 155, 137, 9.98458, 125, 137, 0, 125, 137, 9.99993, 155, 147, -0.0154162, 155, 147, 9.98458, 125 )
+
+[node name="Portal_46" type="Portal" parent="room_list/Room_45"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 147, 5, 130 )
+linked_room = NodePath("../../Room_46")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way77" parent="room_list/Room_45" instance=ExtResource( 4 )]
+transform = Transform( 3.0598e-06, 0, -10, 0, 10, 0, 10, 0, 3.0598e-06, 142, 0, 150 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way78" parent="room_list/Room_45" instance=ExtResource( 4 )]
+transform = Transform( 3.0598e-06, 0, -10, 0, 10, 0, 10, 0, 3.0598e-06, 142, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner9" parent="room_list/Room_45" instance=ExtResource( 2 )]
+transform = Transform( -1.61732e-05, 0, 10, 0, 10, 0, -10, 0, -1.61732e-05, 142, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_46" type="Room" parent="room_list"]
+points = PoolVector3Array( 167, 0.0154163, 125, 167, -1.49012e-08, 135, 147, -1.49012e-08, 125, 147, -0.0154162, 135, 167, 9.98458, 125, 167, 9.98458, 135, 147, 9.99993, 125, 147, 9.99993, 135 )
+
+[node name="Portal_47" type="Portal" parent="room_list/Room_46"]
+transform = Transform( -1, 4.37114e-08, -1.66103e-06, 4.37113e-08, 1, 4.37115e-08, 1.66103e-06, 4.37114e-08, -1, 162, 5, 135 )
+linked_room = NodePath("../../Room_47")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way75" parent="room_list/Room_46" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 152, 0, 130 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner8" parent="room_list/Room_46" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.57361e-05, 0, 10, 0, -1.57361e-05, 0, 10, 162, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_47" type="Room" parent="room_list"]
+points = PoolVector3Array( 157, 0, 135, 167, 7.10488e-05, 165, 157, 9.98458, 165, 167, 10.0153, 135, 157, 0.0154163, 165, 167, 9.99993, 165, 157, 9.99993, 135, 167, -0.015345, 135 )
+
+[node name="Portal_48" type="Portal" parent="room_list/Room_47"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 167, 5, 160 )
+linked_room = NodePath("../../Room_48")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way79" parent="room_list/Room_47" instance=ExtResource( 4 )]
+transform = Transform( -3.93402e-06, 0, 10, 0, 10, 0, -10, 0, -3.93402e-06, 162, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way80" parent="room_list/Room_47" instance=ExtResource( 4 )]
+transform = Transform( -3.93402e-06, 0, 10, 0, 10, 0, -10, 0, -3.93402e-06, 162, 0, 150 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner10" parent="room_list/Room_47" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -1.66103e-05, 0, 10, 0, 1.66103e-05, 0, -10, 162, 0, 160 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_48" type="Room" parent="room_list"]
+points = PoolVector3Array( 167, -1.48173e-10, 165, 187, 7.10487e-05, 155, 187, 9.98458, 165, 167, 10.0153, 155, 187, 0.0154163, 165, 187, 9.99993, 155, 167, 9.99993, 165, 167, -0.015345, 155 )
+
+[node name="Portal_49" type="Portal" parent="room_list/Room_48"]
+transform = Transform( 1, -4.37114e-08, 1.74846e-06, 4.37113e-08, 1, 4.37115e-08, -1.74846e-06, -4.37114e-08, 1, 182, 5, 155 )
+linked_room = NodePath("../../Room_49")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way76" parent="room_list/Room_48" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 172, 0, 160 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner9" parent="room_list/Room_48" instance=ExtResource( 2 )]
+transform = Transform( 1.5299e-05, 0, -10, 0, 10, 0, 10, 0, 1.5299e-05, 182, 0, 160 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_49" type="Room" parent="room_list"]
+points = PoolVector3Array( 187, 0, 125, 177, 0, 155, 187, 9.99993, 155, 177, 9.98458, 125, 177, 0, 125, 177, 9.99993, 155, 187, -0.0154162, 155, 187, 9.98458, 125 )
+
+[node name="Portal_50" type="Portal" parent="room_list/Room_49"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 187, 5, 130 )
+linked_room = NodePath("../../Room_50")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way81" parent="room_list/Room_49" instance=ExtResource( 4 )]
+transform = Transform( 4.80825e-06, 0, -10, 0, 10, 0, 10, 0, 4.80825e-06, 182, 0, 150 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way82" parent="room_list/Room_49" instance=ExtResource( 4 )]
+transform = Transform( 4.80825e-06, 0, -10, 0, 10, 0, 10, 0, 4.80825e-06, 182, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner11" parent="room_list/Room_49" instance=ExtResource( 2 )]
+transform = Transform( -1.79217e-05, 0, 10, 0, 10, 0, -10, 0, -1.79217e-05, 182, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_50" type="Room" parent="room_list"]
+points = PoolVector3Array( 207, 0.0154163, 125, 207, 1.49012e-08, 135, 187, -1.49012e-08, 125, 187, -0.0154162, 135, 207, 9.98458, 125, 207, 9.98458, 135, 187, 9.99993, 125, 187, 9.99993, 135 )
+
+[node name="Portal_51" type="Portal" parent="room_list/Room_50"]
+transform = Transform( -1, 4.37114e-08, -1.66103e-06, 4.37113e-08, 1, 4.37115e-08, 1.66103e-06, 4.37114e-08, -1, 202, 5, 135 )
+linked_room = NodePath("../../Room_51")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way77" parent="room_list/Room_50" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 192, 0, 130 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner10" parent="room_list/Room_50" instance=ExtResource( 2 )]
+transform = Transform( 10, 0, 1.57361e-05, 0, 10, 0, -1.57361e-05, 0, 10, 202, 0, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_51" type="Room" parent="room_list"]
+points = PoolVector3Array( 197, 0, 135, 207, 7.10487e-05, 165, 197, 9.98458, 165, 207, 10.0153, 135, 197, 0.0154162, 165, 207, 9.99993, 165, 197, 9.99993, 135, 207, -0.015345, 135 )
+
+[node name="Portal_52" type="Portal" parent="room_list/Room_51"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 207, 5, 160 )
+linked_room = NodePath("../../Room_52")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way83" parent="room_list/Room_51" instance=ExtResource( 4 )]
+transform = Transform( -5.68248e-06, 0, 10, 0, 10, 0, -10, 0, -5.68248e-06, 202, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way84" parent="room_list/Room_51" instance=ExtResource( 4 )]
+transform = Transform( -5.68248e-06, 0, 10, 0, 10, 0, -10, 0, -5.68248e-06, 202, 0, 150 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner12" parent="room_list/Room_51" instance=ExtResource( 2 )]
+transform = Transform( -10, 0, -1.83588e-05, 0, 10, 0, 1.83588e-05, 0, -10, 202, 0, 160 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_52" type="Room" parent="room_list"]
+points = PoolVector3Array( 207, -1.48172e-10, 165, 227, 7.10488e-05, 155, 227, 9.98458, 165, 207, 10.0153, 155, 227, 0.0154163, 165, 227, 9.99993, 155, 207, 9.99993, 165, 207, -0.015345, 155 )
+
+[node name="Portal_53" type="Portal" parent="room_list/Room_52"]
+transform = Transform( 1, -4.37114e-08, 1.74846e-06, 4.37113e-08, 1, 4.37115e-08, -1.74846e-06, -4.37114e-08, 1, 222, 5, 155 )
+linked_room = NodePath("../../Room_53")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way78" parent="room_list/Room_52" instance=ExtResource( 4 )]
+transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 212, 0, 160 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner11" parent="room_list/Room_52" instance=ExtResource( 2 )]
+transform = Transform( 1.5299e-05, 0, -10, 0, 10, 0, 10, 0, 1.5299e-05, 222, 0, 160 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_53" type="Room" parent="room_list"]
+points = PoolVector3Array( 227, -4.37116e-07, 125, 217, 1.31134e-06, 155, 227, 9.99993, 155, 217, 9.98458, 125, 217, -4.37114e-07, 125, 217, 9.99993, 155, 227, -0.015414, 155, 227, 9.98458, 125 )
+
+[node name="Portal_54" type="Portal" parent="room_list/Room_53"]
+transform = Transform( 1.70474e-06, 4.37114e-08, -1, 4.37113e-08, 1, 4.37115e-08, 1, -4.37114e-08, 1.70474e-06, 227, 5, 130 )
+linked_room = NodePath("../../Room_54")
+points = PoolVector2Array( -5, 5, -5, -5, 5, -5, 5, 5 )
+
+[node name="p_one_way85" parent="room_list/Room_53" instance=ExtResource( 4 )]
+transform = Transform( 4.80825e-06, 3.82137e-14, -10, 8.74228e-07, 10, 4.58565e-13, 10, -8.74228e-07, 4.80825e-06, 222, 8.74227e-07, 150 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_one_way86" parent="room_list/Room_53" instance=ExtResource( 4 )]
+transform = Transform( 4.80825e-06, 3.82137e-14, -10, 8.74228e-07, 10, 4.58565e-13, 10, -8.74228e-07, 4.80825e-06, 222, 0, 140 )
+skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="p_corner13" parent="room_list/Room_53" instance=ExtResource( 2 )]
+transform = Transform( -1.79217e-05, -8.74228e-07, 10, -1.56676e-12, 10, 8.74228e-07, -10, 3.38813e-21, -1.79217e-05, 222, -8.74228e-07, 130 )
+skeleton = NodePath("../../Room_34/Portal_35")
+
+[node name="Room_54" type="Room" parent="room_list"]
+points = PoolVector3Array( 237, 9.98458, 135, 227, 10, 135, 227, 1.1523e-12, 135, 237, 0.0154154, 135, 227, 4.37113e-07, 125, 237, 9.09495e-13, 125, 237, 9.98458, 125, 227, 10, 125 )
+
+[node name="p_deadend" parent="room_list/Room_54" instance=ExtResource( 3 )]
+transform = Transform( -10, 4.37114e-07, -1.66103e-05, 4.37113e-07, 10, 4.37115e-07, 1.66103e-05, 4.37114e-07, -10, 232, 0, 130 )
+skeleton = NodePath("../../Room_53/Portal_54")
+
+[node name="objects" type="Spatial" parent="."]
+
+[node name="furniture" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.75786, 0, 93.6933 )
+id_insight = 1
+is_insight_exist = true
+
+[node name="furniture3" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 69.8235, 0, 23.7336 )
+id_note = 1
+is_note_exist = true
+
+[node name="furniture4" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 125.681, 0, -0.870866 )
+id_insight = 2
+is_insight_exist = true
+
+[node name="furniture5" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 114.511, 0, 56.2898 )
+id_insight = 3
+is_insight_exist = true
+
+[node name="furniture6" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 139.817, 0, -3.73066 )
+id_note = 8
+is_note_exist = true
+is_note_secret = true
+
+[node name="furniture7" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 162.142, 0, 16.2472 )
+id_note = 2
+is_note_exist = true
+id_insight = 4
+is_insight_exist = true
+
+[node name="furniture8" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 232.922, 0, -3.7779 )
+id_note = 7
+is_note_exist = true
+is_note_secret = true
+
+[node name="furniture9" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 235.681, 0, 88.7508 )
+id_note = 3
+is_note_exist = true
+id_insight = 5
+is_insight_exist = true
+
+[node name="furniture10" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 235.681, 0, 111.138 )
+id_note = 6
+is_note_exist = true
+is_note_secret = true
+
+[node name="furniture11" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 122.062, 0, 143.721 )
+id_note = 4
+is_note_exist = true
+id_insight = 6
+is_insight_exist = true
+
+[node name="furniture2" parent="objects" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6943, 0, 108.79 )
+id_note = 5
+is_note_exist = true
+
+[node name="save_trigger" parent="objects" instance=ExtResource( 6 )]
+transform = Transform( 5.24835, 0, 0, 0, 4.49261, 0, 0, 0, 0.813709, 122.039, 4.57995, 132.418 )
+is_mesh_visible = false
+is_ending_trigger = true
+
+[node name="save_trigger2" parent="objects" instance=ExtResource( 6 )]
+transform = Transform( 5.5, 0, 0, 0, 4.99183, 0, 0, 0, 1.06593, 2.17397, 5.05985, 120.125 )
+is_consider_end = true
+is_good_ending_trigger = true
+
+[node name="OmniLight" type="OmniLight" parent="objects/save_trigger2"]
+transform = Transform( 0.181818, 0, 0, 0, 0.200327, 0, 0, 0, 0.938148, -0.0673673, 0.124197, -1.96355 )
+portal_mode = 2
+omni_range = 11.3791

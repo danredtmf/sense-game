@@ -18,9 +18,11 @@ func light():
 "
 
 [node name="lamp" instance=ExtResource( 1 )]
+portal_mode = 2
 script = SubResource( 1 )
 
 [node name="SpotLight" type="SpotLight" parent="." index="0"]
 transform = Transform( 6.47052, 0, 0, 0, -2.82836e-07, 6.47052, 0, -6.47052, -2.82836e-07, -4.82961, 0, 0 )
+portal_mode = 2
 spot_range = 20.0
 spot_angle = 30.0

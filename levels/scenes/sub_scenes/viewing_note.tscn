@@ -91,14 +91,10 @@ __meta__ = {
 }
 
 [node name="text" type="RichTextLabel" parent="pic"]
-anchor_left = 0.014698
-anchor_top = 0.0104428
-anchor_right = 0.867718
-anchor_bottom = 0.989557
-margin_left = 0.121325
-margin_top = -0.244779
-margin_right = 0.121338
-margin_bottom = -0.244873
+anchor_left = 0.0149573
+anchor_top = 0.0150502
+anchor_right = 0.867521
+anchor_bottom = 0.978261
 custom_colors/default_color = Color( 0.0823529, 0.0313726, 0.345098, 1 )
 custom_fonts/normal_font = ExtResource( 8 )
 __meta__ = {
@@ -120,10 +116,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -266.0
+margin_left = -196.0
 margin_top = -96.0
 margin_right = -16.0
 margin_bottom = -16.0
+rect_min_size = Vector2( 180, 80 )
 custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 6 )

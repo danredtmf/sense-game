@@ -14,6 +14,7 @@ script/source = "extends Control
 
 const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
 const about_menu_res = preload(\"res://levels/scenes/sub_scenes/about_interface.tscn\")
+const notes_viewer_res = preload(\"res://levels/scenes/sub_scenes/notes_viewer.tscn\")
 
 var state
 
@@ -24,6 +25,7 @@ func _ready():
 		TranslationServer.set_locale('ru')
 	
 	OS.window_fullscreen = Data.saved_fullscreen_mode
+	OS.vsync_enabled = Data.saved_vsync
 	
 	$anim.play(\"start\")
 	
@@ -90,6 +92,10 @@ func _on_agree_pressed():
 
 func _on_disagree_pressed():
 	$warning_newgame.hide()
+
+func _on_notes_pressed():
+	var notes = notes_viewer_res.instance()
+	get_tree().root.add_child(notes)
 "
 
 [sub_resource type="ViewportTexture" id=17]
@@ -446,6 +452,7 @@ anims/start = SubResource( 19 )
 
 [connection signal="pressed" from="interface/Control/vbox/new_game" to="interface" method="_on_new_game_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/continue" to="interface" method="_on_continue_pressed"]
+[connection signal="pressed" from="interface/Control/vbox/notes" to="interface" method="_on_notes_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/settings" to="interface" method="_on_settings_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/about" to="interface" method="_on_about_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/exit" to="interface" method="_on_exit_pressed"]

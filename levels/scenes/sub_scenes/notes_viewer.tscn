@@ -1,0 +1,182 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=1]
+[ext_resource path="res://sources/themes/font_size/letter_26.tres" type="DynamicFont" id=2]
+[ext_resource path="res://levels/models/textures/note.png" type="Texture" id=3]
+[ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=4]
+[ext_resource path="res://sources/themes/button/hover.tres" type="StyleBox" id=5]
+[ext_resource path="res://sources/themes/button/disabled.tres" type="StyleBox" id=6]
+[ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=7]
+[ext_resource path="res://sources/themes/button/pressed.tres" type="StyleBox" id=8]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Control
+
+var current_note = 0
+var notes : Array
+
+func _ready():
+	notes = Data.saved_notes
+	notes.sort()
+	get_note()
+	update_ui()
+	check_state_btns()
+
+func update_ui():
+	$previous_btn.text = tr('previous_note')
+	$next_btn.text = tr('next_note')
+	$close_btn.text = tr('close')
+
+func get_note():
+	if notes != null:
+		if notes.has(current_note):
+			$name.text = tr('note_'+str(current_note + 1))
+			$pic/text.text = tr('note_'+str(current_note + 1)+'_text')
+		else:
+			$name.text = tr('notes')
+			$pic/text.text = tr('notes_no')
+	else:
+		$name.text = tr('notes')
+		$pic/text.text = tr('notes_no')
+
+func check_state_btns():
+	if current_note - 1 > -1:
+		$previous_btn.disabled = false
+	else:
+		$previous_btn.disabled = true
+	if current_note + 1 < len(notes):
+		$next_btn.disabled = false
+	else:
+		$next_btn.disabled = true
+
+func _on_previous_btn_pressed():
+	if current_note - 1 > -1:
+		current_note -= 1
+		get_note()
+		check_state_btns()
+
+func _on_next_btn_pressed():
+	if current_note + 1 < len(notes):
+		current_note += 1
+		get_note()
+		check_state_btns()
+
+func _on_close_btn_pressed():
+	queue_free()
+"
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="notes_viewer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="name" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Notes"
+align = 1
+
+[node name="pic" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -234.0
+margin_top = -259.0
+margin_right = 234.0
+margin_bottom = 339.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="text" type="RichTextLabel" parent="pic"]
+anchor_left = 0.014698
+anchor_top = 0.0150502
+anchor_right = 0.867262
+anchor_bottom = 0.980343
+margin_left = 0.121325
+margin_right = 0.121338
+margin_bottom = -0.244873
+custom_colors/default_color = Color( 0.0823529, 0.0313726, 0.345098, 1 )
+custom_fonts/normal_font = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="previous_btn" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 80.0
+margin_top = -40.0
+margin_right = 260.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 180, 80 )
+custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 7 )
+text = "Previous"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next_btn" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -260.0
+margin_top = -40.0
+margin_right = -80.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 180, 80 )
+custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 7 )
+text = "Next"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close_btn" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -212.0
+margin_top = -112.0
+margin_right = -32.0
+margin_bottom = -32.0
+rect_min_size = Vector2( 180, 80 )
+custom_fonts/font = ExtResource( 4 )
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 7 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="previous_btn" to="." method="_on_previous_btn_pressed"]
+[connection signal="pressed" from="next_btn" to="." method="_on_next_btn_pressed"]
+[connection signal="pressed" from="close_btn" to="." method="_on_close_btn_pressed"]

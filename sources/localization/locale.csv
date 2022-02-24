@@ -25,23 +25,28 @@ note,Note,Записка
 notes,Notes,Записки
 insight,Insight,Озарение
 book,Book,Книга
-note_1,Note 1/4,Записка 1/4
+note_1,Note 1/5,Записка 1/5
 note_1_text,What does he want to tell me?,Что он хочет мне сказать?
-note_2,Note 2/5,Записка 2/4
-note_2_text,"One has red eyes, the other... I couldn't see. He also runs away.","У одного красные глаза, у другого… не разглядел. Он ещё и убегает."
-note_3,Note 3/6,Записка 3/4
-note_3_text,"The floor looks okay, but the walls and the ceiling... I think the ceiling is about to collapse. Is the corridor endless?","Пол вроде нормально выглядит, но вот стены и потолок… Мне кажется, что потолок скоро обвалится. Коридор бесконечен?"
-note_4,Note 4/4,Записка 4/4
-note_4_text,Trio. Two extra. Now one.,Трое. Двое лишних. Теперь один.
-note_5,Note 0,Записка 0
-note_5_text,"If you found this note, you know I'm gone. Everything that happens here is my dream. The very first time I walked down this corridor, it was nothing. Every night that I fall asleep, this dream starts over, but more is revealed to me in the process. In the beginning, the dream was too fast to understand anything, but it's been six days. I want to understand why this is the only dream, but apparently I won't be able to find out until the end. How did you end up here? What kind of creatures? Why exactly will you be the next victim? Only some questions can be answered now. If you're lucky, you'll be saved from the one who smiles.","Если вы нашли эту записку, то знайте - меня уже нет. Всё, что здесь происходит - это мой сон. В самый первый раз я прошёл по этому коридору всего-ничего. Каждую ночь, в которую я засыпаю, этот сон начинается сначала, но при этом мне открывается всё больше. В начале, сон был слишком быстрым, чтобы что-либо понимать, но прошло уже 6 дней. Мне хочется понять, почему снится только это, но, видимо, мне не удастся узнать до конца. Как вы здесь оказались? Что за существа? Почему именно вы окажетесь следующей жертвой? Только на некоторые вопросы можно найти ответы сейчас. Если повезёт, вы спасётесь от того, кто улыбается."
-note_6,Note -1,Записка -1
-note_6_text,"It's kind of weird, you wouldn't expect to find anything else here, right? I think I'm stuck here, in my own dream... or am I? Maybe this isn't a dream. Maybe this is the place you go to after this creature catches up with you? Then why was I here before? Am I alive?","Как-то странно, ты не ожидал здесь найти что-то ещё, верно? Кажется, я застрял здесь, в своём же сне… или нет? Может это не сон? Может, это место, в которое ты попадаешь после того, когда это существо настигнет тебя? Тогда почему я здесь был до этого? Жив ли я?"
-note_7,Note -2,Записка -2
-note_7_text,"Um, you know, this place doesn't go on anymore. It's like time stopped with me, right? Why did the note count go into the negative? Don't mind me, I just don't know how much time has passed, that's all.","Хм, знаешь, это место больше не продолжается. Как будто время остановилось вместе со мной, да? Почему счёт записок пошёл в минус? Не обращай внимания, я просто не знаю, сколько времени уже прошло, вот и всё."
-note_8,Note -3,Записка -3
-note_8_text,"I didn't expect to see something in reality, but it happened. As he dragged me, I wished... for protection. I wanted protection... I want protection. I don't want strange disappearances in our town... One day, a grandfather came to us, it turns out, he was a relative of my dead mother. He had a present for me, an amulet. He said it would come in handy for me. It was not useful... The next place of attack will remain the same. I hope you can sense the danger. Good luck.","Я не ожидал увидеть нечто в реальности, но это произошло. Пока он меня тащил, я пожелал.. защиты. Хотел защиты… Хочу защитить. Не хочу странных исчезновений в нашем городке... Однажды, к нам пришёл один дедушка, оказывается, он родственник моей покойной матери. У него был для меня подарок - амулет. Сказал, что он мне пригодится. Не пригодился… Следующее место нападения останется прежним. Надеюсь, ты почувствуешь опасность. Удачи."
+note_2,Note 2/5,Записка 2/5
+note_2_text,"One has red eyes, the other ... I couldn't see. Why is he running away?","У одного красные глаза, у другого… не разглядел. Почему он убегает?"
+note_3,Note 3/5,Записка 3/5
+note_3_text,Why am I dreaming about this?,Почему мне это снится?
+note_4,Note 4/5,Записка 4/5
+note_4_text,It's a dead end again... When do I get to the end of the road?,Снова тупик… Когда я доберусь до конца пути?
+note_5,Note 5/5,Записка 5/5
+note_5_text,"Everything that happens here is my dream. For six nights I dreamt about this place. At first, all these turns and dead ends weren't there, but coming back, more and more space appeared. I still want to figure out what this place is and why I dreamt it... If anyone happens to be here... Better RUN if you hear NOT YOUR footsteps... I'm not alive anymore...","Всё, что здесь происходит - это мой сон. В течении шести ночей мне снилось это место. Сначала всех этих поворотов и тупиков не было, но возвращаясь, появлялось всё больше пространства. До сих пор хочется понять, что это за место и почему мне это снилось… Если кто-нибудь здесь окажется… Лучше БЕГИТЕ, если услышите НЕ СВОИ шаги… Меня уже нет в живых…"
+note_6,Secret note 1/3,Секретная записка 1/3
+note_6_text,I seem to be stuck here... Why am I here again after... Am I alive?,"Кажется, я застрял здесь… Почему я снова здесь после… Жив ли я?"
+note_7,Secret note 2/3,Секретная записка 2/3
+note_7_text,"Hmm, this place doesn't go on anymore. It's like time has stopped together with me, isn't it? I've lost my sense of time. I feel bad. I still feel pain. Maybe I shouldn't have gone near the sewers. I was lured by the sound of a crying baby... I thought someone had accidentally fallen in there... Sneaky and sneaky.","Хм, это место больше не продолжается. Как будто время остановилось вместе со мной, да? Я потерял ощущение времени. Мне плохо. До сих пор чувствую боль. Может, не стоило мне подходить к канализации? Меня заманили на звук плачущего ребёнка… Я думал, кто-то случайно упал туда… Подло и хитро."
+note_8,Secret note 3/3,Секретная записка 3/3
+note_8_text,"I didn't expect to see something in reality. It was a real monster. Everything happened quickly... One day, a grandfather came to us, it turns out, he was a relative of my dead mother. He had a present for me, an amulet. Said I could use it. Was there a sense in it? I feel something's still there. If you happen to find yourself near that sewer downpipe at night, I hope you can sense the danger. And yes, if you're unlucky, there's still my amulet lying out there somewhere. Take it. It's all I had, and now it will be my gift to you.","Я не ожидал увидеть нечто в реальности. Это был самый настоящий монстр. Всё произошло быстро… Однажды, к нам пришёл один дедушка, оказывается, он родственник моей покойной матери. У него был для меня подарок - амулет. Сказал, что он мне пригодится. Был ли какой-то смысл в нём? Чувствую, нечто всё ещё там. Если ты вдруг окажешься возле спуска в ту канализацию ночью, надеюсь, ты почувствуешь опасность. И да, если уж так не повезёт, где-то там остался лежать мой амулет. Возьми его. Это всё, что у меня было, а теперь оно будет моим подарком тебе."
 warning,Warning,Внимание
-info_warning,"By confirming, you agree to reset the saved progress. Be careful!","Подтверждая, вы соглашаетесь сбросить сохранённый прогресс. Будьте внимательны!"
+info_warning,Confirming will reset your saved progress.,"Подтверждая, вы сбросите сохранённый прогресс."
 agree,Agree,Согласен
 disagree,Disagree,Не согласен
+notes_no,No notes were found,Записки не найдены
+previous_note,Previous,Предыдущая
+next_note,Next,Следующая
+fps_monitor,FPS Counter,Счётчик FPS
+vsync,Vertical Sync,Вертикальная Синхронизация

@@ -7,10 +7,15 @@ var speed
 var gravity = 300
 var camera_sensitivity = Data.saved_mouse_sensitivity
 
+var enable_flashlight = true
+
 var vel = Vector3.ZERO
 
 onready var camera = $Camera
 onready var spotlight = $Camera/SpotLight
+
+func _init():
+	VisualServer.set_debug_generate_wireframes(true)
 
 func _ready():
 	Core.root_player = self
@@ -43,10 +48,11 @@ func _physics_process(delta):
 		speed = walk_speed
 	
 	if Input.is_action_just_pressed("flashlight_toggle"):
-		if spotlight.visible:
-			spotlight.visible = !spotlight.visible
-		else:
-			spotlight.visible = !spotlight.visible
+		if enable_flashlight:
+			if spotlight.visible:
+				spotlight.visible = !spotlight.visible
+			else:
+				spotlight.visible = !spotlight.visible
 	
 	if Input.is_action_just_pressed("interactive"):
 		action()
@@ -65,12 +71,21 @@ func _physics_process(delta):
 	
 	vel = move_and_slide(vel * delta, Vector3.UP)
 
+func check_flashlight():
+	if !enable_flashlight && spotlight.visible:
+		spotlight.visible = false
+	elif enable_flashlight:
+		spotlight.visible = true
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		var movement = event.relative
 		camera.rotation.x -= deg2rad(movement.y * camera_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg2rad(-85), deg2rad(85))
 		rotation.y += -deg2rad(movement.x * camera_sensitivity)
+	if event is InputEventKey and Input.is_key_pressed(KEY_P):
+		var vp = get_viewport()
+		vp.debug_draw = (vp.debug_draw + 1 ) % 4
 
 func action():
 	if Core.action_object:

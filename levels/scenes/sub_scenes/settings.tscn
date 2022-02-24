@@ -32,6 +32,8 @@ func update_ui():
 	$vbox/box_sensitivity/name_sensitivity.text = tr('mouse_sensitivity')
 	$vbox/box_language/OptionButton.set_item_text(0, tr('english'))
 	$vbox/box_language/OptionButton.set_item_text(1, tr('russian'))
+	$vbox/box_perfomance_monitor/name_perfomance_monitor.text = tr('fps_monitor')
+	$vbox/box_vsync/name_vsync.text = tr('vsync')
 	$vbox/box_data/reset_game.text = tr('reset_game')
 	$vbox/box_data/reset_settings.text = tr('reset_settings')
 	$close.text = tr('close')
@@ -39,6 +41,8 @@ func update_ui():
 	$vbox/box_fullscreen/CheckBox.pressed = Data.saved_fullscreen_mode
 	$vbox/box_sensitivity/HSlider.value = Data.saved_mouse_sensitivity
 	$vbox/box_language/OptionButton.selected = Data.saved_language
+	$vbox/box_perfomance_monitor/check_perfomance_monitor.pressed = Data.saved_performance_monitor
+	$vbox/box_vsync/check_vsync.pressed = Data.saved_vsync
 
 func _process(_delta):
 	$vbox/box_sensitivity/sens_text.text = str($vbox/box_sensitivity/HSlider.value)
@@ -72,6 +76,17 @@ func _on_reset_settings_pressed():
 
 func _on_close_pressed():
 	queue_free()
+
+func _on_check_perfomance_monitor_pressed():
+	Data.saved_performance_monitor = $vbox/box_perfomance_monitor/check_perfomance_monitor.pressed
+	Data.saving_settings()
+	update_ui()
+
+func _on_check_vsync_pressed():
+	Data.saved_vsync = $vbox/box_vsync/check_vsync.pressed
+	OS.vsync_enabled = Data.saved_vsync
+	Data.saving_settings()
+	update_ui()
 "
 
 [sub_resource type="Theme" id=5]
@@ -106,7 +121,6 @@ margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
 text = "Settings"
 align = 1
-valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -117,10 +131,10 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -300.0
-margin_top = -396.0
+margin_top = -492.0
 margin_right = 300.0
-margin_bottom = -96.0
-rect_min_size = Vector2( 600, 300 )
+margin_bottom = -92.0
+rect_min_size = Vector2( 600, 400 )
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
@@ -210,10 +224,50 @@ text = "English"
 items = [ "English", null, false, 0, null, "Russian", null, false, 1, null ]
 selected = 0
 
-[node name="box_data" type="HBoxContainer" parent="vbox"]
+[node name="box_perfomance_monitor" type="HBoxContainer" parent="vbox"]
 margin_top = 180.0
 margin_right = 600.0
-margin_bottom = 230.0
+margin_bottom = 220.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="name_perfomance_monitor" type="Label" parent="vbox/box_perfomance_monitor"]
+margin_left = 188.0
+margin_right = 377.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Perfomance Monitor"
+valign = 1
+
+[node name="check_perfomance_monitor" type="CheckBox" parent="vbox/box_perfomance_monitor"]
+margin_left = 387.0
+margin_right = 411.0
+margin_bottom = 40.0
+
+[node name="box_vsync" type="HBoxContainer" parent="vbox"]
+margin_top = 240.0
+margin_right = 600.0
+margin_bottom = 280.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="name_vsync" type="Label" parent="vbox/box_vsync"]
+margin_left = 255.0
+margin_right = 310.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Vsync"
+valign = 1
+
+[node name="check_vsync" type="CheckBox" parent="vbox/box_vsync"]
+margin_left = 320.0
+margin_right = 344.0
+margin_bottom = 40.0
+
+[node name="box_data" type="HBoxContainer" parent="vbox"]
+margin_top = 300.0
+margin_right = 600.0
+margin_bottom = 350.0
 custom_constants/separation = 10
 alignment = 1
 
@@ -266,6 +320,8 @@ __meta__ = {
 [connection signal="pressed" from="vbox/box_fullscreen/CheckBox" to="." method="_on_CheckBox_pressed"]
 [connection signal="value_changed" from="vbox/box_sensitivity/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="vbox/box_language/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="vbox/box_perfomance_monitor/check_perfomance_monitor" to="." method="_on_check_perfomance_monitor_pressed"]
+[connection signal="pressed" from="vbox/box_vsync/check_vsync" to="." method="_on_check_vsync_pressed"]
 [connection signal="pressed" from="vbox/box_data/reset_game" to="." method="_on_reset_game_pressed"]
 [connection signal="pressed" from="vbox/box_data/reset_settings" to="." method="_on_reset_settings_pressed"]
 [connection signal="pressed" from="close" to="." method="_on_close_pressed"]

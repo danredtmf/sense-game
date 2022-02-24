@@ -11,7 +11,7 @@ signal showing_action_object
 # warning-ignore:unused_signal
 signal showing_pause
 # warning-ignore:unused_signal
-signal heartbeating
+signal heartbeating(bool_value)
 # warning-ignore:unused_signal
 signal transition_scene
 
@@ -31,12 +31,22 @@ func _ready():
 	
 	$anim.play('start')
 
+func _process(_delta):
+	if Data.saved_performance_monitor:
+		_perfomance_monitor()
+	else:
+		$perfomance_monitor.text = ''
+
 func set_action_name(name):
 	$action_name.text = name
 	if name == '':
 		$back_text.hide()
 	else:
 		$back_text.show()
+
+func _perfomance_monitor():
+	$perfomance_monitor.text = 'FPS: ' \\
+	+ str(Performance.get_monitor(Performance.TIME_FPS))
 
 func _showing_action_object():
 	if !Core.action_object:
@@ -56,8 +66,8 @@ func _showing_pause():
 		add_child_below_node($action_name, pause)
 		Core.game_pause = false
 
-func _heartbeating():
-	$screen_trigger.emit_signal(\"heart\")
+func _heartbeating(bool_value: bool):
+	$screen_trigger.emit_signal(\"heart\", bool_value)
 
 func _transition_scene():
 	$anim.play(\"end\")
@@ -67,6 +77,7 @@ func _on_anim_animation_finished(anim_name):
 		Core.to('main_menu')
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = false
+
 "
 
 [sub_resource type="Animation" id=6]
@@ -204,6 +215,16 @@ margin_bottom = 51.5
 custom_fonts/font = ExtResource( 1 )
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="perfomance_monitor" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 308.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

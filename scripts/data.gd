@@ -12,6 +12,8 @@ enum LANG {ENGLISH = 0, RUSSIAN = 1}
 var saved_mouse_sensitivity = 0.2
 var saved_fullscreen_mode = true
 var saved_language = LANG.ENGLISH
+var saved_performance_monitor = false
+var saved_vsync = true
 
 var data
 
@@ -43,6 +45,8 @@ func reset_settings():
 	saved_mouse_sensitivity = 0.2
 	saved_fullscreen_mode = true
 	saved_language = LANG.ENGLISH
+	saved_performance_monitor = false
+	saved_vsync = true
 	saving_settings()
 
 func saving_settings():
@@ -50,6 +54,8 @@ func saving_settings():
 		'fullscreen': saved_fullscreen_mode,
 		'sensitivity': saved_mouse_sensitivity,
 		'lang': saved_language,
+		'performance_monitor': saved_performance_monitor,
+		'vsync': saved_vsync,
 	}
 	
 	var file = File.new()
@@ -69,9 +75,16 @@ func loading_settings():
 		file.close()
 	
 	if data:
-		saved_fullscreen_mode = data.fullscreen
-		saved_mouse_sensitivity = data.sensitivity
-		saved_language = data.lang
+		if 'fullscreen' in data:
+			saved_fullscreen_mode = data.fullscreen
+		if 'sensitivity' in data:
+			saved_mouse_sensitivity = data.sensitivity
+		if 'lang' in data:
+			saved_language = data.lang
+		if 'performance_monitor' in data:
+			saved_performance_monitor = data.performance_monitor
+		if 'vsync' in data:
+			saved_vsync = data.vsync
 
 func saving():
 	data = {
@@ -100,9 +113,15 @@ func loading():
 		file.close()
 	
 	if data:
-		is_ending = data.is_ending
-		is_good_ending = data.is_good_ending
-		is_game_passed = data.is_game_passed
-		saved_pos_player = Vector3(data.saved_pos_player[0], data.saved_pos_player[1], data.saved_pos_player[2])
-		saved_notes = data.saved_notes
-		saved_insights = data.saved_insights
+		if 'is_ending' in data:
+			is_ending = data.is_ending
+		if 'is_good_ending' in data:
+			is_good_ending = data.is_good_ending
+		if 'is_game_passed' in data:
+			is_game_passed = data.is_game_passed
+		if 'saved_pos_player' in data:
+			saved_pos_player = Vector3(data.saved_pos_player[0], data.saved_pos_player[1], data.saved_pos_player[2])
+		if 'saved_notes' in data:
+			saved_notes = data.saved_notes
+		if 'saved_insights' in data:
+			saved_insights = data.saved_insights
