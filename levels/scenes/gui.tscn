@@ -13,7 +13,7 @@ signal showing_pause
 # warning-ignore:unused_signal
 signal heartbeating(bool_value)
 # warning-ignore:unused_signal
-signal transition_scene
+signal transition_scene(anim_name)
 
 const viewing_note_res = preload(\"res://levels/scenes/sub_scenes/viewing_note.tscn\")
 const pause_menu_res = preload(\"res://levels/scenes/sub_scenes/game_pause.tscn\")
@@ -69,8 +69,8 @@ func _showing_pause():
 func _heartbeating(bool_value: bool):
 	$screen_trigger.emit_signal(\"heart\", bool_value)
 
-func _transition_scene():
-	$anim.play(\"end\")
+func _transition_scene(anim_name):
+	$anim.play(anim_name)
 
 func _on_anim_animation_finished(anim_name):
 	if anim_name == 'end':

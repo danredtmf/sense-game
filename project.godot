@@ -13,12 +13,13 @@ config_version=4
 config/name="Sense"
 run/main_scene="res://levels/scenes/main_menu.tscn"
 config/icon="res://icon.png"
-config/version="0.5.4.1-alpha"
+config/version="0.5.5-alpha"
 
 [autoload]
 
 Core="*res://scripts/core.gd"
 Data="*res://scripts/data.gd"
+SceneChanger="*res://scripts/scene_changer.gd"
 
 [display]
 

@@ -18,6 +18,7 @@ var notes : Array
 func _ready():
 	notes = Data.saved_notes
 	notes.sort()
+	print(notes)
 	get_note()
 	update_ui()
 	check_state_btns()
@@ -28,13 +29,9 @@ func update_ui():
 	$close_btn.text = tr('close')
 
 func get_note():
-	if notes != null || notes == []:
-		if notes[current_note]:
-			$name.text = tr('note_'+str(current_note + 1))
-			$pic/text.text = tr('note_'+str(current_note + 1)+'_text')
-		else:
-			$name.text = tr('notes')
-			$pic/text.text = tr('notes_no')
+	if current_note < len(notes):
+		$name.text = tr('note_'+str(notes[current_note]))
+		$pic/text.text = tr('note_'+str(notes[current_note])+'_text')
 	else:
 		$name.text = tr('notes')
 		$pic/text.text = tr('notes_no')

@@ -8,7 +8,7 @@ script/source = "extends Node
 
 func _ready():
 	Core.root_game = self
-	Core.load_level()
+	SceneChanger.goto_scene(\"res://levels/level_1/level.tscn\")
 "
 
 [node name="game" type="Node"]
