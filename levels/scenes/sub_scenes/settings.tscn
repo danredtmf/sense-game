@@ -103,9 +103,6 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="back" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -140,24 +137,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="box_fullscreen" type="HBoxContainer" parent="vbox"]
+[node name="box_language" type="HBoxContainer" parent="vbox"]
 margin_right = 600.0
 margin_bottom = 40.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="name_fullscreen" type="Label" parent="vbox/box_fullscreen"]
-margin_left = 235.0
-margin_right = 330.0
+[node name="name_language" type="Label" parent="vbox/box_language"]
+margin_left = 206.0
+margin_right = 293.0
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
-text = "Fullscreen"
+text = "Language"
 valign = 1
 
-[node name="CheckBox" type="CheckBox" parent="vbox/box_fullscreen"]
-margin_left = 340.0
-margin_right = 364.0
+[node name="OptionButton" type="OptionButton" parent="vbox/box_language"]
+margin_left = 303.0
+margin_right = 394.0
 margin_bottom = 40.0
+theme = SubResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 7 )
+text = "English"
+items = [ "English", null, false, 0, null, "Russian", null, false, 1, null ]
+selected = 0
 
 [node name="box_sensitivity" type="HBoxContainer" parent="vbox"]
 margin_top = 60.0
@@ -196,58 +201,30 @@ text = "0.00"
 align = 1
 valign = 1
 
-[node name="box_language" type="HBoxContainer" parent="vbox"]
+[node name="box_fullscreen" type="HBoxContainer" parent="vbox"]
 margin_top = 120.0
 margin_right = 600.0
 margin_bottom = 160.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="name_language" type="Label" parent="vbox/box_language"]
-margin_left = 206.0
-margin_right = 293.0
+[node name="name_fullscreen" type="Label" parent="vbox/box_fullscreen"]
+margin_left = 235.0
+margin_right = 330.0
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
-text = "Language"
+text = "Fullscreen"
 valign = 1
 
-[node name="OptionButton" type="OptionButton" parent="vbox/box_language"]
-margin_left = 303.0
-margin_right = 394.0
-margin_bottom = 40.0
-theme = SubResource( 5 )
-custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = ExtResource( 10 )
-custom_styles/pressed = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
-text = "English"
-items = [ "English", null, false, 0, null, "Russian", null, false, 1, null ]
-selected = 0
-
-[node name="box_perfomance_monitor" type="HBoxContainer" parent="vbox"]
-margin_top = 180.0
-margin_right = 600.0
-margin_bottom = 220.0
-custom_constants/separation = 10
-alignment = 1
-
-[node name="name_perfomance_monitor" type="Label" parent="vbox/box_perfomance_monitor"]
-margin_left = 188.0
-margin_right = 377.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
-text = "Perfomance Monitor"
-valign = 1
-
-[node name="check_perfomance_monitor" type="CheckBox" parent="vbox/box_perfomance_monitor"]
-margin_left = 387.0
-margin_right = 411.0
+[node name="CheckBox" type="CheckBox" parent="vbox/box_fullscreen"]
+margin_left = 340.0
+margin_right = 364.0
 margin_bottom = 40.0
 
 [node name="box_vsync" type="HBoxContainer" parent="vbox"]
-margin_top = 240.0
+margin_top = 180.0
 margin_right = 600.0
-margin_bottom = 280.0
+margin_bottom = 220.0
 custom_constants/separation = 10
 alignment = 1
 
@@ -262,6 +239,26 @@ valign = 1
 [node name="check_vsync" type="CheckBox" parent="vbox/box_vsync"]
 margin_left = 320.0
 margin_right = 344.0
+margin_bottom = 40.0
+
+[node name="box_perfomance_monitor" type="HBoxContainer" parent="vbox"]
+margin_top = 240.0
+margin_right = 600.0
+margin_bottom = 280.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="name_perfomance_monitor" type="Label" parent="vbox/box_perfomance_monitor"]
+margin_left = 188.0
+margin_right = 377.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Perfomance Monitor"
+valign = 1
+
+[node name="check_perfomance_monitor" type="CheckBox" parent="vbox/box_perfomance_monitor"]
+margin_left = 387.0
+margin_right = 411.0
 margin_bottom = 40.0
 
 [node name="box_data" type="HBoxContainer" parent="vbox"]
@@ -317,11 +314,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="vbox/box_fullscreen/CheckBox" to="." method="_on_CheckBox_pressed"]
-[connection signal="value_changed" from="vbox/box_sensitivity/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="vbox/box_language/OptionButton" to="." method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="vbox/box_perfomance_monitor/check_perfomance_monitor" to="." method="_on_check_perfomance_monitor_pressed"]
+[connection signal="value_changed" from="vbox/box_sensitivity/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="vbox/box_fullscreen/CheckBox" to="." method="_on_CheckBox_pressed"]
 [connection signal="pressed" from="vbox/box_vsync/check_vsync" to="." method="_on_check_vsync_pressed"]
+[connection signal="pressed" from="vbox/box_perfomance_monitor/check_perfomance_monitor" to="." method="_on_check_perfomance_monitor_pressed"]
 [connection signal="pressed" from="vbox/box_data/reset_game" to="." method="_on_reset_game_pressed"]
 [connection signal="pressed" from="vbox/box_data/reset_settings" to="." method="_on_reset_settings_pressed"]
 [connection signal="pressed" from="close" to="." method="_on_close_pressed"]

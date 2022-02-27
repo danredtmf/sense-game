@@ -34,6 +34,10 @@ func _ready():
 func _process(_delta):
 	update_ui()
 
+func _perfomance_monitor():
+	$perfomance_monitor.text = 'FPS: ' \\
+	+ str(Performance.get_monitor(Performance.TIME_FPS))
+
 func update_ui():
 	if Data.is_ending && !Data.is_game_passed:
 		$Control/vbox/continue.visible = true
@@ -44,6 +48,11 @@ func update_ui():
 	else:
 		$Control/vbox/continue.visible = false
 		$Control/vbox/notes.visible = false
+	
+	if Data.saved_performance_monitor:
+		_perfomance_monitor()
+	else:
+		$perfomance_monitor.text = ''
 	
 	$Control/vbox/new_game.text = tr('new_game')
 	$Control/vbox/continue.text = tr('continue')
@@ -205,9 +214,6 @@ size = Vector2( 1600, 900 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="interface"]
 anchor_right = 1.0
@@ -218,6 +224,13 @@ flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="perfomance_monitor" type="Label" parent="interface"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 308.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 8 )
 
 [node name="Control" type="Control" parent="interface"]
 anchor_left = 1.0
