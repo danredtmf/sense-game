@@ -103,6 +103,11 @@ transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 2, 0
 [node name="p_corner" parent="room_list/Room_4" instance=ExtResource( 2 )]
 transform = Transform( -10, 0, -8.74228e-07, 0, 10, 0, 8.74228e-07, 0, -10, 2, 0, 90 )
 
+[node name="furniture" parent="room_list/Room_4" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.75786, 0, 93.6933 )
+id_insight = 1
+is_insight_exist = true
+
 [node name="Room_5" type="Room" parent="room_list"]
 points = PoolVector3Array( 6.99997, 0, 95, 56.9999, 7.10487e-05, 85, 57, 9.98458, 95, 7, 10.0153, 85, 57, 0.0154162, 95.0001, 56.9999, 9.99993, 85, 7, 9.99993, 94.9999, 7, -0.0153451, 85 )
 
@@ -216,6 +221,11 @@ skeleton = NodePath("../Portal_9")
 transform = Transform( -10, 0, -8.74226e-07, 0, 10, 0, 8.74226e-07, 0, -10, 72, 0, 20 )
 skeleton = NodePath("../Portal_9")
 
+[node name="furniture3" parent="room_list/Room_8" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 69.8235, 0, 23.7336 )
+id_note = 1
+is_note_exist = true
+
 [node name="Room_9" type="Room" parent="room_list"]
 points = PoolVector3Array( 77, 1.85217e-11, 25, 97, 7.1049e-05, 15, 97, 9.98458, 25, 77, 9.99993, 15, 97, 7.1049e-05, 25, 97, 9.98458, 15, 77, -0.015345, 15, 77, 9.99993, 25 )
 
@@ -267,6 +277,11 @@ skeleton = NodePath("../Portal_12")
 [node name="p_corner" parent="room_list/Room_11" instance=ExtResource( 2 )]
 transform = Transform( 10, 0, 1.74846e-06, 0, 10, 0, -1.74846e-06, 0, 10, 122, 0, 0 )
 skeleton = NodePath("../Portal_12")
+
+[node name="furniture4" parent="room_list/Room_11" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 125.681, 0, -0.870866 )
+id_insight = 2
+is_insight_exist = true
 
 [node name="Room_12" type="Room" parent="room_list"]
 points = PoolVector3Array( 127, 0, 5.00001, 117, 0, 45, 127, 0.0154161, 45, 117, -0.0154161, 5, 127, 9.99993, 5, 117, 10.0153, 5, 117, 9.99993, 45, 127, 9.98458, 45 )
@@ -400,6 +415,11 @@ skeleton = NodePath("../../Room_14/Portal_15")
 transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 102, 0, 60 )
 skeleton = NodePath("../../Room_13/Portal_14")
 
+[node name="furniture5" parent="room_list/Room_17" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 114.511, 0, 56.2898 )
+id_insight = 3
+is_insight_exist = true
+
 [node name="Room_18" type="Room" parent="room_list"]
 points = PoolVector3Array( 107, -5.55647e-11, 65, 117, 7.10487e-05, 94.9999, 107, 9.98458, 95, 117, 10.0153, 65, 107, 0.0154163, 95, 117, 9.99993, 94.9999, 107, 9.99993, 65, 117, -0.015345, 65 )
 
@@ -484,6 +504,12 @@ skeleton = NodePath("../../Room_13/Portal_14")
 transform = Transform( -3.93403e-06, 0, 10, 0, 10, 0, -10, 0, -3.93403e-06, 142, 0, 0 )
 skeleton = NodePath("../../Room_14/Portal_15")
 
+[node name="furniture6" parent="room_list/Room_20" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 139.817, 0, -3.73066 )
+id_note = 8
+is_note_exist = true
+is_note_secret = true
+
 [node name="Room_21" type="Room" parent="room_list"]
 points = PoolVector3Array( 197, 0.0154162, -5, 147, 3.72529e-09, -5, 197, 7.91625e-09, 4.99999, 147, -0.0154162, 5.00005, 197, 9.99993, -5, 147, 9.99993, -5, 197, 9.99993, 4.99999, 147, 9.99993, 5.00005 )
 
@@ -564,6 +590,13 @@ skeleton = NodePath("../Portal_24")
 transform = Transform( -10, 0, -2.62268e-06, 0, 10, 0, 2.62268e-06, 0, -10, 162, 0, 50 )
 skeleton = NodePath("../../Room_14/Portal_15")
 
+[node name="furniture7" parent="room_list/Room_23" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 162.142, 0, 16.2472 )
+id_note = 2
+is_note_exist = true
+id_insight = 4
+is_insight_exist = true
+
 [node name="Room_24" type="Room" parent="room_list"]
 points = PoolVector3Array( 167, 0, 55, 217, 7.10488e-05, 45, 217, 9.98458, 55, 167, 10.0153, 45.0001, 217, 0.0154163, 55.0001, 217, 9.99993, 45, 167, 9.99993, 54.9999, 167, -0.015345, 45.0001 )
 
@@ -635,6 +668,12 @@ skeleton = NodePath("../../Room_14/Portal_15")
 [node name="p_one_way26" parent="room_list/Room_26" instance=ExtResource( 4 )]
 transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 222, 0, 0 )
 skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="furniture8" parent="room_list/Room_26" instance=ExtResource( 1 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 232.922, 0, -3.7779 )
+id_note = 7
+is_note_exist = true
+is_note_secret = true
 
 [node name="Room_27" type="Room" parent="room_list"]
 points = PoolVector3Array( 237, 0, 75, 237, 0, 5.00006, 227, -0.0154163, 5.00001, 227, 0, 75, 237, 10, 75, 227, 9.99993, 5.00001, 227, 10, 75, 237, 9.99993, 4.99999, 227, 10, 74.6196 )
@@ -760,6 +799,13 @@ skeleton = NodePath("../../Room_13/Portal_14")
 transform = Transform( 10, 0, 6.99382e-06, 0, 10, 0, -6.99382e-06, 0, 10, 232, 0, 90 )
 skeleton = NodePath("../../Room_14/Portal_15")
 
+[node name="furniture9" parent="room_list/Room_30" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 235.681, 0, 88.7508 )
+id_note = 3
+is_note_exist = true
+id_insight = 5
+is_insight_exist = true
+
 [node name="Room_31" type="Room" parent="room_list"]
 points = PoolVector3Array( 227, 0, 115, 237, 0, 95, 227, 9.99993, 95, 237, 9.98458, 115, 237, 0, 115, 237, 9.99993, 95, 227, -0.0154162, 95, 227, 9.98458, 115 )
 
@@ -775,6 +821,12 @@ skeleton = NodePath("../../Room_14/Portal_15")
 [node name="p_one_way44" parent="room_list/Room_31" instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 232, 0, 100 )
 skeleton = NodePath("../../Room_13/Portal_14")
+
+[node name="furniture10" parent="room_list/Room_31" instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 235.681, 0, 111.138 )
+id_note = 6
+is_note_exist = true
+is_note_secret = true
 
 [node name="Room_32" type="Room" parent="room_list"]
 points = PoolVector3Array( 127, 9.99993, 105, 227, 9.99993, 105, 127, 0, 105, 227, 0, 105, 127, 9.99993, 115, 227, 9.99993, 115, 127, 0, 115, 227, 0, 115 )
@@ -848,6 +900,18 @@ skeleton = NodePath("../../Room_13/Portal_14")
 transform = Transform( -1.26763e-05, 0, 10, 0, 10, 0, -10, 0, -1.26763e-05, 122, 0, 140 )
 skeleton = NodePath("../Portal_34")
 
+[node name="furniture11" parent="room_list/Room_33" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 122.062, 0, 143.721 )
+id_note = 4
+is_note_exist = true
+id_insight = 6
+is_insight_exist = true
+
+[node name="save_trigger" parent="room_list/Room_33" instance=ExtResource( 6 )]
+transform = Transform( 5.24835, 0, 0, 0, 4.49261, 0, 0, 0, 0.813709, 122.039, 4.57995, 132.418 )
+is_mesh_visible = false
+is_ending_trigger = true
+
 [node name="Room_34" type="Room" parent="room_list"]
 points = PoolVector3Array( -3.00001, 0.0154163, 105, 117, 0, 105, 117, 10.0153, 115, -2.99993, 7.10487e-05, 115, 117, 9.99993, 105, 117, 0, 115, -3.00001, 9.98458, 105, -2.99993, 9.99993, 115 )
 
@@ -903,6 +967,11 @@ skeleton = NodePath("../../Room_13/Portal_14")
 [node name="p_corner" parent="room_list/Room_34" instance=ExtResource( 2 )]
 transform = Transform( -1.26763e-05, 0, 10, 0, 10, 0, -10, 0, -1.26763e-05, 2, 0, 110 )
 skeleton = NodePath("../Portal_35")
+
+[node name="furniture2" parent="room_list/Room_34" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6943, 0, 108.79 )
+id_note = 5
+is_note_exist = true
 
 [node name="Room_35" type="Room" parent="room_list"]
 points = PoolVector3Array( -2.99999, 0, 115, 7.00001, 7.10487e-05, 135, -2.99999, 9.98458, 135, 6.99998, 10.0153, 115, -3.00005, 0.0154162, 135, 7.00001, 9.99993, 135, -2.99993, 9.99993, 115, 6.99998, -0.015345, 115 )
@@ -1255,98 +1324,29 @@ points = PoolVector3Array( 237, 9.98458, 135, 227, 10, 135, 227, 1.1523e-12, 135
 transform = Transform( -10, 4.37114e-07, -1.66103e-05, 4.37113e-07, 10, 4.37115e-07, 1.66103e-05, 4.37114e-07, -10, 232, 0, 130 )
 skeleton = NodePath("../../Room_53/Portal_54")
 
-[node name="objects" type="Spatial" parent="."]
-
-[node name="furniture" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.75786, 0, 93.6933 )
-id_insight = 1
-is_insight_exist = true
-
-[node name="furniture3" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 69.8235, 0, 23.7336 )
-id_note = 1
-is_note_exist = true
-
-[node name="furniture4" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 125.681, 0, -0.870866 )
-id_insight = 2
-is_insight_exist = true
-
-[node name="furniture5" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 114.511, 0, 56.2898 )
-id_insight = 3
-is_insight_exist = true
-
-[node name="furniture6" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 139.817, 0, -3.73066 )
-id_note = 8
-is_note_exist = true
-is_note_secret = true
-
-[node name="furniture7" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 162.142, 0, 16.2472 )
-id_note = 2
-is_note_exist = true
-id_insight = 4
-is_insight_exist = true
-
-[node name="furniture8" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 232.922, 0, -3.7779 )
-id_note = 7
-is_note_exist = true
-is_note_secret = true
-
-[node name="furniture9" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 235.681, 0, 88.7508 )
-id_note = 3
-is_note_exist = true
-id_insight = 5
-is_insight_exist = true
-
-[node name="furniture10" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 235.681, 0, 111.138 )
-id_note = 6
-is_note_exist = true
-is_note_secret = true
-
-[node name="furniture11" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 122.062, 0, 143.721 )
-id_note = 4
-is_note_exist = true
-id_insight = 6
-is_insight_exist = true
-
-[node name="furniture2" parent="objects" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6943, 0, 108.79 )
-id_note = 5
-is_note_exist = true
-
-[node name="save_trigger" parent="objects" instance=ExtResource( 6 )]
-transform = Transform( 5.24835, 0, 0, 0, 4.49261, 0, 0, 0, 0.813709, 122.039, 4.57995, 132.418 )
-is_mesh_visible = false
-is_ending_trigger = true
-
-[node name="save_trigger2" parent="objects" instance=ExtResource( 6 )]
+[node name="save_trigger2" parent="room_list/Room_54" instance=ExtResource( 6 )]
 transform = Transform( -2.40413e-07, 0, 1.06593, 0, 4.99183, 0, -5.5, 0, -4.65933e-08, 236.769, 5.05985, 129.784 )
 is_consider_end = true
 is_good_ending_trigger = true
 
-[node name="OmniLight" type="OmniLight" parent="objects/save_trigger2"]
+[node name="OmniLight" type="OmniLight" parent="room_list/Room_54/save_trigger2"]
 transform = Transform( 0.181818, 0, 0, 0, 0.200327, 0, 0, 0, 0.938148, -0.0673673, 0.124197, -1.96355 )
-portal_mode = 2
+portal_mode = 1
 omni_range = 11.3791
 
-[node name="creature_trigger" parent="." instance=ExtResource( 7 )]
+[node name="objects" type="Spatial" parent="."]
+
+[node name="creature_trigger" parent="objects" instance=ExtResource( 7 )]
 transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 66.4638, 3.18099, 0.045064 )
 is_active = true
 is_red_spawn = true
 red_anim_name = "turning_right"
 angle = 180
 
-[node name="pos" type="Position3D" parent="creature_trigger"]
+[node name="pos" type="Position3D" parent="objects/creature_trigger"]
 transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, 1.30626, -0.946258, 3.60885 )
 
-[node name="creature_trigger2" parent="." instance=ExtResource( 7 )]
+[node name="creature_trigger2" parent="objects" instance=ExtResource( 7 )]
 transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 102.117, 3.18099, 149.081 )
 is_active = true
 is_secret_active = true
@@ -1354,14 +1354,14 @@ is_red_spawn = true
 red_anim_name = "idle"
 angle = -90
 
-[node name="pos" type="Position3D" parent="creature_trigger2"]
+[node name="pos" type="Position3D" parent="objects/creature_trigger2"]
 transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, 6.78016, -0.946258, 1.9328 )
 
-[node name="creature_trigger3" parent="." instance=ExtResource( 7 )]
+[node name="creature_trigger3" parent="objects" instance=ExtResource( 7 )]
 transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 170.635, 3.18099, 30.2621 )
 is_active = true
 is_smile_spawn = true
 smile_anim_name = "run"
 
-[node name="pos" type="Position3D" parent="creature_trigger3"]
+[node name="pos" type="Position3D" parent="objects/creature_trigger3"]
 transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, -1.64146, -0.946258, -1.86431 )

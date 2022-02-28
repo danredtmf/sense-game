@@ -18,7 +18,6 @@ func light():
 "
 
 [node name="lamp" instance=ExtResource( 1 )]
-portal_mode = 2
 script = SubResource( 1 )
 
 [node name="SpotLight" type="SpotLight" parent="." index="0"]

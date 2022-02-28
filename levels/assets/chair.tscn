@@ -19,6 +19,6 @@ surfaces/0 = {
 
 [node name="chair" type="MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 0.968021, 0, 0, 0, 1, 0, 0, 0 )
-portal_mode = 3
+portal_mode = 1
 mesh = SubResource( 2 )
 material/0 = null
