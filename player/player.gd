@@ -1,6 +1,6 @@
 extends KinematicBody
 
-const walk_speed = 400
+const walk_speed = 2000 #400
 const run_speed = 600
 
 var speed

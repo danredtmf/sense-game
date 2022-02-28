@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/objects/furniture.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/assets/p_corner.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://levels/assets/p_one_way.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/assets/p_one_wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://levels/objects/save_trigger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/objects/creature_trigger.tscn" type="PackedScene" id=7]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends RoomManager
@@ -1326,7 +1327,7 @@ is_mesh_visible = false
 is_ending_trigger = true
 
 [node name="save_trigger2" parent="objects" instance=ExtResource( 6 )]
-transform = Transform( 5.5, 0, 0, 0, 4.99183, 0, 0, 0, 1.06593, 2.17397, 5.05985, 120.125 )
+transform = Transform( -2.40413e-07, 0, 1.06593, 0, 4.99183, 0, -5.5, 0, -4.65933e-08, 236.769, 5.05985, 129.784 )
 is_consider_end = true
 is_good_ending_trigger = true
 
@@ -1334,3 +1335,33 @@ is_good_ending_trigger = true
 transform = Transform( 0.181818, 0, 0, 0, 0.200327, 0, 0, 0, 0.938148, -0.0673673, 0.124197, -1.96355 )
 portal_mode = 2
 omni_range = 11.3791
+
+[node name="creature_trigger" parent="." instance=ExtResource( 7 )]
+transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 66.4638, 3.18099, 0.045064 )
+is_active = true
+is_red_spawn = true
+red_anim_name = "turning_right"
+angle = 180
+
+[node name="pos" type="Position3D" parent="creature_trigger"]
+transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, 1.30626, -0.946258, 3.60885 )
+
+[node name="creature_trigger2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 102.117, 3.18099, 149.081 )
+is_active = true
+is_secret_active = true
+is_red_spawn = true
+red_anim_name = "idle"
+angle = -90
+
+[node name="pos" type="Position3D" parent="creature_trigger2"]
+transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, 6.78016, -0.946258, 1.9328 )
+
+[node name="creature_trigger3" parent="." instance=ExtResource( 7 )]
+transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 170.635, 3.18099, 30.2621 )
+is_active = true
+is_smile_spawn = true
+smile_anim_name = "run"
+
+[node name="pos" type="Position3D" parent="creature_trigger3"]
+transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, -1.64146, -0.946258, -1.86431 )
