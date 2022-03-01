@@ -14,6 +14,8 @@ var game_pause = false
 
 func _ready():
 	randomize()
+	OS.window_fullscreen = Data.saved_fullscreen_mode
+	OS.vsync_enabled = Data.saved_vsync
 	OS.center_window()
 
 func to(scene):

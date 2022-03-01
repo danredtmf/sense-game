@@ -37,9 +37,6 @@ func _ready():
 	elif Data.saved_language == 1:
 		TranslationServer.set_locale('ru')
 	
-	OS.window_fullscreen = Data.saved_fullscreen_mode
-	OS.vsync_enabled = Data.saved_vsync
-	
 	$anim.play(\"start\")
 	
 	update_ui()
