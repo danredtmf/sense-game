@@ -28,7 +28,6 @@ func goto_scene(path):
 			# Still Loading
 			var progress = (loader.get_stage()) / loader.get_stage_count()
 			loading_bar.get_node('ProgressBar').value = progress * 100
-			print(progress)
 		else:
 			print('Error while loading file')
 			break

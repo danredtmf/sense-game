@@ -37,14 +37,14 @@ func _ready():
 func _spawn():
 	if is_red_spawn:
 		var c_red = c_red_res.instance()
-		c_red.anim_name = red_anim_name
+		c_red.anim = red_anim_name
 		Core.root_level.add_child(c_red)
 		c_red.rotation_degrees.y = angle
 		c_red.global_transform.origin = spawn_position
 	if is_smile_spawn:
 		var c_smile = c_smile_res.instance()
 		c_smile.is_active = is_smile_active
-		c_smile.anim_name = smile_anim_name
+		c_smile.anim = smile_anim_name
 		Core.root_level.add_child(c_smile)
 		c_smile.rotation_degrees.y = angle
 		c_smile.global_transform.origin = spawn_position
@@ -73,7 +73,6 @@ script = SubResource( 4 )
 shape = SubResource( 1 )
 
 [node name="mesh" type="MeshInstance" parent="."]
-portal_mode = 2
 mesh = SubResource( 2 )
 material/0 = null
 script = SubResource( 3 )

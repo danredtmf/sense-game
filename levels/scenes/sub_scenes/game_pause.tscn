@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://sources/themes/button/pressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://sources/themes/button/disabled.tres" type="StyleBox" id=5]
 [ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=6]
-[ext_resource path="res://sources/shaders/blur.gdshader" type="Shader" id=7]
 
 [sub_resource type="GDScript" id=8]
 script/source = "extends Control
@@ -38,12 +37,6 @@ func _on_settings_pressed():
 	get_parent().add_child(settings)
 "
 
-[sub_resource type="ShaderMaterial" id=12]
-shader = ExtResource( 7 )
-shader_param/blur_amount = 2.0
-shader_param/mix_amount = 0.2
-shader_param/color_over = null
-
 [sub_resource type="StyleBoxEmpty" id=9]
 
 [sub_resource type="StyleBoxEmpty" id=10]
@@ -53,12 +46,8 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="back" type="ColorRect" parent="."]
-material = SubResource( 12 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.156863, 0.156863, 0.156863, 0.392157 )

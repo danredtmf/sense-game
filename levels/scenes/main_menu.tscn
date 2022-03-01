@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=1]
 [ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=2]
@@ -8,6 +8,17 @@
 [ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=6]
 [ext_resource path="res://levels/scenes/sub_scenes/main_menu_map.tscn" type="PackedScene" id=7]
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=8]
+[ext_resource path="res://levels/scenes/sub_scenes/screen_trigger.tscn" type="PackedScene" id=9]
+
+[sub_resource type="GDScript" id=23]
+script/source = "extends Node
+
+onready var view_3d = $Viewport
+onready var menu = $interface
+
+func _ready():
+	Core.root_menu = self
+"
 
 [sub_resource type="GDScript" id=16]
 script/source = "extends Control
@@ -17,6 +28,8 @@ const about_menu_res = preload(\"res://levels/scenes/sub_scenes/about_interface.
 const notes_viewer_res = preload(\"res://levels/scenes/sub_scenes/notes_viewer.tscn\")
 
 var state
+
+onready var heartbeat = $screen_trigger
 
 func _ready():
 	if Data.saved_language == 0:
@@ -204,6 +217,7 @@ tracks/1/keys = {
 }
 
 [node name="main_menu" type="Node"]
+script = SubResource( 23 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1600, 900 )
@@ -221,9 +235,8 @@ anchor_bottom = 1.0
 texture = SubResource( 17 )
 expand = true
 flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="screen_trigger" parent="interface" instance=ExtResource( 9 )]
 
 [node name="perfomance_monitor" type="Label" parent="interface"]
 margin_left = 8.0

@@ -19,6 +19,6 @@ surfaces/0 = {
 
 [node name="insight" type="MeshInstance"]
 transform = Transform( 0.214499, 0, 0, 0, 0.214499, 0, 0, 0, 0.214499, 0, 0, 0 )
-portal_mode = 2
+portal_mode = 3
 mesh = SubResource( 3 )
 material/0 = null

@@ -4,6 +4,7 @@
 [ext_resource path="res://levels/objects/action.tscn" type="PackedScene" id=2]
 
 [node name="note" instance=ExtResource( 1 )]
+portal_mode = 3
 
 [node name="action" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.81559, 0, 1.09917e-08, 0, 0.0217556, 0, 1.09917e-08, 0, 1, 0, 0, 0 )

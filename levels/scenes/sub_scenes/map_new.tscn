@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/objects/furniture.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/assets/p_corner.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://levels/assets/p_one_wall.tscn" type="PackedScene" id=5]
 [ext_resource path="res://levels/objects/save_trigger.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/objects/creature_trigger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=8]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends RoomManager
@@ -907,11 +908,6 @@ is_note_exist = true
 id_insight = 6
 is_insight_exist = true
 
-[node name="save_trigger" parent="room_list/Room_33" instance=ExtResource( 6 )]
-transform = Transform( 5.24835, 0, 0, 0, 4.49261, 0, 0, 0, 0.813709, 122.039, 4.57995, 132.418 )
-is_mesh_visible = false
-is_ending_trigger = true
-
 [node name="Room_34" type="Room" parent="room_list"]
 points = PoolVector3Array( -3.00001, 0.0154163, 105, 117, 0, 105, 117, 10.0153, 115, -2.99993, 7.10487e-05, 115, 117, 9.99993, 105, 117, 0, 115, -3.00001, 9.98458, 105, -2.99993, 9.99993, 115 )
 
@@ -1331,10 +1327,15 @@ is_good_ending_trigger = true
 
 [node name="OmniLight" type="OmniLight" parent="room_list/Room_54/save_trigger2"]
 transform = Transform( 0.181818, 0, 0, 0, 0.200327, 0, 0, 0, 0.938148, -0.0673673, 0.124197, -1.96355 )
-portal_mode = 1
+portal_mode = 3
 omni_range = 11.3791
 
 [node name="objects" type="Spatial" parent="."]
+
+[node name="save_trigger" parent="objects" instance=ExtResource( 6 )]
+transform = Transform( 5.24835, 0, 0, 0, 4.49261, 0, 0, 0, 0.813709, 122.039, 4.57995, 132.418 )
+is_mesh_visible = false
+is_ending_trigger = true
 
 [node name="creature_trigger" parent="objects" instance=ExtResource( 7 )]
 transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 66.4638, 3.18099, 0.045064 )
@@ -1365,3 +1366,6 @@ smile_anim_name = "run"
 
 [node name="pos" type="Position3D" parent="objects/creature_trigger3"]
 transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, -1.64146, -0.946258, -1.86431 )
+
+[node name="player" parent="." instance=ExtResource( 8 )]
+transform = Transform( -3.93403e-07, 0, 1, 0, 1, 0, -1, 0, -3.93403e-07, -0.220795, 3.11467, -0.232513 )

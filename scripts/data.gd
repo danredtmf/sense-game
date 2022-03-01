@@ -2,6 +2,7 @@ extends Node
 
 var is_ending = false
 var is_good_ending = false
+var is_main_menu_jampscare_done = false
 var is_game_passed = false
 var saved_pos_player = Vector3.ZERO
 var saved_notes = []
@@ -26,8 +27,8 @@ func packing(action_id, id = 0):
 		saved_notes.append(id)
 	elif action_id == 'insight' && id != 0:
 		saved_insights.append(id)
-	print('saved_notes', saved_notes)
-	print('saved_insights', saved_insights)
+#	print('saved_notes', saved_notes)
+#	print('saved_insights', saved_insights)
 
 func open_note(id):
 	return [tr('note_'+str(id)), tr('note_'+str(id)+'_text')]
@@ -35,6 +36,7 @@ func open_note(id):
 func reset_game():
 	is_ending = false
 	is_good_ending = false
+	is_main_menu_jampscare_done = false
 	is_game_passed = false
 	saved_pos_player = Vector3.ZERO
 	saved_notes = []
@@ -90,6 +92,7 @@ func saving():
 	data = {
 	'is_ending': is_ending,
 	'is_good_ending': is_good_ending,
+	'is_main_menu_jampscare_done': is_main_menu_jampscare_done,
 	'is_game_passed': is_game_passed,
 	'saved_pos_player': [saved_pos_player.x, saved_pos_player.y, saved_pos_player.z],
 	'saved_notes': saved_notes,
@@ -117,6 +120,8 @@ func loading():
 			is_ending = data.is_ending
 		if 'is_good_ending' in data:
 			is_good_ending = data.is_good_ending
+		if 'is_main_menu_jampscare_done' in data:
+			is_main_menu_jampscare_done = data.is_main_menu_jampscare_done
 		if 'is_game_passed' in data:
 			is_game_passed = data.is_game_passed
 		if 'saved_pos_player' in data:

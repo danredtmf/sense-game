@@ -6,13 +6,18 @@
 [sub_resource type="GDScript" id=5]
 script/source = "extends Spatial
 
-export var anim_name = ''
+export var anim = ''
 
 func _ready():
-	$AnimationPlayer.play(anim_name)
+	if anim != '':
+		$AnimationPlayer.play(anim)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	queue_free()
+	if $AnimationPlayer.get_animation('idle').loop == false \\
+	&& anim_name == 'idle':
+		queue_free()
+	elif anim_name == 'turning_right':
+		queue_free()
 "
 
 [sub_resource type="ArrayMesh" id=1]

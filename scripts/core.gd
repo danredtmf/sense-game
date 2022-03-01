@@ -1,6 +1,7 @@
 extends Node
 
 var level = 1
+var root_menu
 var root_level
 var root_game
 var root_player
@@ -12,6 +13,7 @@ var action_object_viewing = false
 var game_pause = false
 
 func _ready():
+	randomize()
 	OS.center_window()
 
 func to(scene):

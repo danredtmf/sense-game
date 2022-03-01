@@ -4,32 +4,46 @@
 script/source = "extends Control
 
 # warning-ignore:unused_signal
-signal heart(bool_value)
+signal heart(count)
 
-var on = false
+var count = 0
+var screen
 
 func _ready():
 # warning-ignore:return_value_discarded
 	connect(\"heart\", self, \"_heart\")
 
-func _on_Timer_timeout():
-	if !$anim.is_playing():
-		$anim.play(\"scale\")
-	var screen = get_viewport().get_texture().get_data()
+func _heartbeating():
+	if is_instance_valid(Core.root_menu):
+		screen = Core.root_menu.view_3d.get_texture().get_data()
+	else:
+		screen = get_viewport().get_texture().get_data()
 	var image = ImageTexture.new()
 	image.create_from_image(screen)
 	$rect.texture = image
+	if !$anim.is_playing():
+		$anim.play(\"scale\")
 
-func _heart(bool_value: bool):
-	if !on && bool_value:
-		on = bool_value
+func _on_Timer_timeout():
+	count -= 1
+	_heartbeating()
+
+func _heart(int_value: int):
+	count = int_value
+	
+	if count > 0:
 		$Timer.start()
-	elif on && !bool_value:
-		on = bool_value
+	else:
+		if is_instance_valid(Core.root_menu) && Data.is_ending || Data.is_good_ending:
+			yield(get_tree().create_timer(0.3), \"timeout\")
+		elif is_instance_valid(Core.root_menu) && !Data.is_ending || !Data.is_good_ending:
+			yield(get_tree().create_timer(0.1), \"timeout\")
+		elif is_instance_valid(Core.root_level):
+			yield(get_tree().create_timer(0.05), \"timeout\")
+		_heartbeating()
 
-# warning-ignore:unused_argument
-func _on_anim_animation_finished(anim_name):
-	if on:
+func _on_anim_animation_finished(_anim_name):
+	if count > 0:
 		$Timer.start()
 "
 
@@ -74,7 +88,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 1.2, 1.2 ), Vector2( 1.3, 1.3 ), Vector2( 1.4, 1.4 ), Vector2( 1.5, 1.5 ), Vector2( 1.6, 1.6 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1.4, 1.4 ), Vector2( 1.6, 1.6 ), Vector2( 1.8, 1.8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("rect:modulate")
@@ -94,9 +108,6 @@ pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="rect" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -104,11 +115,10 @@ anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 640, 360 )
 expand = true
 flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.5
 one_shot = true
 
 [node name="anim" type="AnimationPlayer" parent="."]
