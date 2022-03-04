@@ -10,7 +10,7 @@ script/source = "extends Spatial
 const c_red_res = preload(\"res://c_red/c_red.tscn\")
 const c_smile_res = preload(\"res://c_smile/c_smile.tscn\")
 
-var chance = 2
+var chance = 3
 
 var c_red
 var c_smile
@@ -39,11 +39,13 @@ func create_smile_jump():
 	c_smile.anim = 'run'
 	add_child(c_smile)
 	c_smile.global_transform.origin = $smile_jump_pos.global_transform.origin
+	c_smile.rotation_degrees.y = $smile_jump_pos.rotation_degrees.y
 
 func create_smile():
 	c_smile = c_smile_res.instance()
 	add_child(c_smile)
 	c_smile.global_transform.origin = $smile_pos.global_transform.origin
+	c_smile.rotation_degrees.y = $smile_pos.rotation_degrees.y
 	c_smile.visible = false
 	$timer_smile.start()
 
@@ -131,9 +133,10 @@ transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -
 is_lamp_flashing = true
 
 [node name="smile_jump_pos" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.5 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -14.5 )
 
 [node name="smile_pos" type="Position3D" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 
 [node name="red_pos" type="Position3D" parent="."]
 transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -5, 0, 0 )

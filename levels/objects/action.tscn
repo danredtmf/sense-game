@@ -34,6 +34,12 @@ func _ready():
 		if id in Data.saved_insights:
 			action_pickup = false
 			action()
+	elif action_id == 'lie_insight':
+		action_name = tr('insight')
+		action_pickup = true
+		action_viewing = false
+		delete_parent = true
+		delete_action = false
 	elif action_id == 'book':
 		action_name = 'Book'
 		action_pickup = false
@@ -48,13 +54,20 @@ func _process(_delta):
 		action_name = tr('note_'+str(id))
 	elif action_id == 'insight' && id != 0:
 		action_name = tr(action_id)
+	elif action_id == 'lie_insight':
+		action_name = tr('insight')
 	elif action_id == 'book':
 		action_name = tr('book')
 
 func action():
 	if action_id && action_pickup && !parent_function:
-		Data.packing(action_id, id)
-		if action_id == 'note': action_pickup = false
+		if action_id == 'note':
+			Data.packing(action_id, id)
+			action_pickup = false
+		elif action_id == 'insight':
+			Data.packing(action_id, id)
+		elif action_id == 'lie_insight':
+			Data.is_picked_lie_insight = true
 	
 	if action_id && action_viewing:
 		Core.action_object_viewing = true

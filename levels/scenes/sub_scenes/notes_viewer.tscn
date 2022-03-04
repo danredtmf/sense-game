@@ -18,7 +18,6 @@ var notes : Array
 func _ready():
 	notes = Data.saved_notes
 	notes.sort()
-	print(notes)
 	get_note()
 	update_ui()
 	check_state_btns()
@@ -68,9 +67,6 @@ func _on_close_btn_pressed():
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="back" type="ColorRect" parent="."]
 anchor_right = 1.0

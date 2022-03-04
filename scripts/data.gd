@@ -8,6 +8,9 @@ var saved_pos_player = Vector3.ZERO
 var saved_notes = []
 var saved_insights = []
 
+var is_picked_lie_insight = false
+var is_created_smile = false
+
 enum LANG {ENGLISH = 0, RUSSIAN = 1}
 
 var saved_mouse_sensitivity = 0.2

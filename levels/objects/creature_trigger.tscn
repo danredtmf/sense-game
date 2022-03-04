@@ -3,6 +3,9 @@
 [sub_resource type="GDScript" id=4]
 script/source = "extends Area
 
+signal create_c_red
+signal create_c_smile
+
 const c_red_res = preload(\"res://c_red/c_red.tscn\")
 const c_smile_res = preload(\"res://c_smile/c_smile.tscn\")
 
@@ -15,44 +18,89 @@ export var is_secret_active = false
 export var is_red_spawn = false
 # с улыбкой (B2)
 export var is_smile_spawn = false
+# активность B2
 export var is_smile_active = false
+# проверка взятия ложного озарения
+export var is_picked_lie_insight_check = false
 
 # начальная анимация B1
 export var red_anim_name = ''
 export var smile_anim_name = ''
+# поворот
 export var angle = 0
 
 export(Vector3) var spawn_position
 
 func _ready():
+# warning-ignore:return_value_discarded
+	connect(\"create_c_red\", self, \"_create_c_red\")
+# warning-ignore:return_value_discarded
+	connect(\"create_c_smile\", self, \"_create_c_smile\")
+	
 	if is_instance_valid(get_node(\"./pos\")):
 		spawn_position = get_node(\"./pos\").global_transform.origin
-	if !Data.is_ending && is_secret_active:
-		is_active = false
-	elif Data.is_ending && !is_secret_active:
-		is_active = false
-	elif !Data.is_good_ending && is_secret_active:
-		is_active = false
+	
+	if Data.is_ending:
+		if is_secret_active:
+			if Data.is_good_ending:
+				is_active = true
+			else:
+				is_active = false
+		else:
+			if Data.is_good_ending:
+				if is_picked_lie_insight_check:
+					is_active = true
+				else:
+					is_active = false
+			else:
+				if is_smile_spawn && is_smile_active:
+					if is_picked_lie_insight_check:
+						is_active = false
+				else:
+					is_active = false
+	else:
+		if is_secret_active:
+			is_active = false
+		elif is_picked_lie_insight_check:
+			is_active = false
+	print(is_active)
 
 func _spawn():
 	if is_red_spawn:
-		var c_red = c_red_res.instance()
-		c_red.anim = red_anim_name
-		Core.root_level.add_child(c_red)
-		c_red.rotation_degrees.y = angle
-		c_red.global_transform.origin = spawn_position
-	if is_smile_spawn:
-		var c_smile = c_smile_res.instance()
-		c_smile.is_active = is_smile_active
-		c_smile.anim = smile_anim_name
-		Core.root_level.add_child(c_smile)
-		c_smile.rotation_degrees.y = angle
-		c_smile.global_transform.origin = spawn_position
+		emit_signal(\"create_c_red\")
+	if is_smile_spawn && !is_smile_active && !Data.is_created_smile:
+		emit_signal(\"create_c_smile\")
+		print('haggy_non_active')
+	elif is_smile_spawn && is_smile_active && !Data.is_created_smile:
+		emit_signal(\"create_c_smile\")
+		print('haggy')
+		Data.is_created_smile = true
+
+func _create_c_red():
+	var c_red = c_red_res.instance()
+	c_red.anim = red_anim_name
+	Core.root_level.add_child(c_red)
+	c_red.rotation_degrees.y = angle
+	c_red.global_transform.origin = spawn_position
+
+func _create_c_smile():
+	var c_smile = c_smile_res.instance()
+	c_smile.is_active = is_smile_active
+	c_smile.anim = smile_anim_name
+	Core.root_level.add_child(c_smile)
+	c_smile.rotation_degrees.y = angle
+	c_smile.global_transform.origin = spawn_position
 
 func _on_creature_trigger_body_entered(body):
-	if body.name == 'player' && is_active:
+	if body.name == 'player' && is_active && !is_picked_lie_insight_check:
 		_spawn()
 		is_active = false
+
+func _on_creature_trigger_body_exited(body):
+	if body.name == 'player' && is_picked_lie_insight_check:
+		if Data.is_picked_lie_insight && !Data.is_created_smile:
+			_spawn()
+			is_active = false
 "
 
 [sub_resource type="BoxShape" id=1]
@@ -78,3 +126,4 @@ material/0 = null
 script = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_creature_trigger_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_creature_trigger_body_exited"]

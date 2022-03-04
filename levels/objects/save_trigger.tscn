@@ -59,11 +59,14 @@ func _good_ending_trigger():
 	print(notes)
 	print(insights)
 	
-	if insights == 6 && notes == 8:
-		_game_passed()
-	elif insights == 6:
-		_good_ending()
-	elif insights != 6:
+	if Data.is_picked_lie_insight == false:
+		if insights == 6 && notes == 8:
+			_game_passed()
+		elif insights == 6:
+			_good_ending()
+		elif insights != 6:
+			_bad_ending()
+	else:
 		_bad_ending()
 
 func _on_save_trigger_body_entered(body):
@@ -88,6 +91,7 @@ script = SubResource( 3 )
 shape = SubResource( 1 )
 
 [node name="mesh" type="MeshInstance" parent="."]
+portal_mode = 3
 mesh = SubResource( 2 )
 material/0 = SubResource( 4 )
 

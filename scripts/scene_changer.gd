@@ -20,7 +20,7 @@ func goto_scene(path):
 		if err == ERR_FILE_EOF:
 			# Loading Complete
 			var resource = loader.get_resource()
-			Core.root_game.get_node('level').call_deferred('add_child', resource.instance())
+			Core.root_game.call_deferred('add_child', resource.instance())
 			loading_bar.queue_free()
 			Core.root_gui.emit_signal('transition_scene', 'start')
 			break

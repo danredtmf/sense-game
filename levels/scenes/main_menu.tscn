@@ -32,6 +32,8 @@ var state
 onready var heartbeat = $screen_trigger
 
 func _ready():
+	print('Data.is_picked_lie_insight:', Data.is_picked_lie_insight)
+	Data.loading()
 	if Data.saved_language == 0:
 		TranslationServer.set_locale('en')
 	elif Data.saved_language == 1:
