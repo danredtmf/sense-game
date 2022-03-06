@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://levels/scenes/sub_scenes/screen_trigger.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/scenes/sub_scenes/saving_progress.tscn" type="PackedScene" id=3]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends Control
@@ -17,6 +18,7 @@ const viewing_note_res = preload(\"res://levels/scenes/sub_scenes/viewing_note.t
 const pause_menu_res = preload(\"res://levels/scenes/sub_scenes/game_pause.tscn\")
 
 onready var heartbeat = $screen_trigger
+onready var saving_progress = $saving_progress
 
 func _ready():
 	Core.root_gui = self
@@ -166,6 +168,8 @@ anchor_bottom = 1.0
 script = SubResource( 2 )
 
 [node name="screen_trigger" parent="." instance=ExtResource( 2 )]
+
+[node name="saving_progress" parent="." instance=ExtResource( 3 )]
 
 [node name="cursor" type="ColorRect" parent="."]
 anchor_left = 0.5

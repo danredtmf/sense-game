@@ -30,6 +30,7 @@ func _ending_trigger():
 	Data.is_ending = true
 	Data.saved_pos_player = Core.root_player.translation
 	Data.saving()
+	Core.root_gui.saving_progress.emit_signal('showing')
 	is_active = false
 	print('end')
 	_active_check()

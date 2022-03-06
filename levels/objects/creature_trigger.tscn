@@ -16,6 +16,8 @@ export var is_secret_active = false
 
 # спавн существа с красными глазами (B1)
 export var is_red_spawn = false
+# флаг иллюзии B1 (пропадает через некоторое время)
+export var is_red_illusion = false
 # с улыбкой (B2)
 export var is_smile_spawn = false
 # активность B2
@@ -45,25 +47,36 @@ func _ready():
 			if Data.is_good_ending:
 				is_active = true
 			else:
-				is_active = false
+				if is_red_illusion:
+					is_active = true
+				else:
+					is_active = false
 		else:
 			if Data.is_good_ending:
 				if is_picked_lie_insight_check:
 					is_active = true
 				else:
-					is_active = false
+					if is_red_illusion:
+						is_active = true
+					else:
+						is_active = false
 			else:
 				if is_smile_spawn && is_smile_active:
 					if is_picked_lie_insight_check:
 						is_active = false
 				else:
-					is_active = false
+					if is_red_illusion:
+						is_active = true
+					else:
+						is_active = false
 	else:
 		if is_secret_active:
 			is_active = false
 		elif is_picked_lie_insight_check:
 			is_active = false
-	print(is_active)
+		elif is_red_illusion:
+			is_active = true
+	print('is_active: ', is_active)
 
 func _spawn():
 	if is_red_spawn:
@@ -79,6 +92,7 @@ func _spawn():
 func _create_c_red():
 	var c_red = c_red_res.instance()
 	c_red.anim = red_anim_name
+	c_red.is_illusion = is_red_illusion
 	Core.root_level.add_child(c_red)
 	c_red.rotation_degrees.y = angle
 	c_red.global_transform.origin = spawn_position
