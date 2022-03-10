@@ -21,6 +21,7 @@ func update_ui():
 	$name.text = tr('about')
 	$information/HBox/info_control/control_name.text = tr('about_control') + ':'
 	$information/HBox/info_control/info_movement.text = tr('about_movement')
+	$information/HBox/info_control/info_items.text = tr('about_pickup_items')
 	$information/HBox/info_control/info_interacting.text = tr('about_interact')
 	$information/HBox/info_control/info_flashlight.text = tr('about_flashlight')
 	$information/HBox/info_control/info_ranning.text = tr('about_run')
@@ -140,54 +141,63 @@ __meta__ = {
 }
 
 [node name="control_name" type="Label" parent="information/HBox/info_control"]
-margin_top = 101.0
+margin_top = 79.0
 margin_right = 175.0
-margin_bottom = 141.0
+margin_bottom = 119.0
 custom_fonts/font = ExtResource( 2 )
 text = "Сontrol:"
 align = 1
 valign = 1
 
 [node name="info_movement" type="Label" parent="information/HBox/info_control"]
-margin_top = 146.0
+margin_top = 124.0
 margin_right = 175.0
-margin_bottom = 186.0
+margin_bottom = 164.0
+custom_fonts/font = ExtResource( 2 )
+text = "WASD - Movement"
+align = 1
+valign = 1
+
+[node name="info_items" type="Label" parent="information/HBox/info_control"]
+margin_top = 169.0
+margin_right = 175.0
+margin_bottom = 209.0
 custom_fonts/font = ExtResource( 2 )
 text = "WASD - Movement"
 align = 1
 valign = 1
 
 [node name="info_interacting" type="Label" parent="information/HBox/info_control"]
-margin_top = 191.0
+margin_top = 214.0
 margin_right = 175.0
-margin_bottom = 231.0
+margin_bottom = 254.0
 custom_fonts/font = ExtResource( 2 )
 text = "E - Interact"
 align = 1
 valign = 1
 
 [node name="info_flashlight" type="Label" parent="information/HBox/info_control"]
-margin_top = 236.0
+margin_top = 259.0
 margin_right = 175.0
-margin_bottom = 276.0
+margin_bottom = 299.0
 custom_fonts/font = ExtResource( 2 )
 text = "F - Flashlight"
 align = 1
 valign = 1
 
 [node name="info_ranning" type="Label" parent="information/HBox/info_control"]
-margin_top = 281.0
+margin_top = 304.0
 margin_right = 175.0
-margin_bottom = 321.0
+margin_bottom = 344.0
 custom_fonts/font = ExtResource( 2 )
 text = "Shift - Run"
 align = 1
 valign = 1
 
 [node name="info_pause_menu" type="Label" parent="information/HBox/info_control"]
-margin_top = 326.0
+margin_top = 349.0
 margin_right = 175.0
-margin_bottom = 366.0
+margin_bottom = 389.0
 custom_fonts/font = ExtResource( 2 )
 text = "Esc - Pause Menu"
 align = 1

@@ -62,6 +62,8 @@ func _on_create_insight():
 
 func _on_create_lie_insight():
 	var lie_insight = lie_insight_res.instance()
+	var mat : SpatialMaterial = preload(\"res://levels/models/materials/lie_insight.material\")
+	lie_insight.set_surface_material(0, mat)
 	$pos_insight.add_child(lie_insight)
 
 func _on_lamp_light():

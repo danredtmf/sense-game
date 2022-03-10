@@ -12,9 +12,13 @@ var action_object = null
 var action_object_viewing = false
 
 var game_pause = false
+var splash_screen = false
 
 func _ready():
 	randomize()
+	Data.loading()
+	Data.loading_settings()
+	get_tree().paused = true
 	OS.window_fullscreen = Data.saved_fullscreen_mode
 	OS.vsync_enabled = Data.saved_vsync
 	OS.center_window()

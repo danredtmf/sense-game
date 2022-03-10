@@ -21,10 +21,6 @@ var saved_vsync = true
 
 var data
 
-func _ready():
-	loading()
-	loading_settings()
-
 func packing(action_id, id = 0):
 	if action_id == 'note' && id != 0:
 		saved_notes.append(id)

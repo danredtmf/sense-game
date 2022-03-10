@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://sources/themes/button/normal.tres" type="StyleBox" id=1]
 [ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://levels/scenes/sub_scenes/main_menu_map.tscn" type="PackedScene" id=7]
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=8]
 [ext_resource path="res://levels/scenes/sub_scenes/screen_trigger.tscn" type="PackedScene" id=9]
+[ext_resource path="res://levels/scenes/sub_scenes/splash_screen.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sources/audio/music/belgvogor_sound_main_theme.ogg" type="AudioStream" id=11]
 
 [sub_resource type="GDScript" id=23]
 script/source = "extends Node
@@ -23,6 +25,8 @@ func _ready():
 [sub_resource type="GDScript" id=16]
 script/source = "extends Control
 
+signal start_transition
+
 const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
 const about_menu_res = preload(\"res://levels/scenes/sub_scenes/about_interface.tscn\")
 const notes_viewer_res = preload(\"res://levels/scenes/sub_scenes/notes_viewer.tscn\")
@@ -30,21 +34,26 @@ const notes_viewer_res = preload(\"res://levels/scenes/sub_scenes/notes_viewer.t
 var state
 
 onready var heartbeat = $screen_trigger
+onready var anim = $anim
 
 func _ready():
-	print('Data.is_picked_lie_insight:', Data.is_picked_lie_insight)
-	Data.loading()
+# warning-ignore:return_value_discarded
+	connect(\"start_transition\", self, \"_transition_start\")
 	if Data.saved_language == 0:
 		TranslationServer.set_locale('en')
 	elif Data.saved_language == 1:
 		TranslationServer.set_locale('ru')
 	
-	$anim.play(\"start\")
+	if Core.splash_screen:
+		emit_signal(\"start_transition\")
 	
 	update_ui()
 
 func _process(_delta):
 	update_ui()
+
+func _transition_start():
+	anim.play(\"start\")
 
 func _perfomance_monitor():
 	$perfomance_monitor.text = 'FPS: ' \\
@@ -465,15 +474,20 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="splash_screen" parent="interface" instance=ExtResource( 10 )]
 
 [node name="anim" type="AnimationPlayer" parent="interface"]
 root_node = NodePath("../..")
 anims/RESET = SubResource( 21 )
 anims/end = SubResource( 20 )
 anims/start = SubResource( 19 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="interface"]
+pause_mode = 1
+stream = ExtResource( 11 )
+volume_db = 5.0
+autoplay = true
 
 [connection signal="pressed" from="interface/Control/vbox/new_game" to="interface" method="_on_new_game_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/continue" to="interface" method="_on_continue_pressed"]

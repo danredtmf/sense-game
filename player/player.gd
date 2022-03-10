@@ -57,6 +57,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("interactive"):
 		action()
 	
+	if Input.is_action_just_pressed("inventory"):
+		Core.root_gui.inventory.emit_signal('showing')
+	
 	if Input.is_action_just_pressed("pause"):
 		if !get_tree().paused && !Core.action_object_viewing && !Core.game_pause:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

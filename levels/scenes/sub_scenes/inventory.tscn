@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Label
+
+signal showing
+
+func _ready():
+# warning-ignore:return_value_discarded
+	connect(\"showing\", self, \"_showing\")
+	emit_signal(\"showing\")
+
+func _process(_delta):
+	update_ui()
+
+func update_ui():
+	var pickup_notes = Data.saved_notes.size()
+	var pickup_insights = Data.saved_insights.size()
+	text = tr('notes') + ': ' + str(pickup_notes) + '/' + '8' + '\\n'\\
+		+ tr('insights') + ': ' + str(pickup_insights) + '/' + '6'
+
+func _showing():
+	if !$anim.is_playing():
+		set_process(true)
+		$anim.play('start')
+		update_ui()
+
+# warning-ignore:unused_argument
+func _on_anim_animation_finished(anim_name):
+	set_process(false)
+"
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="inventory" type="Label"]
+pause_mode = 1
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 308.0
+margin_bottom = 138.0
+custom_fonts/font = ExtResource( 1 )
+script = SubResource( 1 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/start = SubResource( 3 )
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
