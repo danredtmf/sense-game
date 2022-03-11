@@ -26,12 +26,9 @@ func _ready():
 func to(scene):
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://levels/scenes/"+scene+".tscn")
-	Data.is_picked_lie_insight = false
+	if scene != 'credits':
+		Data.is_picked_lie_insight = false
 	Data.is_created_smile = false
-
-func load_level():
-	root_level = load("res://levels/level_"+str(level)+"/level.tscn").instance()
-	root_game.get_node('level').add_child(root_level)
 
 func exit():
 	get_tree().quit()

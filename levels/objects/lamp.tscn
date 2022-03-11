@@ -1,25 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://levels/assets/lamp.tscn" type="PackedScene" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends MeshInstance
-
-# warning-ignore:unused_signal
-signal light
-
-export var is_on = true
-
-func _ready():
-	light()
-
-func light():
-	$SpotLight.visible = is_on
-"
+[ext_resource path="res://scripts/objects/lamp.gd" type="Script" id=2]
 
 [node name="lamp" instance=ExtResource( 1 )]
-portal_mode = 3
-script = SubResource( 1 )
+script = ExtResource( 2 )
 
 [node name="SpotLight" type="SpotLight" parent="." index="0"]
 transform = Transform( 6.47052, 0, 0, 0, -2.82836e-07, 6.47052, 0, -6.47052, -2.82836e-07, -4.82961, 0, 0 )

@@ -1,36 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=1]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Label
-
-signal showing
-
-func _ready():
-# warning-ignore:return_value_discarded
-	connect(\"showing\", self, \"_showing\")
-	emit_signal(\"showing\")
-
-func _process(_delta):
-	update_ui()
-
-func update_ui():
-	var pickup_notes = Data.saved_notes.size()
-	var pickup_insights = Data.saved_insights.size()
-	text = tr('notes') + ': ' + str(pickup_notes) + '/' + '8' + '\\n'\\
-		+ tr('insights') + ': ' + str(pickup_insights) + '/' + '6'
-
-func _showing():
-	if !$anim.is_playing():
-		set_process(true)
-		$anim.play('start')
-		update_ui()
-
-# warning-ignore:unused_argument
-func _on_anim_animation_finished(anim_name):
-	set_process(false)
-"
+[ext_resource path="res://scripts/scenes/sub_scenes/inventory.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -71,7 +42,7 @@ margin_top = 48.0
 margin_right = 308.0
 margin_bottom = 138.0
 custom_fonts/font = ExtResource( 1 )
-script = SubResource( 1 )
+script = ExtResource( 2 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )

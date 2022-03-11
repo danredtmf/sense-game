@@ -6,36 +6,7 @@
 [ext_resource path="res://sources/themes/button/pressed.tres" type="StyleBox" id=4]
 [ext_resource path="res://sources/themes/button/disabled.tres" type="StyleBox" id=5]
 [ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=6]
-
-[sub_resource type="GDScript" id=8]
-script/source = "extends Control
-
-const settings_menu_res = preload(\"res://levels/scenes/sub_scenes/settings.tscn\")
-
-func _ready():
-	update_ui()
-
-func _process(_delta):
-	update_ui()
-
-func update_ui():
-	$name.text = tr('pause')
-	$buttons/VBoxContainer/continue.text = tr('continue')
-	$buttons/VBoxContainer/settings.text = tr('settings')
-	$buttons/VBoxContainer/exit.text = tr('exit')
-
-func _on_continue_pressed():
-	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	queue_free()
-
-func _on_exit_pressed():
-	Core.root_gui.emit_signal('transition_scene', 'end')
-
-func _on_settings_pressed():
-	var settings = settings_menu_res.instance()
-	get_parent().add_child(settings)
-"
+[ext_resource path="res://scripts/scenes/sub_scenes/game_pause.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -45,7 +16,7 @@ func _on_settings_pressed():
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource( 8 )
+script = ExtResource( 7 )
 
 [node name="back" type="ColorRect" parent="."]
 anchor_right = 1.0

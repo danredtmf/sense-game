@@ -1,0 +1,340 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://sources/fonts/Caveat-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://sources/themes/font_size/main_32.tres" type="DynamicFont" id=2]
+[ext_resource path="res://sources/images/logos/danredtmf_circle.png" type="Texture" id=3]
+[ext_resource path="res://sources/images/logos/belgvogor_logo.png" type="Texture" id=4]
+[ext_resource path="res://sources/images/logos/godot_logo_text.png" type="Texture" id=5]
+[ext_resource path="res://scripts/scenes/credits.gd" type="Script" id=6]
+[ext_resource path="res://sources/images/black.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_size = 3
+outline_color = Color( 0.298039, 0.298039, 0.298039, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("back:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("jumpscare:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bad_text:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "to_black"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("back:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "to_black_jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("back:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("jumpscare:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.6, 0.7, 0.8, 0.9, 0.901, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bad_text:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("people:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ending:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("end:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "end"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("end:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "ending"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ending:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "people"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("people:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="back" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="bad_text" type="Label" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -81.0
+margin_bottom = 81.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+align = 1
+valign = 1
+
+[node name="jumpscare" type="TextureRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="ending" type="VBoxContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="type_ending" type="Label" parent="ending"]
+margin_top = 335.0
+margin_right = 1280.0
+margin_bottom = 384.0
+custom_fonts/font = ExtResource( 2 )
+align = 1
+
+[node name="people" type="VBoxContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="main" type="HBoxContainer" parent="people"]
+margin_top = 101.0
+margin_right = 1280.0
+margin_bottom = 318.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="dev" type="VBoxContainer" parent="people/main"]
+margin_left = 436.0
+margin_right = 600.0
+margin_bottom = 217.0
+
+[node name="TextureRect" type="TextureRect" parent="people/main/dev"]
+margin_right = 164.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 164, 164 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="dev_name" type="Label" parent="people/main/dev"]
+margin_top = 168.0
+margin_right = 164.0
+margin_bottom = 217.0
+custom_fonts/font = ExtResource( 2 )
+text = "DanRedTMF"
+align = 1
+
+[node name="music" type="VBoxContainer" parent="people/main"]
+margin_left = 650.0
+margin_right = 843.0
+margin_bottom = 217.0
+
+[node name="TextureRect" type="TextureRect" parent="people/main/music"]
+margin_left = 14.0
+margin_right = 178.0
+margin_bottom = 164.0
+rect_min_size = Vector2( 164, 164 )
+size_flags_horizontal = 4
+texture = ExtResource( 4 )
+expand = true
+
+[node name="dev_name" type="Label" parent="people/main/music"]
+margin_top = 168.0
+margin_right = 193.0
+margin_bottom = 217.0
+custom_fonts/font = ExtResource( 2 )
+text = "Belgvogor Sound"
+align = 1
+
+[node name="engine" type="VBoxContainer" parent="people"]
+margin_top = 368.0
+margin_right = 1280.0
+margin_bottom = 618.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="people/engine"]
+margin_left = 530.0
+margin_right = 750.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 220, 250 )
+size_flags_horizontal = 4
+texture = ExtResource( 5 )
+expand = true
+
+[node name="end" type="VBoxContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="result_text" type="Label" parent="end"]
+margin_top = 335.0
+margin_right = 1280.0
+margin_bottom = 384.0
+custom_fonts/font = ExtResource( 2 )
+align = 1
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/to_black = SubResource( 3 )
+anims/to_black_jump = SubResource( 8 )
+
+[node name="anim_credits" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/end = SubResource( 7 )
+anims/ending = SubResource( 6 )
+anims/people = SubResource( 5 )
+
+[node name="timer_delay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
+[connection signal="animation_finished" from="anim_credits" to="." method="_on_anim_credits_animation_finished"]
+[connection signal="timeout" from="timer_delay" to="." method="_on_timer_delay_timeout"]

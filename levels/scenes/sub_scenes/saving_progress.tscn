@@ -1,28 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=1]
-
-[sub_resource type="GDScript" id=3]
-script/source = "extends Control
-
-# warning-ignore:unused_signal
-signal showing
-
-func _ready():
-# warning-ignore:return_value_discarded
-	connect(\"showing\", self, \"_showing\")
-	update_ui()
-
-func _process(_delta):
-	update_ui()
-
-func update_ui():
-	$text.text = tr('saving') + '...'
-
-func _showing():
-	if !$anim.is_playing():
-		$anim.play(\"show\")
-"
+[ext_resource path="res://scripts/scenes/sub_scenes/saving_progress.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -83,7 +62,7 @@ tracks/1/keys = {
 pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource( 3 )
+script = ExtResource( 2 )
 
 [node name="text" type="Label" parent="."]
 visible = false

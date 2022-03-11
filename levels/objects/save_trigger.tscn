@@ -1,82 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[sub_resource type="GDScript" id=3]
-script/source = "extends Area
-
-export var is_active = true
-export var is_mesh_visible = true
-export var is_consider_end = false
-
-export var is_ending_trigger = false
-export var is_good_ending_trigger = false
-
-func _ready():
-	_closing_active()
-	_active_check()
-	_visible_mesh()
-
-func _visible_mesh():
-	$mesh.visible = is_mesh_visible
-
-func _closing_active():
-	if Data.is_ending && !is_consider_end:
-		is_active = false
-
-func _active_check():
-	if !is_active:
-		queue_free()
-
-func _ending_trigger():
-	Data.is_ending = true
-	Data.saved_pos_player = Core.root_player.translation
-	Data.saving()
-	Core.root_gui.saving_progress.emit_signal('showing')
-	is_active = false
-	print('end')
-	_active_check()
-
-func _game_passed():
-	print('game passed')
-	Data.is_game_passed = true
-	Data.saving()
-	Core.to('main_menu')
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func _good_ending():
-	print('good')
-	Data.is_good_ending = true
-	Data.saving()
-	Core.to('main_menu')
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func _bad_ending():
-	print('bad')
-	Core.to('main_menu')
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func _good_ending_trigger():
-	var notes = len(Data.saved_notes)
-	var insights = len(Data.saved_insights)
-	print(notes)
-	print(insights)
-	
-	if Data.is_picked_lie_insight == false:
-		if insights == 6 && notes == 8:
-			_game_passed()
-		elif insights == 6:
-			_good_ending()
-		elif insights != 6:
-			_bad_ending()
-	else:
-		_bad_ending()
-
-func _on_save_trigger_body_entered(body):
-	if body.name == \"player\":
-		if is_ending_trigger:
-			_ending_trigger()
-		elif is_good_ending_trigger:
-			_good_ending_trigger()
-"
+[ext_resource path="res://scripts/objects/save_trigger.gd" type="Script" id=1]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -86,7 +10,7 @@ func _on_save_trigger_body_entered(body):
 flags_unshaded = true
 
 [node name="save_trigger" type="Area"]
-script = SubResource( 3 )
+script = ExtResource( 1 )
 
 [node name="shape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
