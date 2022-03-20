@@ -18,6 +18,8 @@ var saved_fullscreen_mode = true
 var saved_language = LANG.ENGLISH
 var saved_performance_monitor = false
 var saved_vsync = true
+var saved_music_volume : float
+var saved_sound_volume : float
 
 var data
 
@@ -48,6 +50,10 @@ func reset_settings():
 	saved_language = LANG.ENGLISH
 	saved_performance_monitor = false
 	saved_vsync = true
+	AudioServer.set_bus_volume_db(Core.music_idx, 0)
+	AudioServer.set_bus_volume_db(Core.sound_idx, 0)
+	saved_music_volume = AudioServer.get_bus_volume_db(Core.music_idx)
+	saved_sound_volume = AudioServer.get_bus_volume_db(Core.sound_idx)
 	saving_settings()
 
 func saving_settings():
@@ -57,6 +63,8 @@ func saving_settings():
 		'lang': saved_language,
 		'performance_monitor': saved_performance_monitor,
 		'vsync': saved_vsync,
+		'saved_music_volume': saved_music_volume,
+		'saved_sound_volume': saved_sound_volume,
 	}
 	
 	var file = File.new()
@@ -86,6 +94,14 @@ func loading_settings():
 			saved_performance_monitor = data.performance_monitor
 		if 'vsync' in data:
 			saved_vsync = data.vsync
+		if 'saved_music_volume' in data:
+			saved_music_volume = data.saved_music_volume
+		else:
+			saved_music_volume = AudioServer.get_bus_volume_db(Core.music_idx)
+		if 'saved_sound_volume' in data:
+			saved_sound_volume = data.saved_sound_volume
+		else:
+			saved_sound_volume = AudioServer.get_bus_volume_db(Core.sound_idx)
 
 func saving():
 	data = {

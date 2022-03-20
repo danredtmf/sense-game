@@ -37,20 +37,17 @@ func _game_passed():
 	Data.is_game_passed = true
 	Data.saving()
 	Core.to('credits')
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _good_ending():
 	print('good')
 	Data.is_good_ending = true
 	Data.saving()
 	Core.to('credits')
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _bad_ending():
 	print('bad')
 	Data.is_picked_lie_insight = true
 	Core.to('credits')
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _good_ending_trigger():
 	var notes = len(Data.saved_notes)

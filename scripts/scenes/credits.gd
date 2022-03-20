@@ -3,6 +3,7 @@ extends Control
 var state = 0
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$timer_delay.start()
 
 # warning-ignore:unused_argument
@@ -14,12 +15,12 @@ func _on_anim_credits_animation_finished(anim_name):
 	if anim_name == 'ending':
 		$anim_credits.play("people")
 	elif anim_name == 'people':
-		if Data.is_picked_lie_insight:
-			$end/result_text.text = 'Вы попались в ловушку.'
+		if Data.is_picked_lie_insight || !Data.is_good_ending:
+			$end/result_text.text = tr('result_bad_ending')
 		elif Data.is_good_ending && !Data.is_game_passed:
-			$end/result_text.text = 'Всё ещё остались секреты...'
+			$end/result_text.text = tr('result_good_ending')
 		elif Data.is_good_ending && Data.is_game_passed:
-			$end/result_text.text = 'Спасибо за игру!'
+			$end/result_text.text = tr('result_true_ending')
 		$anim_credits.play("end")
 	elif anim_name == 'end':
 		state = 2
@@ -27,17 +28,21 @@ func _on_anim_credits_animation_finished(anim_name):
 
 func _on_timer_delay_timeout():
 	if state == 0 && Data.is_picked_lie_insight:
-		$bad_text.text = 'Trap'
+		$bad_text.text = tr('trap')
 		$anim.play("to_black_jump")
 	elif state == 0 && Data.is_good_ending:
 		$anim.play("to_black")
 	elif state == 1:
 		if Data.is_picked_lie_insight:
-			$ending/type_ending.text = 'Bad Ending'
+			$ending/type_ending.text = tr('bad_ending')
 		elif Data.is_good_ending && !Data.is_game_passed:
-			$ending/type_ending.text = 'Good Ending'
+			$ending/type_ending.text = tr('good_ending')
 		elif Data.is_good_ending && Data.is_game_passed:
-			$ending/type_ending.text = 'True Ending'
+			$ending/type_ending.text = tr('true_ending')
 		$anim_credits.play("ending")
 	elif state == 2:
+		yield(get_tree().create_timer(1), "timeout")
 		Core.to('main_menu')
+		
+		Data.loading()
+		Data.loading_settings()

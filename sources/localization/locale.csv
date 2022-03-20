@@ -54,3 +54,17 @@ loading,Loading,Загрузка
 saving,Saving,Сохранение
 insights,Insights,Озарения
 about_pickup_items,Tab - Collected items,Tab - Собранные предметы
+trap,The Trap,Ловушка
+bad_ending,Bad Ending,Плохая концовка
+good_ending,Good Ending,Хорошая концовка
+true_ending,True Ending,Настоящая концовка
+result_bad_ending,You are trapped.,Вы в ловушке.
+result_good_ending,The secrets are still here.,Секреты всё ещё здесь.
+result_true_ending,Thanks for playing!,Спасибо за игру!
+game_over,You got caught,Вас поймали
+on,On,Включено
+off,Off,Выключено
+data,Data,Данные
+audio,Audio,Аудио
+music,Music,Музыка
+sound,Sound,Звук

@@ -14,6 +14,7 @@ onready var anim = $anim
 func _ready():
 # warning-ignore:return_value_discarded
 	connect("start_transition", self, "_transition_start")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if Data.saved_language == 0:
 		TranslationServer.set_locale('en')
 	elif Data.saved_language == 1:

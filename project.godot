@@ -15,12 +15,13 @@ run/main_scene="res://levels/scenes/main_menu.tscn"
 boot_splash/image="res://sources/images/black.png"
 config/icon="res://icon.png"
 config/windows_native_icon="res://sources/images/icons/icon16.ico"
-config/version="0.8.1-alpha"
+config/version="0.9-beta"
 
 [autoload]
 
 Data="*res://global_scripts/data.gd"
 Core="*res://global_scripts/core.gd"
+GlobalSound="*res://global_sound/global_sound.tscn"
 SceneChanger="*res://global_scripts/scene_changer.gd"
 
 [display]
@@ -28,6 +29,7 @@ SceneChanger="*res://global_scripts/scene_changer.gd"
 window/size/width=1280
 window/size/height=720
 window/dpi/allow_hidpi=true
+window/vsync/vsync_via_compositor=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 

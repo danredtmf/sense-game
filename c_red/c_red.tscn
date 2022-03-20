@@ -568,7 +568,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.59964, 0 )
 aabb = AABB( -3.16481, -3.76643, -2.21969, 6.32963, 7.53285, 4.43938 )
 
 [node name="timer_delay_destroy" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.4
 one_shot = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

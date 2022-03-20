@@ -14,6 +14,9 @@ var action_object_viewing = false
 var game_pause = false
 var splash_screen = false
 
+onready var music_idx = AudioServer.get_bus_index('Music')
+onready var sound_idx = AudioServer.get_bus_index('Sound')
+
 func _ready():
 	randomize()
 	Data.loading()
@@ -21,6 +24,8 @@ func _ready():
 	get_tree().paused = true
 	OS.window_fullscreen = Data.saved_fullscreen_mode
 	OS.vsync_enabled = Data.saved_vsync
+	AudioServer.set_bus_volume_db(Core.music_idx, Data.saved_music_volume)
+	AudioServer.set_bus_volume_db(Core.sound_idx, Data.saved_sound_volume)
 	OS.center_window()
 
 func to(scene):

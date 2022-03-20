@@ -10,7 +10,7 @@
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=8]
 [ext_resource path="res://levels/scenes/sub_scenes/screen_trigger.tscn" type="PackedScene" id=9]
 [ext_resource path="res://levels/scenes/sub_scenes/splash_screen.tscn" type="PackedScene" id=10]
-[ext_resource path="res://sources/audio/music/belgvogor_sound_main_theme.ogg" type="AudioStream" id=11]
+[ext_resource path="res://sources/audio/music/bs_main_theme.ogg" type="AudioStream" id=11]
 [ext_resource path="res://scripts/scenes/main_menu.gd" type="Script" id=12]
 [ext_resource path="res://scripts/scenes/main_menu_interface.gd" type="Script" id=13]
 
@@ -372,8 +372,9 @@ anims/start = SubResource( 19 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="interface"]
 pause_mode = 1
 stream = ExtResource( 11 )
-volume_db = 5.0
+volume_db = 4.0
 autoplay = true
+bus = "Music"
 
 [connection signal="pressed" from="interface/Control/vbox/new_game" to="interface" method="_on_new_game_pressed"]
 [connection signal="pressed" from="interface/Control/vbox/continue" to="interface" method="_on_continue_pressed"]

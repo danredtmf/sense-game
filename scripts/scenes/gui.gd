@@ -64,6 +64,8 @@ func _transition_scene(anim_name):
 func _on_anim_animation_finished(anim_name):
 	if anim_name == 'end':
 		Core.to('main_menu')
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		Data.loading()
+		Data.loading_settings()
+		
 		get_tree().paused = false
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bs_smile.ogg-04dd86109a962c8b2fea5519ec608cb9.oggstr"
+
+[deps]
+
+source_file="res://sources/audio/music/bs_smile.ogg"
+dest_files=[ "res://.import/bs_smile.ogg-04dd86109a962c8b2fea5519ec608cb9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

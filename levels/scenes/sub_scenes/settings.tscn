@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=1]
 [ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://sources/themes/option_button/hover.tres" type="StyleBox" id=10]
 [ext_resource path="res://sources/themes/popup_menu/panel.tres" type="StyleBox" id=11]
 [ext_resource path="res://scripts/scenes/sub_scenes/settings.gd" type="Script" id=12]
+[ext_resource path="res://sources/themes/panel/panel_container.tres" type="StyleBox" id=13]
+[ext_resource path="res://sources/themes/panel/panel_parameter.tres" type="StyleBox" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [sub_resource type="Theme" id=5]
 default_font = ExtResource( 2 )
@@ -19,8 +23,6 @@ PopupMenu/styles/hover = ExtResource( 9 )
 PopupMenu/styles/panel = ExtResource( 11 )
 
 [sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="settings" type="Control"]
 pause_mode = 2
@@ -46,178 +48,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="vbox" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -300.0
-margin_top = -492.0
-margin_right = 300.0
-margin_bottom = -92.0
-rect_min_size = Vector2( 600, 400 )
-custom_constants/separation = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="box_language" type="HBoxContainer" parent="vbox"]
-margin_right = 600.0
-margin_bottom = 40.0
-custom_constants/separation = 10
-alignment = 1
-
-[node name="name_language" type="Label" parent="vbox/box_language"]
-margin_left = 206.0
-margin_right = 293.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
-text = "Language"
-valign = 1
-
-[node name="OptionButton" type="OptionButton" parent="vbox/box_language"]
-margin_left = 303.0
-margin_right = 394.0
-margin_bottom = 40.0
-theme = SubResource( 5 )
-custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = ExtResource( 10 )
-custom_styles/pressed = ExtResource( 8 )
-custom_styles/normal = ExtResource( 7 )
-text = "English"
-items = [ "English", null, false, 0, null, "Russian", null, false, 1, null ]
-selected = 0
-
-[node name="box_sensitivity" type="HBoxContainer" parent="vbox"]
-margin_top = 60.0
-margin_right = 600.0
-margin_bottom = 100.0
-custom_constants/separation = 10
-alignment = 1
-
-[node name="name_sensitivity" type="Label" parent="vbox/box_sensitivity"]
-margin_left = 101.0
-margin_right = 199.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
-text = "Sensitivity"
-valign = 1
-
-[node name="HSlider" type="HSlider" parent="vbox/box_sensitivity"]
-margin_left = 209.0
-margin_right = 409.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 200, 0 )
-size_flags_vertical = 1
-min_value = 0.05
-max_value = 2.0
-step = 0.01
-value = 0.05
-tick_count = 10
-
-[node name="sens_text" type="Label" parent="vbox/box_sensitivity"]
-margin_left = 419.0
-margin_right = 499.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 80, 0 )
-custom_fonts/font = ExtResource( 2 )
-text = "0.00"
-align = 1
-valign = 1
-
-[node name="box_fullscreen" type="HBoxContainer" parent="vbox"]
-margin_top = 120.0
-margin_right = 600.0
-margin_bottom = 160.0
-custom_constants/separation = 10
-alignment = 1
-
-[node name="name_fullscreen" type="Label" parent="vbox/box_fullscreen"]
-margin_left = 235.0
-margin_right = 330.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
-text = "Fullscreen"
-valign = 1
-
-[node name="CheckBox" type="CheckBox" parent="vbox/box_fullscreen"]
-margin_left = 340.0
-margin_right = 364.0
-margin_bottom = 40.0
-
-[node name="box_vsync" type="HBoxContainer" parent="vbox"]
-margin_top = 180.0
-margin_right = 600.0
-margin_bottom = 220.0
-custom_constants/separation = 10
-alignment = 1
-
-[node name="name_vsync" type="Label" parent="vbox/box_vsync"]
-margin_left = 255.0
-margin_right = 310.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
-text = "Vsync"
-valign = 1
-
-[node name="check_vsync" type="CheckBox" parent="vbox/box_vsync"]
-margin_left = 320.0
-margin_right = 344.0
-margin_bottom = 40.0
-
-[node name="box_perfomance_monitor" type="HBoxContainer" parent="vbox"]
-margin_top = 240.0
-margin_right = 600.0
-margin_bottom = 280.0
-custom_constants/separation = 10
-alignment = 1
-
-[node name="name_perfomance_monitor" type="Label" parent="vbox/box_perfomance_monitor"]
-margin_left = 188.0
-margin_right = 377.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
-text = "Perfomance Monitor"
-valign = 1
-
-[node name="check_perfomance_monitor" type="CheckBox" parent="vbox/box_perfomance_monitor"]
-margin_left = 387.0
-margin_right = 411.0
-margin_bottom = 40.0
-
-[node name="box_data" type="HBoxContainer" parent="vbox"]
-margin_top = 300.0
-margin_right = 600.0
-margin_bottom = 350.0
-custom_constants/separation = 10
-alignment = 1
-
-[node name="reset_game" type="Button" parent="vbox/box_data"]
-margin_left = 145.0
-margin_right = 295.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
-custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = ExtResource( 6 )
-custom_styles/normal = ExtResource( 5 )
-text = "Reset Game"
-
-[node name="reset_settings" type="Button" parent="vbox/box_data"]
-margin_left = 305.0
-margin_right = 455.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 150, 50 )
-custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = ExtResource( 6 )
-custom_styles/normal = ExtResource( 5 )
-text = "Reset Settings"
-
 [node name="close" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -234,15 +64,646 @@ custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 5 )
 text = "Close"
+
+[node name="scroll" type="ScrollContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -631.0
+margin_top = -257.0
+margin_right = 631.0
+margin_bottom = 257.0
+follow_focus = true
+
+[node name="container" type="PanelContainer" parent="scroll"]
+margin_right = 1250.0
+margin_bottom = 683.0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_styles/panel = ExtResource( 13 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container"]
+margin_left = 5.0
+margin_right = 1245.0
+margin_bottom = 683.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="grid" type="GridContainer" parent="scroll/container/margin"]
+margin_left = 340.0
+margin_top = 50.0
+margin_right = 899.0
+margin_bottom = 633.0
+size_flags_horizontal = 4
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 2
+
+[node name="audio" type="PanelContainer" parent="scroll/container/margin/grid"]
+margin_right = 340.0
+margin_bottom = 174.0
+custom_styles/panel = ExtResource( 5 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/audio"]
+margin_left = 5.0
+margin_right = 335.0
+margin_bottom = 174.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="audio" type="VBoxContainer" parent="scroll/container/margin/grid/audio/margin"]
+margin_top = 5.0
+margin_right = 330.0
+margin_bottom = 169.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel" type="PanelContainer" parent="scroll/container/margin/grid/audio/margin/audio"]
+margin_right = 330.0
+margin_bottom = 45.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/audio/margin/audio/panel"]
+margin_left = 5.0
+margin_right = 325.0
+margin_bottom = 45.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/audio/margin/audio/panel/margin"]
+margin_right = 320.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Audio"
+align = 1
+valign = 1
+
+[node name="audio" type="HBoxContainer" parent="scroll/container/margin/grid/audio/margin/audio"]
+margin_top = 55.0
+margin_right = 330.0
+margin_bottom = 164.0
+alignment = 1
+
+[node name="music" type="VBoxContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio"]
+margin_right = 163.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/music"]
+margin_right = 163.0
+margin_bottom = 45.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/music/panel1"]
+margin_left = 5.0
+margin_right = 158.0
+margin_bottom = 45.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/audio/margin/audio/audio/music/panel1/margin"]
+margin_right = 153.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Music"
+align = 1
+valign = 1
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/music"]
+margin_top = 49.0
+margin_right = 163.0
+margin_bottom = 65.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/music/panel2"]
+margin_left = 5.0
+margin_right = 158.0
+margin_bottom = 16.0
+
+[node name="music" type="HSlider" parent="scroll/container/margin/grid/audio/margin/audio/audio/music/panel2/margin"]
+margin_right = 153.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -24.0
+max_value = 0.0
+
+[node name="panel3" type="PanelContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/music"]
+margin_top = 69.0
+margin_right = 163.0
+margin_bottom = 109.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="value" type="Label" parent="scroll/container/margin/grid/audio/margin/audio/audio/music/panel3"]
+margin_left = 5.0
+margin_right = 158.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "0.00"
+align = 1
+valign = 1
+
+[node name="sound" type="VBoxContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio"]
+margin_left = 167.0
+margin_right = 330.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound"]
+margin_right = 163.0
+margin_bottom = 45.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound/panel1"]
+margin_left = 5.0
+margin_right = 158.0
+margin_bottom = 45.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound/panel1/margin"]
+margin_right = 153.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sound"
+align = 1
+valign = 1
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound"]
+margin_top = 49.0
+margin_right = 163.0
+margin_bottom = 65.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound/panel2"]
+margin_left = 5.0
+margin_right = 158.0
+margin_bottom = 16.0
+
+[node name="sound" type="HSlider" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound/panel2/margin"]
+margin_right = 153.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -24.0
+max_value = 0.0
+
+[node name="panel3" type="PanelContainer" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound"]
+margin_top = 69.0
+margin_right = 163.0
+margin_bottom = 109.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="value" type="Label" parent="scroll/container/margin/grid/audio/margin/audio/audio/sound/panel3"]
+margin_left = 5.0
+margin_right = 158.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "0.00"
+align = 1
+valign = 1
+
+[node name="lang" type="PanelContainer" parent="scroll/container/margin/grid"]
+margin_left = 350.0
+margin_right = 559.0
+margin_bottom = 174.0
+custom_styles/panel = ExtResource( 5 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/lang"]
+margin_left = 5.0
+margin_right = 204.0
+margin_bottom = 174.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="lang" type="VBoxContainer" parent="scroll/container/margin/grid/lang/margin"]
+margin_top = 5.0
+margin_right = 199.0
+margin_bottom = 169.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/lang/margin/lang"]
+margin_right = 199.0
+margin_bottom = 77.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/lang/margin/lang/panel1"]
+margin_left = 5.0
+margin_right = 194.0
+margin_bottom = 77.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/lang/margin/lang/panel1/margin"]
+margin_top = 16.0
+margin_right = 189.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Language"
+align = 1
+valign = 1
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/lang/margin/lang"]
+margin_top = 87.0
+margin_right = 199.0
+margin_bottom = 164.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/lang/margin/lang/panel2"]
+margin_left = 5.0
+margin_right = 194.0
+margin_bottom = 77.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="lang_opts" type="OptionButton" parent="scroll/container/margin/grid/lang/margin/lang/panel2/margin"]
+margin_top = 5.0
+margin_right = 189.0
+margin_bottom = 72.0
+theme = SubResource( 5 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/normal = ExtResource( 7 )
+text = "English"
+items = [ "English", null, false, 0, null, "Russian", null, false, 1, null ]
+selected = 0
+
+[node name="sns" type="PanelContainer" parent="scroll/container/margin/grid"]
+margin_top = 184.0
+margin_right = 340.0
+margin_bottom = 325.0
+size_flags_horizontal = 5
+custom_styles/panel = ExtResource( 5 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/sns"]
+margin_left = 5.0
+margin_right = 335.0
+margin_bottom = 141.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="sns" type="VBoxContainer" parent="scroll/container/margin/grid/sns/margin"]
+margin_top = 5.0
+margin_right = 330.0
+margin_bottom = 136.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/sns/margin/sns"]
+margin_right = 330.0
+margin_bottom = 45.0
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/sns/margin/sns/panel1"]
+margin_left = 5.0
+margin_right = 325.0
+margin_bottom = 45.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/sns/margin/sns/panel1/margin"]
+margin_right = 320.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sensitivity"
+align = 1
+valign = 1
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/sns/margin/sns"]
+margin_top = 55.0
+margin_right = 330.0
+margin_bottom = 81.0
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/sns/margin/sns/panel2"]
+margin_left = 5.0
+margin_right = 325.0
+margin_bottom = 26.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="sns" type="HSlider" parent="scroll/container/margin/grid/sns/margin/sns/panel2/margin"]
+margin_top = 5.0
+margin_right = 320.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.05
+max_value = 2.0
+step = 0.01
+value = 0.2
+
+[node name="panel3" type="PanelContainer" parent="scroll/container/margin/grid/sns/margin/sns"]
+margin_top = 91.0
+margin_right = 330.0
+margin_bottom = 131.0
+custom_styles/panel = ExtResource( 14 )
+
+[node name="value" type="Label" parent="scroll/container/margin/grid/sns/margin/sns/panel3"]
+margin_left = 5.0
+margin_right = 325.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "0.00"
+align = 1
+valign = 1
+
+[node name="fullscr" type="PanelContainer" parent="scroll/container/margin/grid"]
+margin_left = 350.0
+margin_top = 184.0
+margin_right = 559.0
+margin_bottom = 325.0
+custom_styles/panel = ExtResource( 5 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/fullscr"]
+margin_left = 5.0
+margin_right = 204.0
+margin_bottom = 141.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="fullscr" type="VBoxContainer" parent="scroll/container/margin/grid/fullscr/margin"]
+margin_top = 5.0
+margin_right = 199.0
+margin_bottom = 136.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/fullscr/margin/fullscr"]
+margin_right = 199.0
+margin_bottom = 60.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/fullscr/margin/fullscr/panel1"]
+margin_left = 5.0
+margin_right = 194.0
+margin_bottom = 60.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/fullscr/margin/fullscr/panel1/margin"]
+margin_top = 7.0
+margin_right = 189.0
+margin_bottom = 47.0
+custom_fonts/font = ExtResource( 2 )
+text = "Fullscreen"
+align = 1
+valign = 1
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/fullscr/margin/fullscr"]
+margin_top = 70.0
+margin_right = 199.0
+margin_bottom = 131.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="fullscr" type="CheckBox" parent="scroll/container/margin/grid/fullscr/margin/fullscr/panel2"]
+margin_left = 5.0
+margin_right = 194.0
+margin_bottom = 61.0
+custom_fonts/font = ExtResource( 2 )
+text = "On"
+align = 1
+
+[node name="vsync" type="PanelContainer" parent="scroll/container/margin/grid"]
+margin_top = 335.0
+margin_right = 340.0
+margin_bottom = 448.0
+custom_styles/panel = ExtResource( 5 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/vsync"]
+margin_left = 5.0
+margin_right = 335.0
+margin_bottom = 113.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="vsync" type="VBoxContainer" parent="scroll/container/margin/grid/vsync/margin"]
+margin_top = 5.0
+margin_right = 330.0
+margin_bottom = 108.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/vsync/margin/vsync"]
+margin_right = 330.0
+margin_bottom = 45.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/vsync/margin/vsync/panel1"]
+margin_left = 5.0
+margin_right = 325.0
+margin_bottom = 45.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/vsync/margin/vsync/panel1/margin"]
+margin_right = 320.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Vsync"
+align = 1
+valign = 1
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/vsync/margin/vsync"]
+margin_top = 55.0
+margin_right = 330.0
+margin_bottom = 103.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="vsync" type="CheckBox" parent="scroll/container/margin/grid/vsync/margin/vsync/panel2"]
+margin_left = 5.0
+margin_right = 325.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 2 )
+text = "On"
+align = 1
+
+[node name="fps" type="PanelContainer" parent="scroll/container/margin/grid"]
+margin_left = 350.0
+margin_top = 335.0
+margin_right = 559.0
+margin_bottom = 448.0
+custom_styles/panel = ExtResource( 5 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/fps"]
+margin_left = 5.0
+margin_right = 204.0
+margin_bottom = 113.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="fps" type="VBoxContainer" parent="scroll/container/margin/grid/fps/margin"]
+margin_top = 5.0
+margin_right = 199.0
+margin_bottom = 108.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/fps/margin/fps"]
+margin_right = 199.0
+margin_bottom = 45.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/fps/margin/fps/panel1"]
+margin_left = 5.0
+margin_right = 194.0
+margin_bottom = 45.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/fps/margin/fps/panel1/margin"]
+margin_right = 189.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Perfomance Monitor"
+align = 1
+valign = 1
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/fps/margin/fps"]
+margin_top = 55.0
+margin_right = 199.0
+margin_bottom = 103.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 14 )
+
+[node name="fps" type="CheckBox" parent="scroll/container/margin/grid/fps/margin/fps/panel2"]
+margin_left = 5.0
+margin_right = 194.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 2 )
+text = "On"
+align = 1
+
+[node name="data" type="PanelContainer" parent="scroll/container/margin/grid"]
+margin_top = 458.0
+margin_right = 340.0
+margin_bottom = 583.0
+size_flags_horizontal = 4
+custom_styles/panel = ExtResource( 5 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/data"]
+margin_left = 5.0
+margin_right = 335.0
+margin_bottom = 125.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="data" type="VBoxContainer" parent="scroll/container/margin/grid/data/margin"]
+margin_top = 5.0
+margin_right = 330.0
+margin_bottom = 120.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel" type="PanelContainer" parent="scroll/container/margin/grid/data/margin/data"]
+margin_right = 330.0
+margin_bottom = 45.0
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/data/margin/data/panel"]
+margin_left = 5.0
+margin_right = 325.0
+margin_bottom = 45.0
+custom_constants/margin_bottom = 5
+
+[node name="name" type="Label" parent="scroll/container/margin/grid/data/margin/data/panel/margin"]
+margin_right = 320.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "Data"
+align = 1
+valign = 1
+
+[node name="data" type="HBoxContainer" parent="scroll/container/margin/grid/data/margin/data"]
+margin_top = 55.0
+margin_right = 330.0
+margin_bottom = 115.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="panel1" type="PanelContainer" parent="scroll/container/margin/grid/data/margin/data/data"]
+margin_right = 160.0
+margin_bottom = 60.0
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/data/margin/data/data/panel1"]
+margin_left = 5.0
+margin_right = 155.0
+margin_bottom = 60.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="reset_game" type="Button" parent="scroll/container/margin/grid/data/margin/data/data/panel1/margin"]
+margin_top = 5.0
+margin_right = 150.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 5 )
+text = "Reset Game"
+
+[node name="panel2" type="PanelContainer" parent="scroll/container/margin/grid/data/margin/data/data"]
+margin_left = 170.0
+margin_right = 330.0
+margin_bottom = 60.0
+custom_styles/panel = ExtResource( 14 )
+
+[node name="margin" type="MarginContainer" parent="scroll/container/margin/grid/data/margin/data/data/panel2"]
+margin_left = 5.0
+margin_right = 155.0
+margin_bottom = 60.0
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="reset_settings" type="Button" parent="scroll/container/margin/grid/data/margin/data/data/panel2/margin"]
+margin_top = 5.0
+margin_right = 150.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 150, 50 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 5 )
+text = "Reset Settings"
+
+[node name="vbox" type="VBoxContainer" parent="scroll/container/margin"]
+margin_left = 50.0
+margin_top = 633.0
+margin_right = 1190.0
+margin_bottom = 633.0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="item_selected" from="vbox/box_language/OptionButton" to="." method="_on_OptionButton_item_selected"]
-[connection signal="value_changed" from="vbox/box_sensitivity/HSlider" to="." method="_on_HSlider_value_changed"]
-[connection signal="pressed" from="vbox/box_fullscreen/CheckBox" to="." method="_on_CheckBox_pressed"]
-[connection signal="pressed" from="vbox/box_vsync/check_vsync" to="." method="_on_check_vsync_pressed"]
-[connection signal="pressed" from="vbox/box_perfomance_monitor/check_perfomance_monitor" to="." method="_on_check_perfomance_monitor_pressed"]
-[connection signal="pressed" from="vbox/box_data/reset_game" to="." method="_on_reset_game_pressed"]
-[connection signal="pressed" from="vbox/box_data/reset_settings" to="." method="_on_reset_settings_pressed"]
 [connection signal="pressed" from="close" to="." method="_on_close_pressed"]
+[connection signal="value_changed" from="scroll/container/margin/grid/audio/margin/audio/audio/music/panel2/margin/music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="scroll/container/margin/grid/audio/margin/audio/audio/sound/panel2/margin/sound" to="." method="_on_sound_value_changed"]
+[connection signal="item_selected" from="scroll/container/margin/grid/lang/margin/lang/panel2/margin/lang_opts" to="." method="_on_lang_opts_item_selected"]
+[connection signal="value_changed" from="scroll/container/margin/grid/sns/margin/sns/panel2/margin/sns" to="." method="_on_sns_value_changed"]
+[connection signal="pressed" from="scroll/container/margin/grid/fullscr/margin/fullscr/panel2/fullscr" to="." method="_on_fullscr_pressed"]
+[connection signal="pressed" from="scroll/container/margin/grid/vsync/margin/vsync/panel2/vsync" to="." method="_on_vsync_pressed"]
+[connection signal="pressed" from="scroll/container/margin/grid/fps/margin/fps/panel2/fps" to="." method="_on_fps_pressed"]
+[connection signal="pressed" from="scroll/container/margin/grid/data/margin/data/data/panel1/margin/reset_game" to="." method="_on_reset_game_pressed"]
+[connection signal="pressed" from="scroll/container/margin/grid/data/margin/data/data/panel2/margin/reset_settings" to="." method="_on_reset_settings_pressed"]

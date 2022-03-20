@@ -94,3 +94,7 @@ func _on_Area_body_exited(body):
 
 func _on_timer_move_timeout():
 	_move_to(player.global_transform.origin)
+
+func _on_area_catcher_body_entered(body):
+	if body.name == 'player' && is_active:
+		Core.to('game_over')
