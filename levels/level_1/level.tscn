@@ -1340,6 +1340,11 @@ transform = Transform( 5.24835, 0, 0, 0, 4.49261, 0, 0, 0, 0.813709, 122.039, 4.
 is_mesh_visible = false
 is_ending_trigger = true
 
+[node name="save_trigger3" parent="objects" instance=ExtResource( 6 )]
+transform = Transform( -2.29413e-07, 0, 0.813709, 0, 4.49261, 0, -5.24835, 0, -3.55684e-08, 93.039, 4.57995, 110.418 )
+is_mesh_visible = false
+is_ending_trigger = true
+
 [node name="creature_trigger" parent="objects" instance=ExtResource( 7 )]
 transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 66.4638, 3.18099, 0.045064 )
 is_active = true

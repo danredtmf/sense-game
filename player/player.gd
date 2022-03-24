@@ -8,6 +8,7 @@ var gravity = 300
 var camera_sensitivity = Data.saved_mouse_sensitivity
 
 var enable_flashlight = true
+var step_anim = ''
 
 var vel = Vector3.ZERO
 
@@ -44,8 +45,10 @@ func _physics_process(delta):
 	
 	if Input.is_key_pressed(KEY_SHIFT):
 		speed = run_speed
+		step_anim = 'run'
 	else:
 		speed = walk_speed
+		step_anim = 'walk'
 	
 	if Input.is_action_just_pressed("flashlight_toggle"):
 		if enable_flashlight:
@@ -66,6 +69,10 @@ func _physics_process(delta):
 			get_tree().paused = true
 			Core.game_pause = true
 			Core.root_gui.emit_signal("showing_pause")
+	
+	if dir != Vector3.ZERO:
+		if !$step_anim.is_playing():
+			$step_anim.play("step_" + step_anim)
 	
 	vel = dir.normalized() * speed
 	
@@ -93,3 +100,6 @@ func _input(event):
 func action():
 	if Core.action_object:
 		Core.action_object.call('action')
+
+func _on_step_delay_timeout():
+	pass # Replace with function body.

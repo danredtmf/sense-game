@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/scenes/sub_scenes/screen_trigger.gd" type="Script" id=1]
+[ext_resource path="res://sources/audio/sounds/heartbeat.wav" type="AudioStream" id=2]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -16,10 +17,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("heartbeat:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "scale"
-length = 0.4
+length = 0.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("rect:modulate")
@@ -32,6 +45,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("heartbeat:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [node name="screen_trigger" type="Control"]
@@ -59,6 +84,11 @@ one_shot = true
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/scale = SubResource( 3 )
+
+[node name="heartbeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -5.0
+bus = "Sound"
 
 [connection signal="timeout" from="timer_delay" to="." method="_on_timer_delay_timeout"]
 [connection signal="timeout" from="timer_delay_once" to="." method="_on_timer_delay_once_timeout"]

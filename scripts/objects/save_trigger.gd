@@ -28,6 +28,13 @@ func _ending_trigger():
 	Data.saved_pos_player = Core.root_player.translation
 	Data.saving()
 	Core.root_gui.saving_progress.emit_signal('showing')
+	var saves_group = get_tree().get_nodes_in_group('saves')
+	print(saves_group)
+	
+	for i in saves_group:
+		if i.is_ending_trigger:
+			i.queue_free()
+	
 	is_active = false
 	print('end')
 	_active_check()

@@ -20,11 +20,17 @@ func _ready():
 		$AnimationPlayer.get_animation('run').loop = true
 		$AnimationPlayer.play("run")
 		$timer_move.start()
+		if Data.is_picked_lie_insight:
+			GlobalSound.play_music('smile')
+		else:
+			GlobalSound.play_music('smile_full')
 	elif !is_active && anim != '':
 		$AnimationPlayer.get_animation('run').loop = false
 		$AnimationPlayer.playback_speed = 1.5
 		$shape.disabled = true
 		$AnimationPlayer.play("run")
+		GlobalSound.play_sound('smile_jump')
+	$step_anim.play("step")
 
 func _physics_process(delta):
 	if is_active && anim != '':
@@ -97,4 +103,5 @@ func _on_timer_move_timeout():
 
 func _on_area_catcher_body_entered(body):
 	if body.name == 'player' && is_active:
+		GlobalSound.stop_music()
 		Core.to('game_over')

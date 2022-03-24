@@ -16,6 +16,8 @@ func update_ui():
 	$close.text = tr('close')
 
 func _on_close_pressed():
+	if is_instance_valid(Core.root_menu):
+		Core.root_menu.menu.view.visible = true
 	queue_free()
 
 func _on_logo_dev_pressed():

@@ -68,6 +68,7 @@ func action():
 			Core.root_gui.inventory.emit_signal('showing')
 		elif action_id == 'lie_insight':
 			Data.is_picked_lie_insight = true
+			GlobalSound.stop_music()
 	
 	if action_id && action_viewing:
 		Core.action_object_viewing = true

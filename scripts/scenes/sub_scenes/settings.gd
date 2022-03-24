@@ -25,6 +25,8 @@ onready var sns_value = $scroll/container/margin/grid/sns/margin/sns/panel3/valu
 onready var music_value = $scroll/container/margin/grid/audio/margin/audio/audio/music/panel3/value
 onready var sound_value = $scroll/container/margin/grid/audio/margin/audio/audio/sound/panel3/value
 
+onready var reset_game_panel = $scroll/container/margin/grid/data/margin/data/data/panel1
+
 func _ready():
 	update_ui()
 
@@ -93,9 +95,9 @@ func _process(_delta):
 	) + ' %'
 	
 	if get_tree().paused:
-		reset_game.visible = false
+		reset_game_panel.visible = false
 	else:
-		reset_game.visible = true
+		reset_game_panel.visible = true
 
 func _on_reset_game_pressed():
 	Data.reset_game()
@@ -106,6 +108,8 @@ func _on_reset_settings_pressed():
 	update_ui()
 
 func _on_close_pressed():
+	if is_instance_valid(Core.root_menu):
+		Core.root_menu.menu.view.visible = true
 	queue_free()
 
 func _on_lang_opts_item_selected(index):
@@ -153,3 +157,6 @@ func _on_sound_value_changed(value):
 		AudioServer.set_bus_mute(Core.sound_idx, true)
 	Data.saving_settings()
 	update_ui()
+
+func _on_audio_resized():
+	print($scroll/container/margin/grid/audio.rect_size)

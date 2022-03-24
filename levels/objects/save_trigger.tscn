@@ -9,7 +9,7 @@
 [sub_resource type="SpatialMaterial" id=4]
 flags_unshaded = true
 
-[node name="save_trigger" type="Area"]
+[node name="save_trigger" type="Area" groups=["saves"]]
 script = ExtResource( 1 )
 
 [node name="shape" type="CollisionShape" parent="."]

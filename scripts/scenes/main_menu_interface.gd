@@ -10,6 +10,7 @@ var state
 
 onready var heartbeat = $screen_trigger
 onready var anim = $anim
+onready var view = $view
 
 func _ready():
 # warning-ignore:return_value_discarded
@@ -67,8 +68,10 @@ func _on_anim_animation_finished(anim_name):
 	if anim_name == 'end' && state == null:
 		Core.to('game')
 		Data.reset_game()
+		GlobalSound.stop_sound()
 	elif anim_name == 'end' && state == 1:
 		Core.to('game')
+		GlobalSound.stop_sound()
 
 func _on_new_game_pressed():
 	if !Data.is_ending:
@@ -83,10 +86,14 @@ func _on_continue_pressed():
 func _on_settings_pressed():
 	var settings = settings_menu_res.instance()
 	get_tree().root.add_child(settings)
+	
+	view.visible = false
 
 func _on_about_pressed():
 	var about = about_menu_res.instance()
 	get_tree().root.add_child(about)
+	
+	view.visible = false
 
 func _on_exit_pressed():
 	Core.exit()
@@ -102,3 +109,5 @@ func _on_disagree_pressed():
 func _on_notes_pressed():
 	var notes = notes_viewer_res.instance()
 	get_tree().root.add_child(notes)
+	
+	view.visible = false

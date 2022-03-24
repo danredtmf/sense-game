@@ -54,6 +54,7 @@ func reset_settings():
 	AudioServer.set_bus_volume_db(Core.sound_idx, 0)
 	saved_music_volume = AudioServer.get_bus_volume_db(Core.music_idx)
 	saved_sound_volume = AudioServer.get_bus_volume_db(Core.sound_idx)
+	OS.window_fullscreen = saved_fullscreen_mode
 	saving_settings()
 
 func saving_settings():

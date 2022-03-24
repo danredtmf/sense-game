@@ -64,6 +64,9 @@ func _transition_scene(anim_name):
 func _on_anim_animation_finished(anim_name):
 	if anim_name == 'end':
 		Core.to('main_menu')
+		
+		GlobalSound.stop_music()
+		
 		Data.loading()
 		Data.loading_settings()
 		

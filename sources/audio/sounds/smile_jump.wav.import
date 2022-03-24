@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smile_jump.wav-333d31cc1f783c77bb5a2cd1d5129367.sample"
+
+[deps]
+
+source_file="res://sources/audio/sounds/smile_jump.wav"
+dest_files=[ "res://.import/smile_jump.wav-333d31cc1f783c77bb5a2cd1d5129367.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
