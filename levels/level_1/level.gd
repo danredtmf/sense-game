@@ -6,6 +6,6 @@ func _ready():
 	$RoomManager.rooms_convert()
 	
 	if !Data.is_good_ending:
-		GlobalSound.play_music('corridor')
+		GlobalSound.play_ambient('corridor')
 	else:
-		GlobalSound.play_music('silence')
+		GlobalSound.play_ambient('silence')

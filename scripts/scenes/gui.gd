@@ -65,7 +65,7 @@ func _on_anim_animation_finished(anim_name):
 	if anim_name == 'end':
 		Core.to('main_menu')
 		
-		GlobalSound.stop_music()
+		GlobalSound.stop_all_audio()
 		
 		Data.loading()
 		Data.loading_settings()

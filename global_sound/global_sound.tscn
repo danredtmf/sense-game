@@ -14,6 +14,12 @@ volume_db = -10.0
 bus = "Sound"
 
 [node name="music" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+autoplay = true
+bus = "Music"
+
+[node name="ambient" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
 autoplay = true
 bus = "Music"
 

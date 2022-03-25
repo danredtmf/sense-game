@@ -1,5 +1,8 @@
 extends KinematicBody
 
+var short = preload("res://sources/audio/music/bs_smile.ogg")
+var full = preload("res://sources/audio/music/bs_smile_full.ogg")
+
 export var is_active = false
 export var anim = ''
 

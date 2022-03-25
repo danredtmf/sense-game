@@ -372,7 +372,6 @@ anims/start = SubResource( 19 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="interface"]
 pause_mode = 1
 stream = ExtResource( 11 )
-volume_db = 4.0
 autoplay = true
 bus = "Music"
 

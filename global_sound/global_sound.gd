@@ -12,6 +12,7 @@ var jump_2 = preload("res://sources/audio/sounds/jump_2.wav")
 onready var sound = $sound
 onready var sound_extra = $sound_extra
 onready var music = $music
+onready var ambient = $ambient
 
 func _ready():
 	if AudioServer.get_bus_volume_db(Core.music_idx) == -24:
@@ -24,17 +25,25 @@ func _ready():
 	else:
 		AudioServer.set_bus_mute(Core.sound_idx, false)
 
+func play_ambient(ambient_name):
+	if ambient.stream != null:
+		ambient.stop()
+	
+	if ambient_name == 'corridor':
+		ambient.stream = corridor
+		ambient.play()
+	elif ambient_name == 'silence':
+		ambient.stream = silence
+		ambient.play()
+
+func stop_ambient():
+	ambient.stop()
+
 func play_music(music_name):
 	if music.stream != null:
 		music.stop()
 	
-	if music_name == 'corridor':
-		music.stream = corridor
-		music.play()
-	elif music_name == 'silence':
-		music.stream = silence
-		music.play()
-	elif music_name == 'smile':
+	if music_name == 'smile':
 		music.stream = smile
 		music.play()
 	elif music_name == 'smile_full':
@@ -72,13 +81,19 @@ func stop_sound(sound_track = 1):
 		sound_extra.stop()
 
 func start_fade(duration):
-	$tween.interpolate_property($music, 'volume_db', 0, -24, duration,
+	$tween.interpolate_property(music, 'volume_db', -10, -24, duration,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	$tween.start()
 
 func stop_anim():
 	$tween.stop_all()
-	music.volume_db = 0
+	music.volume_db = -10
+
+func stop_all_audio():
+	stop_sound(0)
+	stop_music()
+	stop_ambient()
+	stop_anim()
 
 func _on_tween_tween_all_completed():
-	music.volume_db = 0
+	music.volume_db = -10

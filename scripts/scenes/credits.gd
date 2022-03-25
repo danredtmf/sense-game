@@ -47,9 +47,7 @@ func _on_timer_delay_timeout():
 		yield(get_tree().create_timer(1), "timeout")
 		Core.to('main_menu')
 		
-		GlobalSound.stop_music()
-		GlobalSound.stop_sound(0)
-		GlobalSound.stop_anim()
+		GlobalSound.stop_all_audio()
 		
 		Data.loading()
 		Data.loading_settings()

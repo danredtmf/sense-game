@@ -12,6 +12,8 @@ func _on_anim_animation_finished(_anim_name):
 	yield(get_tree().create_timer(2), "timeout")
 	Core.to('main_menu')
 	
+	GlobalSound.stop_all_audio()
+	
 	Data.loading()
 	Data.loading_settings()
 
