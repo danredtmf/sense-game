@@ -30,12 +30,12 @@ func _on_timer_delay_timeout():
 		$bad_text.text = tr('trap')
 		GlobalSound.play_sound('jump')
 		$anim.play("to_black_jump")
+		GlobalSound.stop_music()
 	elif state == 0 && Data.is_good_ending:
 		$anim.play("to_black")
 	elif state == 1:
 		if Data.is_picked_lie_insight:
 			$ending/type_ending.text = tr('bad_ending')
-			GlobalSound.start_fade(20)
 		elif Data.is_good_ending && !Data.is_game_passed:
 			$ending/type_ending.text = tr('good_ending')
 			GlobalSound.start_fade(20)

@@ -81,13 +81,13 @@ func stop_sound(sound_track = 1):
 		sound_extra.stop()
 
 func start_fade(duration):
-	$tween.interpolate_property(music, 'volume_db', -10, -24, duration,
+	$tween.interpolate_property(music, 'volume_db', -6, -24, duration,
 		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	$tween.start()
 
 func stop_anim():
 	$tween.stop_all()
-	music.volume_db = -10
+	music.volume_db = -6
 
 func stop_all_audio():
 	stop_sound(0)
@@ -96,4 +96,4 @@ func stop_all_audio():
 	stop_anim()
 
 func _on_tween_tween_all_completed():
-	music.volume_db = -10
+	music.volume_db = -6
