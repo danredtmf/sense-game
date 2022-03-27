@@ -47,5 +47,5 @@ func _on_next_btn_pressed():
 
 func _on_close_btn_pressed():
 	if is_instance_valid(Core.root_menu):
-		Core.root_menu.menu.view.visible = true
+		Core.root_menu.view.visible = true
 	queue_free()

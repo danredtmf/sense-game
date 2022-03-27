@@ -14,7 +14,7 @@ func _heartbeating():
 	if is_instance_valid(Core.root_menu):
 		get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
 		yield(get_tree(), "idle_frame")
-		screen = Core.root_menu.view_3d.get_texture().get_data()
+		screen = Core.root_menu.viewport.get_texture().get_data()
 	else:
 		get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
 		yield(get_tree(), "idle_frame")

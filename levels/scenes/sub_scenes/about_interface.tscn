@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://sources/fonts/Oswald-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://sources/themes/font_size/main_26.tres" type="DynamicFont" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://sources/themes/font_size/main_16.tres" type="DynamicFont" id=9]
 [ext_resource path="res://sources/images/logos/belgvogor_logo.png" type="Texture" id=10]
 [ext_resource path="res://scripts/scenes/sub_scenes/about_interface.gd" type="Script" id=11]
+[ext_resource path="res://sources/themes/panel/panel_link.tres" type="StyleBox" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 62
@@ -59,99 +60,257 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="inf_people" type="HBoxContainer" parent="information/HBox"]
+[node name="links" type="VBoxContainer" parent="information/HBox"]
 margin_left = 286.0
 margin_right = 619.0
 margin_bottom = 540.0
-custom_constants/separation = 50
+custom_constants/separation = 0
+alignment = 1
 
-[node name="info_dev" type="VBoxContainer" parent="information/HBox/inf_people"]
+[node name="info" type="HBoxContainer" parent="information/HBox/links"]
+margin_top = 24.0
+margin_right = 333.0
+margin_bottom = 196.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="info_dev" type="VBoxContainer" parent="information/HBox/links/info"]
 margin_right = 128.0
-margin_bottom = 540.0
+margin_bottom = 172.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="logo_dev" type="TextureButton" parent="information/HBox/inf_people/info_dev"]
-margin_top = 184.0
+[node name="logo_dev" type="TextureButton" parent="information/HBox/links/info/info_dev"]
 margin_right = 128.0
-margin_bottom = 312.0
+margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 size_flags_horizontal = 5
 texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 5
 
-[node name="icon" type="TextureRect" parent="information/HBox/inf_people/info_dev/logo_dev"]
-anchor_left = 0.5
+[node name="panel" type="PanelContainer" parent="information/HBox/links/info/info_dev/logo_dev"]
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -16.0
-margin_top = -41.0
-margin_right = 16.0
-margin_bottom = -9.0
+margin_left = -42.0
+margin_top = -42.0
 rect_min_size = Vector2( 32, 32 )
-size_flags_horizontal = 0
+custom_styles/panel = ExtResource( 12 )
+
+[node name="margin" type="MarginContainer" parent="information/HBox/links/info/info_dev/logo_dev/panel"]
+margin_right = 42.0
+margin_bottom = 42.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="icon" type="TextureRect" parent="information/HBox/links/info/info_dev/logo_dev/panel/margin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 37.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 8 )
 expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stretch_mode = 6
 
-[node name="logo_dev_name" type="Label" parent="information/HBox/inf_people/info_dev"]
-margin_top = 316.0
+[node name="logo_dev_name" type="Label" parent="information/HBox/links/info/info_dev"]
+margin_top = 132.0
 margin_right = 128.0
-margin_bottom = 356.0
+margin_bottom = 172.0
 custom_fonts/font = ExtResource( 2 )
 text = "DanRedTMF"
 align = 1
 valign = 1
 
-[node name="info_music" type="VBoxContainer" parent="information/HBox/inf_people"]
+[node name="info_music" type="VBoxContainer" parent="information/HBox/links/info"]
 margin_left = 178.0
 margin_right = 333.0
-margin_bottom = 540.0
+margin_bottom = 172.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="logo_music" type="TextureButton" parent="information/HBox/inf_people/info_music"]
-margin_top = 184.0
-margin_right = 155.0
-margin_bottom = 312.0
+[node name="logo_music" type="TextureButton" parent="information/HBox/links/info/info_music"]
+margin_left = 13.0
+margin_right = 141.0
+margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-size_flags_horizontal = 5
+size_flags_horizontal = 4
 texture_normal = ExtResource( 10 )
 expand = true
 stretch_mode = 5
 
-[node name="icon" type="TextureRect" parent="information/HBox/inf_people/info_music/logo_music"]
-anchor_left = 0.5
+[node name="panel" type="PanelContainer" parent="information/HBox/links/info/info_music/logo_music"]
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -16.0
-margin_top = -41.0
-margin_right = 16.0
-margin_bottom = -9.0
+margin_left = -42.0
+margin_top = -42.0
 rect_min_size = Vector2( 32, 32 )
-size_flags_horizontal = 0
+custom_styles/panel = ExtResource( 12 )
+
+[node name="margin" type="MarginContainer" parent="information/HBox/links/info/info_music/logo_music/panel"]
+margin_right = 42.0
+margin_bottom = 42.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="icon" type="TextureRect" parent="information/HBox/links/info/info_music/logo_music/panel/margin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 37.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 32, 32 )
 texture = ExtResource( 8 )
 expand = true
-stretch_mode = 5
+stretch_mode = 6
 
-[node name="logo_music_name" type="Label" parent="information/HBox/inf_people/info_music"]
-margin_top = 316.0
+[node name="logo_music_name" type="Label" parent="information/HBox/links/info/info_music"]
+margin_top = 132.0
 margin_right = 155.0
-margin_bottom = 356.0
+margin_bottom = 172.0
 custom_fonts/font = ExtResource( 2 )
 text = "Belgvogor Sound"
 align = 1
 valign = 1
+
+[node name="links" type="Label" parent="information/HBox/links"]
+margin_top = 196.0
+margin_right = 333.0
+margin_bottom = 236.0
+custom_fonts/font = ExtResource( 2 )
+text = "Links:"
+align = 1
+valign = 1
+
+[node name="jumpscare" type="Label" parent="information/HBox/links"]
+margin_top = 236.0
+margin_right = 333.0
+margin_bottom = 276.0
+custom_fonts/font = ExtResource( 2 )
+text = "Jumpscares:"
+align = 1
+valign = 1
+
+[node name="jumpscare_link" type="HBoxContainer" parent="information/HBox/links"]
+margin_left = 84.0
+margin_top = 276.0
+margin_right = 249.0
+margin_bottom = 316.0
+size_flags_horizontal = 4
+
+[node name="link_smile_jump" type="LinkButton" parent="information/HBox/links/jumpscare_link"]
+margin_right = 51.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "SFX 1"
+
+[node name="link_jump1" type="LinkButton" parent="information/HBox/links/jumpscare_link"]
+margin_left = 55.0
+margin_right = 108.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "SFX 2"
+
+[node name="link_jump2" type="LinkButton" parent="information/HBox/links/jumpscare_link"]
+margin_left = 112.0
+margin_right = 165.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "SFX 3"
+
+[node name="steps" type="Label" parent="information/HBox/links"]
+margin_top = 316.0
+margin_right = 333.0
+margin_bottom = 356.0
+custom_fonts/font = ExtResource( 2 )
+text = "Steps:"
+align = 1
+valign = 1
+
+[node name="steps_link" type="HBoxContainer" parent="information/HBox/links"]
+margin_top = 356.0
+margin_right = 333.0
+margin_bottom = 396.0
+alignment = 1
+
+[node name="link_smile_step" type="LinkButton" parent="information/HBox/links/steps_link"]
+margin_left = 109.0
+margin_right = 162.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Smile"
+
+[node name="link_player_step" type="LinkButton" parent="information/HBox/links/steps_link"]
+margin_left = 166.0
+margin_right = 224.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Player"
+
+[node name="link_heartbeat" type="LinkButton" parent="information/HBox/links"]
+margin_left = 119.0
+margin_top = 396.0
+margin_right = 214.0
+margin_bottom = 436.0
+focus_mode = 2
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 2 )
+text = "Heartbeat"
+
+[node name="textures" type="Label" parent="information/HBox/links"]
+margin_top = 436.0
+margin_right = 333.0
+margin_bottom = 476.0
+custom_fonts/font = ExtResource( 2 )
+text = "Textures:"
+align = 1
+valign = 1
+
+[node name="textures_link" type="HBoxContainer" parent="information/HBox/links"]
+margin_top = 476.0
+margin_right = 333.0
+margin_bottom = 516.0
+alignment = 1
+
+[node name="link_floor" type="LinkButton" parent="information/HBox/links/textures_link"]
+margin_left = 97.0
+margin_right = 143.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Floor"
+
+[node name="link_wall" type="LinkButton" parent="information/HBox/links/textures_link"]
+margin_left = 147.0
+margin_right = 189.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Wall"
+
+[node name="link_roof" type="LinkButton" parent="information/HBox/links/textures_link"]
+margin_left = 193.0
+margin_right = 236.0
+margin_bottom = 40.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Roof"
 
 [node name="info_control" type="VBoxContainer" parent="information/HBox"]
 margin_left = 819.0
@@ -261,6 +420,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="information/HBox/inf_people/info_dev/logo_dev" to="." method="_on_logo_dev_pressed"]
-[connection signal="pressed" from="information/HBox/inf_people/info_music/logo_music" to="." method="_on_logo_music_pressed"]
+[connection signal="pressed" from="information/HBox/links/info/info_dev/logo_dev" to="." method="_on_logo_dev_pressed"]
+[connection signal="pressed" from="information/HBox/links/info/info_music/logo_music" to="." method="_on_logo_music_pressed"]
+[connection signal="pressed" from="information/HBox/links/jumpscare_link/link_smile_jump" to="." method="_on_link_smile_jump_pressed"]
+[connection signal="pressed" from="information/HBox/links/jumpscare_link/link_jump1" to="." method="_on_link_jump1_pressed"]
+[connection signal="pressed" from="information/HBox/links/jumpscare_link/link_jump2" to="." method="_on_link_jump2_pressed"]
+[connection signal="pressed" from="information/HBox/links/steps_link/link_smile_step" to="." method="_on_link_smile_step_pressed"]
+[connection signal="pressed" from="information/HBox/links/steps_link/link_player_step" to="." method="_on_link_player_step_pressed"]
+[connection signal="pressed" from="information/HBox/links/link_heartbeat" to="." method="_on_link_heartbeat_pressed"]
+[connection signal="pressed" from="information/HBox/links/textures_link/link_floor" to="." method="_on_link_floor_pressed"]
+[connection signal="pressed" from="information/HBox/links/textures_link/link_wall" to="." method="_on_link_wall_pressed"]
+[connection signal="pressed" from="information/HBox/links/textures_link/link_roof" to="." method="_on_link_roof_pressed"]
 [connection signal="pressed" from="close" to="." method="_on_close_pressed"]

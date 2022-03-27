@@ -45,7 +45,7 @@ func _ready():
 		delete_parent = false
 		delete_action = false
 		if !Data.is_good_ending:
-			parent_function = ''
+			parent_function = 'info'
 
 func _process(_delta):
 	if action_id == 'note' && id != 0:
@@ -68,7 +68,6 @@ func action():
 			Core.root_gui.inventory.emit_signal('showing')
 		elif action_id == 'lie_insight':
 			Data.is_picked_lie_insight = true
-			GlobalSound.stop_music()
 	
 	if action_id && action_viewing:
 		Core.action_object_viewing = true

@@ -73,7 +73,7 @@ func _on_timer_smile_timeout():
 				c_smile.visible = false
 			else:
 				c_smile.visible = true
-				Core.root_menu.menu.heartbeat.emit_signal('heart', 0)
+				Core.root_menu.heartbeat.emit_signal('heart', 0)
 		4:
 			c_smile.visible = false
 		2:

@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://c_smile/c_smile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sources/environments/environment.tres" type="Environment" id=2]
+[ext_resource path="res://levels/assets/p_deadend.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/scenes/sub_scenes/jumpscare_map.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 4, -5.33 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 4, -5.33 ), Vector3( 0, 2, -6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ), Vector3( -45, -200, 0 ) ]
+}
+
+[node name="jumpscare_map" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 2 )
+
+[node name="c_smile" parent="." instance=ExtResource( 1 )]
+anim = "attack"
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 4, -5.33 )
+current = true
+
+[node name="SpotLight" type="SpotLight" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, -0.5, 0 )
+portal_mode = 3
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 25.0
+
+[node name="p_deadend" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0, 0, 0 )
+
+[node name="p_deadend2" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-07, 0, -10, 0, 10, 0, 10, 0, -4.37114e-07, 0, 0, -10 )
+
+[node name="anim_cam" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/start = SubResource( 2 )

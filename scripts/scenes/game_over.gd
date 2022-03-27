@@ -3,6 +3,7 @@ extends Control
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$text.text = tr('game_over')
+	$view_jump/Viewport/jumpscare_map.smile.start_attack()
 	GlobalSound.play_sound('jump')
 	$jp_timer.start()
 	yield(get_tree().create_timer(2), "timeout")
@@ -18,4 +19,4 @@ func _on_anim_animation_finished(_anim_name):
 	Data.loading_settings()
 
 func _on_jp_timer_timeout():
-	$jumpscare.visible = false
+	$view_jump.visible = false

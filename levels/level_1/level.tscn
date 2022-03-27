@@ -1420,7 +1420,7 @@ smile_anim_name = "run"
 angle = 60
 
 [node name="pos" type="Position3D" parent="objects/creature_trigger4"]
-transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, 11.1333, -0.946258, -3.75062 )
+transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, 30.3451, -0.946258, -3.75062 )
 
 [node name="creature_trigger5" parent="objects" instance=ExtResource( 7 )]
 transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 81.9382, 3.18099, 149.883 )
@@ -1432,7 +1432,7 @@ is_picked_lie_insight_check = true
 smile_anim_name = "run"
 
 [node name="pos" type="Position3D" parent="objects/creature_trigger5"]
-transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, -3.80334, -0.946258, -3.75062 )
+transform = Transform( 0.196534, 0, 0, 0, 0.297473, 0, 0, 0, 0.188631, -15.2881, -0.946258, -7.61118 )
 
 [node name="creature_trigger2" parent="objects" instance=ExtResource( 7 )]
 transform = Transform( 5.08817, 0, 0, 0, 3.36165, 0, 0, 0, 5.30136, 102.117, 3.18099, 149.081 )

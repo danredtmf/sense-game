@@ -7,6 +7,7 @@ var root_nav
 var root_game
 var root_player
 var root_gui
+var root_jump_map
 
 var action_object = null
 var action_object_viewing = false

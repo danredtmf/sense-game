@@ -15,5 +15,8 @@ func move():
 			is_reverse = false
 		is_anim = true
 
+func info():
+	Core.root_gui.info.emit_signal('showing')
+
 func _on_anim_animation_finished(_anim_name):
 	is_anim = false

@@ -8,18 +8,18 @@ pause,Pause,Пауза
 close,Close,Закрыть
 exit_menu,Exit to the Main Menu,Выйти
 about_control,Control,Управление
-about_movement,WASD - Movement,WASD - Передвижение
-about_interact,E - Interact,E - Взаимодействие
-about_flashlight,F - Flashlight,F - Фонарик
-about_run,Shift - Run,Shift - Бег
-about_pause,Esc - Pause Menu,Esc - Меню Паузы
+about_movement,WASD — Movement,WASD — Передвижение
+about_interact,E — Interact,E — Взаимодействие
+about_flashlight,F — Flashlight,F — Фонарик
+about_run,Shift — Run,Shift — Бег
+about_pause,Esc — Pause menu,Esc — Меню паузы
 fullscreen,Fullscreen,Полноэкранный режим
 russian,Russian,Русский
 english,English,Английский
 set_language,Language,Язык
-mouse_sensitivity,Mouse Sensitivity,Чувствительность мыши
-reset_game,Clear Progress,Стереть прогресс
-reset_settings,Reset Settings,Сбросить настройки
+mouse_sensitivity,Mouse sensitivity,Чувствительность мыши
+reset_game,Clear progress,Стереть прогресс
+reset_settings,Reset settings,Сбросить настройки
 p_shader,Pixelation,Пиксилизация
 note,Note,Записка
 notes,Notes,Записки
@@ -49,17 +49,17 @@ notes_no,No notes were found,Записки не найдены
 previous_note,Previous,Предыдущая
 next_note,Next,Следующая
 fps_monitor,FPS Counter,Счётчик FPS
-vsync,Vertical Sync,Вертикальная Синхронизация
+vsync,Vertical sync,Вертикальная синхронизация
 loading,Loading,Загрузка
 saving,Saving,Сохранение
 insights,Insights,Озарения
-about_pickup_items,Tab - Collected items,Tab - Собранные предметы
+about_pickup_items,Tab — Collected items,Tab — Собранные предметы
 trap,The Trap,Ловушка
 bad_ending,Bad Ending,Плохая концовка
 good_ending,Good Ending,Хорошая концовка
 true_ending,True Ending,Настоящая концовка
-result_bad_ending,You are trapped.,Вы в ловушке.
-result_good_ending,The secrets are still here.,Секреты всё ещё здесь.
+result_bad_ending,You are trapped,Вы в ловушке
+result_good_ending,Books can tell you more...,Книги могут рассказать больше...
 result_true_ending,Thanks for playing!,Спасибо за игру!
 game_over,You got caught,Вас поймали
 on,On,Включено
@@ -68,3 +68,15 @@ data,Data,Данные
 audio,Audio,Аудио
 music,Music,Музыка
 sound,Sound,Звук
+voice,Voice,Голос
+info_book,There's nothing under it... It's still early...,Под ней ничего нет... Ещё рано...
+used_resources,Used resources,Используемые ресурсы
+jumpscare_sounds,Jumpscare sounds,Звуки скримеров
+footsteps,Sounds of footsteps,Звуки шагов
+heartbeat_sound,Heartbeat sound,Звук сердцебиения
+textures,Textures,Тектуры
+floor,Floor,Пол
+wall,Wall,Стена
+ceiling,Ceiling,Потолок
+player,Player,Игрок
+smile,Smile,Улыбающийся

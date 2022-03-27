@@ -109,7 +109,7 @@ func _on_reset_settings_pressed():
 
 func _on_close_pressed():
 	if is_instance_valid(Core.root_menu):
-		Core.root_menu.menu.view.visible = true
+		Core.root_menu.view.visible = true
 	queue_free()
 
 func _on_lang_opts_item_selected(index):
@@ -157,6 +157,3 @@ func _on_sound_value_changed(value):
 		AudioServer.set_bus_mute(Core.sound_idx, true)
 	Data.saving_settings()
 	update_ui()
-
-func _on_audio_resized():
-	print($scroll/container/margin/grid/audio.rect_size)

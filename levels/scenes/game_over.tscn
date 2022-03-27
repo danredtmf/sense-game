@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/scenes/game_over.gd" type="Script" id=1]
 [ext_resource path="res://sources/themes/font_size/main_62.tres" type="DynamicFont" id=2]
-[ext_resource path="res://sources/images/jump/jp.jpg" type="Texture" id=3]
+[ext_resource path="res://levels/scenes/sub_scenes/jumpscare_map.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -69,11 +69,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="jumpscare" type="TextureRect" parent="."]
+[node name="view_jump" type="ViewportContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
-expand = true
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="view_jump"]
+size = Vector2( 1280, 720 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="jumpscare_map" parent="view_jump/Viewport" instance=ExtResource( 4 )]
 
 [node name="text" type="Label" parent="."]
 visible = false

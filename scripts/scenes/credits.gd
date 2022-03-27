@@ -27,9 +27,9 @@ func _on_anim_credits_animation_finished(anim_name):
 
 func _on_timer_delay_timeout():
 	if state == 0 && Data.is_picked_lie_insight:
-		$bad_text.text = tr('trap')
 		GlobalSound.play_sound('jump')
 		$anim.play("to_black_jump")
+		$view_jump/Viewport/jumpscare_map.smile.start_attack()
 		GlobalSound.stop_music()
 	elif state == 0 && Data.is_good_ending:
 		$anim.play("to_black")
