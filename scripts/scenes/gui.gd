@@ -58,7 +58,7 @@ func _showing_action_object():
 func _showing_pause():
 	if Core.game_pause:
 		var pause = pause_menu_res.instance()
-		add_child_below_node(action_name, pause)
+		add_child_below_node($center, pause)
 		Core.game_pause = false
 
 func _transition_scene(anim_name):

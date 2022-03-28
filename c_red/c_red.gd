@@ -20,3 +20,7 @@ func _on_VisibilityNotifier_camera_entered(_camera):
 
 func _on_timer_delay_destroy_timeout():
 	queue_free()
+
+func _on_area_proximity_body_entered(body):
+	if body.name == 'player':
+		queue_free()

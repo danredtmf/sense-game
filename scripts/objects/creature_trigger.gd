@@ -84,14 +84,12 @@ func _spawn():
 		print('haggy_non_active')
 	elif is_smile_spawn && is_smile_active && !Data.is_created_smile:
 		emit_signal("create_c_smile")
-		print('haggy')
 		Data.is_created_smile = true
 
 func _create_c_red():
 	var c_red = c_red_res.instance()
 	c_red.anim = red_anim_name
 	c_red.is_illusion = is_red_illusion
-	print('c_red.is_illusion: ', c_red.is_illusion)
 	if is_red_illusion:
 		c_red.get_node("AnimationPlayer").get_animation('idle').loop = true
 	Core.root_level.add_child(c_red)

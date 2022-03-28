@@ -9,6 +9,8 @@ const note_res = preload("res://levels/objects/note.tscn")
 const insight_res = preload("res://levels/objects/insight.tscn")
 const lie_insight_res = preload("res://levels/objects/lie_insight.tscn")
 
+const lie_insight_mat_res = preload("res://levels/models/materials/lie_insight.material")
+
 export var is_lamp_flashing = false
 
 export var id_note = 0
@@ -54,6 +56,7 @@ func _on_create_insight():
 
 func _on_create_lie_insight():
 	var lie_insight = lie_insight_res.instance()
+	lie_insight.set_surface_material(0, lie_insight_mat_res)
 	$pos_insight.add_child(lie_insight)
 
 func _on_lamp_light():
