@@ -4,11 +4,10 @@ const walk_speed = 500
 const run_speed = 750
 
 var speed
-var gravity = 300
 var camera_sensitivity = Data.saved_mouse_sensitivity
 
 var enable_flashlight = true
-var step_anim = ''
+var step_anim = '' # указание анимации для звука
 
 var vel = Vector3.ZERO
 
@@ -16,7 +15,7 @@ onready var camera = $Camera
 onready var spotlight = $Camera/SpotLight
 
 func _init():
-	VisualServer.set_debug_generate_wireframes(true)
+	VisualServer.set_debug_generate_wireframes(true) # для отладки
 
 func _ready():
 	Core.root_player = self
@@ -26,9 +25,6 @@ func _ready():
 
 func _physics_process(delta):
 	camera_sensitivity = Data.saved_mouse_sensitivity
-	
-	camera.rotation_degrees.y = 180
-	camera.rotation_degrees.z = 0
 	
 	var dir = Vector3.ZERO
 	vel = Vector3.ZERO
@@ -76,9 +72,6 @@ func _physics_process(delta):
 	
 	vel = dir.normalized() * speed
 	
-#	if not is_on_floor():
-#		vel.y -= gravity
-	
 	vel = move_and_slide(vel * delta, Vector3.UP)
 
 func check_flashlight():
@@ -92,7 +85,7 @@ func _input(event):
 		var movement = event.relative
 		camera.rotation.x -= deg2rad(movement.y * camera_sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg2rad(-85), deg2rad(85))
-		rotation.y += -deg2rad(movement.x * camera_sensitivity)
+		rotation.y -= deg2rad(movement.x * camera_sensitivity)
 	if event is InputEventKey and Input.is_key_pressed(KEY_P):
 		var vp = get_viewport()
 		vp.debug_draw = (vp.debug_draw + 1) % 4
@@ -100,6 +93,3 @@ func _input(event):
 func action():
 	if Core.action_object:
 		Core.action_object.call('action')
-
-func _on_step_delay_timeout():
-	pass # Replace with function body.
