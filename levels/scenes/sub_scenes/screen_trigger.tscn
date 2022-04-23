@@ -80,7 +80,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0.498039 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0.2 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="screen_trigger" type="Control"]
