@@ -11,17 +11,20 @@ func _ready():
 	connect("heart", self, "_heart")
 
 func _heartbeating():
-	if is_instance_valid(Core.root_menu):
-		get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
-		yield(get_tree(), "idle_frame")
-		screen = Core.root_menu.viewport.get_texture().get_data()
-	else:
-		get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
-		yield(get_tree(), "idle_frame")
-		screen = get_viewport().get_texture().get_data()
-	var image = ImageTexture.new()
-	image.create_from_image(screen)
-	$rect.texture = image
+# Решение заменено на узел "bg"
+#	if is_instance_valid(Core.root_menu):
+#		get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
+#		# Ждать рисовки следующего кадра
+#		yield(VisualServer, "frame_post_draw")
+#		screen = Core.root_menu.viewport.get_texture().get_data()
+#	else:
+#		get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
+#		# Ждать рисовки следующего кадра
+#		yield(VisualServer, "frame_post_draw")
+#		screen = get_viewport().get_texture().get_data()
+#	var image = ImageTexture.new()
+#	image.create_from_image(screen)
+#	$rect.set_texture(image)
 	if !$anim.is_playing():
 		$anim.play("scale")
 
