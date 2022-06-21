@@ -2,9 +2,15 @@ extends Area
 
 export var is_active = true
 export var is_mesh_visible = true
-export var is_consider_end = false
 
+# Если триггер является триггером концовки уровня
+# Ненужная переменная
+#export var is_consider_end = false
+
+# Если триггер является триггером сохранения
 export var is_ending_trigger = false
+
+# Если триггер является триггером концовки уровня
 export var is_good_ending_trigger = false
 
 func _ready():
@@ -16,7 +22,8 @@ func _visible_mesh():
 	$mesh.visible = is_mesh_visible
 
 func _closing_active():
-	if Data.is_ending && !is_consider_end:
+#	if Data.is_ending && !is_consider_end:
+	if Data.is_ending && !is_good_ending_trigger:
 		is_active = false
 
 func _active_check():

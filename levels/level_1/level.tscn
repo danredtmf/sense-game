@@ -1447,7 +1447,6 @@ transform = Transform( 0.188631, 0, 0, 0, 0.297473, 0, 0, 0, 0.196534, 8.22035, 
 
 [node name="save_trigger2" parent="objects" instance=ExtResource( 6 )]
 transform = Transform( -2.40413e-07, 0, 1.06593, 0, 4.99183, 0, -5.5, 0, -4.65933e-08, 236.769, 5.05985, 129.784 )
-is_consider_end = true
 is_good_ending_trigger = true
 
 [node name="OmniLight" type="OmniLight" parent="objects/save_trigger2"]
