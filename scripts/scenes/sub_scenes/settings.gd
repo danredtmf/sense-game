@@ -1,5 +1,7 @@
 extends Control
 
+signal win_size_update
+
 onready var settings_name = $name
 onready var fullscr_name = $scroll/container/margin/grid/fullscr/margin/fullscr/panel1/margin/name
 onready var lang_name = $scroll/container/margin/grid/lang/margin/lang/panel1/margin/name
@@ -106,6 +108,7 @@ func _on_reset_game_pressed():
 func _on_reset_settings_pressed():
 	Data.reset_settings()
 	update_ui()
+	emit_signal("win_size_update")
 
 func _on_close_pressed():
 	if is_instance_valid(Core.root_menu):
@@ -126,6 +129,7 @@ func _on_fullscr_pressed():
 	OS.window_fullscreen = Data.saved_fullscreen_mode
 	Data.saving_settings()
 	update_ui()
+	emit_signal("win_size_update")
 
 func _on_vsync_pressed():
 	Data.saved_vsync = vsync.pressed

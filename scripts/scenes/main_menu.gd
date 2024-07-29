@@ -27,6 +27,7 @@ func _ready():
 		emit_signal("start_transition")
 	
 	update_ui()
+	_on_win_size_update()
 
 func _process(_delta):
 	update_ui()
@@ -88,6 +89,7 @@ func _on_continue_pressed():
 func _on_settings_pressed():
 	var settings = settings_menu_res.instance()
 	get_tree().root.add_child(settings)
+	settings.connect("win_size_update", self, "_on_win_size_update")
 	
 	view.visible = false
 
@@ -113,3 +115,16 @@ func _on_notes_pressed():
 	get_tree().root.add_child(notes)
 	
 	view.visible = false
+
+func _on_win_size_update():
+	if is_instance_valid(viewport):
+		var win_size = OS.window_size
+		if OS.window_maximized:
+			if viewport.size != OS.get_screen_size():
+				viewport.size = OS.get_screen_size()
+		else:
+			if viewport.size != win_size:
+				viewport.size = win_size
+
+func _on_TimerUpdateViewportSize_timeout():
+	_on_win_size_update()

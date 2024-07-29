@@ -13,6 +13,7 @@ config_version=4
 config/name="Sense"
 run/main_scene="res://levels/scenes/main_menu.tscn"
 boot_splash/image="res://sources/images/black.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 config/windows_native_icon="res://sources/images/icons/icon16.ico"
 config/version="1.0.1"
