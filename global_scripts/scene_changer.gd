@@ -26,9 +26,10 @@ func goto_scene(path):
 			break
 		elif err == OK:
 			# Still Loading
-			var progress = (loader.get_stage()) / loader.get_stage_count()
+			var progress = float(loader.get_stage()) / float(loader.get_stage_count())
 			loading_bar.get_node('ProgressBar').value = progress * 100
 		else:
 			print('Error while loading file')
 			break
 		yield(get_tree(), 'idle_frame')
+		yield(get_tree().create_timer(0.15), "timeout")

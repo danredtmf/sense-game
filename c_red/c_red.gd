@@ -3,7 +3,12 @@ extends Spatial
 export var anim = ''
 export var is_illusion = false
 
+var id = "red"
+
 func _ready():
+	_config()
+
+func _config():
 	if anim != '':
 		$AnimationPlayer.play(anim)
 

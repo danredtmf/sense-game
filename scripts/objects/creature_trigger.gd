@@ -6,6 +6,8 @@ signal create_c_smile
 const c_red_res = preload("res://c_red/c_red.tscn")
 const c_smile_res = preload("res://c_smile/c_smile.tscn")
 
+export var character : NodePath
+
 # до активации Data.is_ending
 export var is_active = false
 # после активации Data.is_good_ending
@@ -106,7 +108,19 @@ func _create_c_smile():
 
 func _on_creature_trigger_body_entered(body):
 	if body.name == 'player' && is_active && !is_picked_lie_insight_check:
-		_spawn()
+		if not character.is_empty() and is_instance_valid(get_node(character)):
+			var c = get_node(character) as Spatial
+			c.rotation_degrees.y = angle
+			c.global_transform.origin = spawn_position
+			if c.id == "smile":
+				c.is_active = is_smile_active
+				c.anim = smile_anim_name
+				c.call_deferred("_config")
+			else:
+				c.anim = red_anim_name
+				c.call_deferred("_config")
+		else:
+			_spawn()
 		is_active = false
 
 func _on_creature_trigger_body_exited(body):

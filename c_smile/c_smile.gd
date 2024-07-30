@@ -3,6 +3,7 @@ extends KinematicBody
 export var is_active = false
 export var anim = ''
 
+var id = "smile"
 var speed
 var speed_min = 750
 var speed_max = 1500
@@ -18,6 +19,9 @@ onready var nav : Navigation = Core.root_nav
 onready var player = Core.root_player
 
 func _ready():
+	_config()
+
+func _config():
 	if !is_active && anim == 'attack':
 		return
 	if is_active && anim != '':

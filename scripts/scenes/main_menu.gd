@@ -27,7 +27,6 @@ func _ready():
 		emit_signal("start_transition")
 	
 	update_ui()
-	_on_win_size_update()
 
 func _process(_delta):
 	update_ui()
@@ -44,7 +43,7 @@ func update_ui():
 		$Control/vbox/continue.visible = true
 		$Control/vbox/notes.visible = true
 	elif Data.is_ending && Data.is_game_passed:
-		$Control/vbox/continue.visible = false
+		$Control/vbox/continue.visible = true
 		$Control/vbox/notes.visible = true
 	else:
 		$Control/vbox/continue.visible = false
