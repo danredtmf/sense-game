@@ -117,6 +117,7 @@ anchor_bottom = 1.0
 stretch = true
 
 [node name="view" type="Viewport" parent="view_3d"]
+size = Vector2( 1280, 720 )
 size_override_stretch = true
 handle_input_locally = false
 fxaa = true
